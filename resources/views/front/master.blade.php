@@ -88,10 +88,10 @@
                         <button class="mobile-menu-toggler">
                             <span class="sr-only">Toggle mobile menu</span>
                             <i class="icon-bars"></i>
-                        </button>
+                        </button> 
                         
                         <a href="index.html" class="logo">
-                            <img src="{{asset('theme/assets/images/demos/demo-13/logo.png')}}" alt="Molla Logo" width="105" height="25">
+                            <img src="{{asset('theme/assets/images/demos/demo-13/logo.png')}}" alt="Molla Logo" width="253" height="62">
                         </a>
                     </div><!-- End .header-left -->
 
