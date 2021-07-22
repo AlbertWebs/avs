@@ -655,7 +655,8 @@
     .intro-title span {
       font-size: 4rem; }
     .intro-title sup {
-      font-size: 1.6rem; }
+      /* font-size: 1.6rem;  */
+    }
 
   .owl-simple.intro-slider.owl-nav-inside .owl-dots {
     left: 0;
@@ -670,7 +671,8 @@
   .intro-title span {
     font-size: 4.6rem; }
   .intro-title sup {
-    font-size: 1.8rem; }
+    /* font-size: 1.8rem; */
+   }
 
   .nav.nav-pills .nav-link {
     padding-top: 1.55rem;
@@ -704,7 +706,11 @@
     width: calc( 100% - 8rem ); }
 
   .banner-title {
-    font-size: 2.2rem; } }
+    font-size: 2.2rem;
+  
+  }
+
+}
 @media screen and (min-width: 1200px) {
   .intro-content .btn {
     min-width: 200px; }
@@ -723,10 +729,11 @@
       .intro-title > span span {
         margin-left: -.3rem; }
     .intro-title span {
-      font-size: 5rem; }
+      font-size: 3rem; }
     .intro-title sup {
-      font-size: 2rem;
-      top: 1em; }
+      /* font-size: 2rem;
+      top: 1em;  */
+    }
 
   .intro-slider.owl-simple.owl-nav-inside .owl-dots {
     margin-left: -188px;
@@ -766,6 +773,14 @@
   .header.header-10 .header-dropdown > span {
     margin: 0; }
   .header.header-10 .login {
-    padding: 0; } }
+    padding: 0; }
+    .logo{
+      max-width:123px !important; 
+    }
+    .intro-title{
+      font-size:15px;
+      max-width:180px;
+    }
+  }
 
 /*# sourceMappingURL=demo-13.css.map */

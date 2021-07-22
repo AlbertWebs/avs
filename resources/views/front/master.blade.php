@@ -305,7 +305,7 @@
 
                                 <div class="icon-box-content">
                                     <h3 class="icon-box-title">Free Shipping</h3><!-- End .icon-box-title -->
-                                    <p>Orders $50 or more</p>
+                                    <p>Orders $1000 or more</p>
                                 </div><!-- End .icon-box-content -->
                             </div><!-- End .icon-box -->
                         </div><!-- End .col-sm-6 col-lg-3 -->
@@ -318,7 +318,7 @@
 
                                 <div class="icon-box-content">
                                     <h3 class="icon-box-title">Free Returns</h3><!-- End .icon-box-title -->
-                                    <p>Within 30 days</p>
+                                    <p>Within 5 days</p>
                                 </div><!-- End .icon-box-content -->
                             </div><!-- End .icon-box -->
                         </div><!-- End .col-sm-6 col-lg-3 -->
@@ -330,7 +330,7 @@
                                 </span>
 
                                 <div class="icon-box-content">
-                                    <h3 class="icon-box-title">Get 20% Off 1 Item</h3><!-- End .icon-box-title -->
+                                    <h3 class="icon-box-title">Get % Off 1 Item</h3><!-- End .icon-box-title -->
                                     <p>When you sign up</p>
                                 </div><!-- End .icon-box-content -->
                             </div><!-- End .icon-box -->
@@ -358,8 +358,7 @@
                         <div class="col-sm-12 col-lg-6">
                             <div class="widget widget-about">
                                 <img src="{{asset('theme/assets/images/demos/demo-13/logo.png')}}" class="footer-logo" alt="{{$Settings->sitename}}" width="253" height="62">
-                                <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus. </p>
-                                
+                             
                                 <div class="widget-about-info">
                                     <div class="row">
                                         <div class="col-sm-6 col-md-4">
@@ -382,11 +381,10 @@
                                 <h4 class="widget-title">Information</h4><!-- End .widget-title -->
 
                                 <ul class="widget-list">
-                                    <li><a href="about.html">About Molla</a></li>
-                                    <li><a href="#">How to shop on Molla</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
-                                    <li><a href="login.html">Log in</a></li>
+                                    <li><a href="{{url('/privacy-policy')}}">Privacy Policy</a></li>
+                                    <li><a href="{{url('/copyright')}}">Copyright</a></li>
+                                    <li><a href="{{url('/delivery')}}">Delivery</a></li>
+                                    <li><a href="{{url('/terms-and-conditions')}}">Terms & Conditions</a></li>
                                 </ul><!-- End .widget-list -->
                             </div><!-- End .widget -->
                         </div><!-- End .col-sm-4 col-lg-3 -->
@@ -396,12 +394,10 @@
                                 <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
 
                                 <ul class="widget-list">
-                                    <li><a href="#">Payment Methods</a></li>
-                                    <li><a href="#">Money-back guarantee!</a></li>
-                                    <li><a href="#">Returns</a></li>
-                                    <li><a href="#">Shipping</a></li>
-                                    <li><a href="#">Terms and conditions</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="{{url('/')}}">About Us</a></li>
+                                    <li><a href="{{url('/our-products')}}">Products</a></li>
+                                    <li><a href="{{url('/our-portfolio')}}">Our Portfolio</a></li>
                                 </ul><!-- End .widget-list -->
                             </div><!-- End .widget -->
                         </div><!-- End .col-sm-4 col-lg-3 -->
@@ -411,11 +407,11 @@
                                 <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
                                 <ul class="widget-list">
-                                    <li><a href="#">Sign In</a></li>
-                                    <li><a href="cart.html">View Cart</a></li>
-                                    <li><a href="#">My Wishlist</a></li>
-                                    <li><a href="#">Track My Order</a></li>
-                                    <li><a href="#">Help</a></li>
+                                 
+                                    <li><a href="{{url('/')}}/shopping-cart">View Cart</a></li>
+                                    <li><a href="{{url('/')}}/shopping-cart/wishlist">My Wishlist</a></li>
+                                    <li><a href="{{url('/')}}/shopping-cart/track-order">Track My Order</a></li>
+                                    <li><a href="{{url('/')}}/contact-us">Help</a></li>
                                 </ul><!-- End .widget-list -->
                             </div><!-- End .widget -->
                         </div><!-- End .col-sm-64 col-lg-3 -->
@@ -758,7 +754,8 @@
         </div><!-- End .modal-dialog -->
     </div><!-- End .modal -->
 
-    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    {{-- Newsletter Popup --}}
+    {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="row no-gutters bg-white newsletter-popup-content">
@@ -787,7 +784,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Plugins JS File -->
     <script src="{{asset('theme/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/bootstrap.bundle.min.js')}}"></script>

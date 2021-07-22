@@ -16864,6 +16864,9 @@ button:focus {
 .cat-block{
   border:1px solid #66139B;
 }
+.width-300{
+  max-width:300px;
+}
 /* '' */
 
 /*# sourceMappingURL=style.css.map */
