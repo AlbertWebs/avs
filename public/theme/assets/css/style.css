@@ -16861,6 +16861,9 @@ button:focus {
 .icon-yarn:before {
   content: '\f7e3'; }
 
+.cat-block{
+  border:1px solid #66139B;
+}
 /* '' */
 
 /*# sourceMappingURL=style.css.map */
