@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Users Routes
+Auth::routes();
+Route::group(['prefix'=>'clientsarea'], function(){
+
+// SocialMedia
+Route::get('/facebook', [LoginController::class, 'facebook']);
+Route::get('/facebook/redirect', [LoginController::class, 'facebookRedirect']);
+Route::get('/google', [LoginController::class, 'google']);
+Route::get('/google/redirect', [LoginController::class, 'googleRedirect']);
+
+});
+
