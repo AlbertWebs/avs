@@ -7594,7 +7594,8 @@ a:focus {
 .product-media {
   position: relative;
   display: block;
-  background-color: #d7d7d7;
+  /* background-color: #d7d7d7; */
+  background-color: transparent;
   margin-bottom: 0;
   overflow: hidden; }
 
