@@ -72,7 +72,7 @@ class LoginController extends Controller
             if (auth()->user()->is_admin == 1) {
                 return redirect()->route('admin.home');
             }else{
-                return redirect()->route('my-course');
+                return redirect()->route('clientarea.home');
             }
         }else{
             Session::flash('error', "email-address or password are wrong.");
@@ -93,7 +93,7 @@ class LoginController extends Controller
         ]);
 
         Auth::login($user, true);
-        return redirect()->to('/apps/my-course');
+        return redirect()->to('/clientarea');
     }
 
     public function facebook(){
@@ -116,7 +116,7 @@ class LoginController extends Controller
         ]);
 
         Auth::login($user, true);
-        return redirect()->to('/apps/my-course');
+        return redirect()->to('/clientarea');
     }
 
     
