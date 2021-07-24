@@ -9,15 +9,20 @@
 
     {{-- SEO --}}
     {!! SEOMeta::generate() !!}
-    <meta name="author" content="Designekta Studios">
-    <meta property="og:description" content="Car stereo store in Nairobi, Vehicle Sounds Systems in Kenya, Vehicle Accessories in kenya, Car Sound Systems in Kenya, Car alarm Systems in Kenya">
-    <meta property="og:image" content="{{url('/')}}/uploads/logo/{{$Settings->logo}}" />
-    <meta property="fb:app_id" content="431980657174772" />
+    <?php $ProductC = 1; ?>
+    @foreach($Products as $tProduct)
+    <meta property="og:description" content="{{$tProduct->name}}">
+    <meta property="og:image" content="{{url('/')}}/uploads/product/{{$tProduct->fb_pixels}}" />
+    <meta property="fb:app_id" content="350937289315471" />
+    <meta property=”og:id” content=”{{$tProduct->id}}” />
+        
+    @if ($ProductC == 1)
+        @break
+    @endif
+    <?php $ProductC = $ProductC+1; echo $ProductC; ?>
+    @endforeach
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@amanisounds" />
-    <meta name="_token" content="{{ csrf_token() }}">
     {{-- SEO --}}
     @include('front.favicon')
     @include('front.facebook')
@@ -32,6 +37,10 @@
     <link rel="stylesheet" href="{{asset('theme/assets/css/plugins/jquery.countdown.css')}}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{asset('theme/assets/css/style.css')}}">
+    {{--  --}}
+  
+    <link rel="stylesheet" href="{{asset('theme/assets/css/plugins/nouislider/nouislider.css')}}">
+    {{--  --}}
     <link rel="stylesheet" href="{{asset('theme/assets/css/skins/skin-demo-13.css')}}">
     <link rel="stylesheet" href="{{asset('theme/assets/css/demos/demo-13.css')}}">
      <!--Floating WhatsApp css-->
@@ -243,7 +252,7 @@
                                 Browse Categories
                             </a>
 
-                            <div class="dropdown-menu show">
+                            <div class="dropdown-menu ">
                                 <nav class="side-nav">
                                     <ul class="menu-vertical sf-arrows">
                                         <?php $Category = DB::table('category')->limit(11)->get(); ?>
@@ -609,11 +618,11 @@
     <script src="{{asset('theme/assets/js/jquery.waypoints.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/superfish.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('theme/assets/js/wNumb.js')}}"></script>
     <script src="{{asset('theme/assets/js/bootstrap-input-spinner.js')}}"></script>
     <script src="{{asset('theme/assets/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/jquery.plugin.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/jquery.countdown.min.js')}}"></script>
-    
+    <script src="{{asset('theme/assets/js/nouislider.min.js')}}"></script>
+       
     <!-- Main JS File -->
     <script src="{{asset('theme/assets/js/main.js')}}"></script>
     <script src="{{asset('theme/assets/js/demos/demo-13.js')}}"></script>

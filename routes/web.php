@@ -17,8 +17,13 @@ use App\Http\Controllers\AdminsController;
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-
+Route::get('/products', [App\Http\Controllers\HomeController::class, 'all'])->name('all');
+Route::get('/products/shop-by-category', [App\Http\Controllers\HomeController::class, 'categories'])->name('shop-by-category');
+Route::get('/products/shop-by-brand', [App\Http\Controllers\HomeController::class, 'brand'])->name('shop-by-brand');
+Route::get('/products/{slung}', [App\Http\Controllers\HomeController::class, 'product_category'])->name('product-category');
 Route::get('/popup/{slung}', [App\Http\Controllers\HomeController::class, 'popup'])->name('popup');
+Route::get('/fullscreen/{slung}', [App\Http\Controllers\HomeController::class, 'fullscreen'])->name('fullscreen');
+Route::get('/products/brand/{brand}', [App\Http\Controllers\HomeController::class, 'brands'])->name('shop-by-brand');
 
 Auth::routes();
 

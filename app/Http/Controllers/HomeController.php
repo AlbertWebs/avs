@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Session;
 use OpenGraph;
 use SEOMeta;
 use Twitter;
@@ -35,10 +36,169 @@ class HomeController extends Controller
             return view('front.index', compact('keywords'));
         }
     }
+
+    public function all()
+    {
+        Session::forget('Category');
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Products | ' . $Settings->sitename .'');
+            SEOMeta::setDescription('Pioneer Car Speakers, Sony Car Speakers, Kenwood Car speakers, Kenwood speakers, Sony Speakers' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '/products');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/products');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Products';
+            $Copyright = DB::table('copyright')->get();
+            $page_title = 'Products';
+            $search_results ='';
+            $search_results_category = '';
+            $Products = DB::table('product')->OrderBy('id','DESC')->paginate(64);
+            $keywords = 'Sony Car Tweeters, Sony Car Ampifires, Kenwood Car Speakers, Kenwood Car Subwoofers, Sony car Subwoofers';
+            return view('front.products', compact('keywords','page_title', 'Products', 'page_name', 'search_results', 'search_results_category'));
+        }
+    }
+
+ 
+
+    public function product_category($category){
+        Session::forget('Category');
+        $Category = DB::table('category')->where('slung',$category)->get();
+       
+            foreach ($Category as $key => $value) {
+                $page_name = $value->cat;
+                $SEOSettings = DB::table('seosettings')->get();
+                foreach ($SEOSettings as $Settings) {
+                    SEOMeta::setTitle(' '.$value->cat.'  | ' . $Settings->sitename .'');
+                    SEOMeta::setDescription(''.$value->cat.' '.$value->keywords.'');
+                    SEOMeta::setCanonical('' . $Settings->url . '/products/'.$category.'');
+                    OpenGraph::setDescription('' . $value->cat . '');
+                    OpenGraph::setTitle('' . $value->cat . '');
+                    OpenGraph::setUrl('' . $Settings->url . '/products/'.$category.'');
+                    OpenGraph::addProperty('type', 'website');
+                    Twitter::setTitle('' . $Settings->sitename. '');
+                    Twitter::setSite('@amanisounds');
+                    // Set Session Here
+                    Session::put('Category', $page_name);
+                    $page_title = 'Products';
+                    $search_results ='';
+                    $search_results_category = '';
+                    $keywords = "$page_name, $value->keywords";
+                    // infinite Scroll
+                    $Products = DB::table('product')->where('cat',$value->id)->paginate(24);
+                    return view('front.products-category', compact('keywords','page_title', 'Products', 'page_name','search_results','search_results_category'));
+            }
+        }
+
+
+       
+    }
+
+    public function brands($category){
+       
+        $Category = DB::table('brands')->where('name',$category)->get();
+       
+            foreach ($Category as $key => $value) {
+                $page_name = $value->name;
+                $SEOSettings = DB::table('seosettings')->get();
+                foreach ($SEOSettings as $Settings) {
+                    SEOMeta::setTitle('' . $value->name . ' Vehicle Accessories In Nairobi');
+                    SEOMeta::setDescription(''.$value->name.' Vehicle Accessories In Nairobi');
+                    SEOMeta::setCanonical('' . $Settings->url . '/products/'.$category.'');
+                    OpenGraph::setDescription('' . $value->name . '');
+                    OpenGraph::setTitle('' . $value->name . ' Vehicle Accessories In Nairobi');
+                    OpenGraph::setUrl('' . $Settings->url . '/products/'.$category.'');
+                    OpenGraph::addProperty('type', 'website');
+                    Twitter::setTitle('' . $Settings->sitename. '');
+                    Twitter::setSite('@amanisounds');
+                    // Set Session Here
+                   
+                    $page_title = 'Products';
+                    $search_results ='';
+                    $search_results_category = '';
+                    $keywords = "$page_name Vehicle Accessories in Kenya";
+                    // infinite Scroll
+                    $Products = DB::table('product')->where('brand',$value->name)->paginate(24);
+                    return view('front.products-brands', compact('keywords','page_title', 'Products', 'page_name','search_results','search_results_category'));
+            }
+        }
+
+
+       
+    }
+
+    
+
+    public function categories(){
+        Session::forget('Category');    
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Shop by Category  | ' . $Settings->sitename .'');
+            SEOMeta::setDescription('Shop by Category | Car Sound Systems, Car Alarm Systems, Car Surveillance Systems');
+            SEOMeta::setCanonical('' . $Settings->url . '/products/categories');
+            OpenGraph::setDescription('Shop by Category | Car Sound Systems, Car Alarm Systems, Car Surveillance Systems');
+            OpenGraph::setTitle('Shop by Category');
+            OpenGraph::setUrl('' . $Settings->url . '/products/categories');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            // Set Session Here
+            $page_name = "Shop By Category";
+            Session::put('Category', $page_name);
+            $page_title = 'Products';
+            
+            $keywords = 'Car Sound Systems, Car Alarm Systems, Car Surveillance Systems,   ,in car Accessories  ,car stereo  ,car subwoofer  ,car stereo installation nairobi  , car audio shop
+            ,car stereo shop  ,powered speakers  ,underseat subwoofer  ,car speakers  ,car amplifiers';
+            
+            // infinite Scroll
+         
+            return view('front.categories', compact('keywords','page_title','page_name'));
+    }
+        
+    }
+
+    public function brand(){
+        Session::forget('Brand');    
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Shop by Brand  | ' . $Settings->sitename .'');
+            SEOMeta::setDescription('Shop by Brand | Car Sound Systems, Car Alarm Systems, Car Surveillance Systems');
+            SEOMeta::setCanonical('' . $Settings->url . '/products/brand');
+            OpenGraph::setDescription('Shop by Brand | Car Sound Systems, Car Alarm Systems, Car Surveillance Systems');
+            OpenGraph::setTitle('Shop by Brand');
+            OpenGraph::setUrl('' . $Settings->url . '/products/brand');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            // Set Session Here
+            $page_name = "Shop By Brand";
+            Session::put('Brand', $page_name);
+            $page_title = 'Products';
+            
+            $keywords = 'Car Sound Systems, Car Alarm Systems, Car Surveillance Systems,   ,in car Accessories  ,car stereo  ,car subwoofer  ,car stereo installation nairobi  , car audio shop
+            ,car stereo shop  ,powered speakers  ,underseat subwoofer  ,car speakers  ,car amplifiers';
+            
+            // infinite Scroll
+         
+            return view('front.brands', compact('keywords','page_title','page_name'));
+    }
+        
+    }
+       
     public function popup($slung){
         $Product =  DB::table('product')->where('slung',$slung)->get();
         return view('front.popup',compact('Product'));
     }
+
+    public function fullscreen($slung){
+        $Product =  DB::table('product')->where('slung',$slung)->get();
+        return view('front.fullscreen',compact('Product'));
+    }
+
+    
 
     
 }

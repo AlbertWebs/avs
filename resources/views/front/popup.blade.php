@@ -9,7 +9,7 @@
 							<img src="{{url('/')}}/uploads/product/{{$Pro->image_one}}">
 						</a>
 						<a href="#two" class="carousel-dot">
-							<img src="{{url('/')}}/uploads/product/{{$Pro->image_two}}">
+							<img src="{{url('/')}}/uploads/product/{{$Pro->fb_pixels}}">
 						</a>
 						<a href="#three" class="carousel-dot">
 							<img src="{{url('/')}}/uploads/product/{{$Pro->image_three}}">
@@ -31,29 +31,29 @@
 	                        }
 	                    }'>
 							<div class="intro-slide" data-hash="one">
-	                            <img src="{{url('/')}}/uploads/product/{{$Pro->image_one}}" alt="Image Desc">
-	                            <a href="{{url('/')}}/uploads/product/{{$Pro->image_one}}l" class="btn-fullscreen">
+	                            <img src="{{url('/')}}/uploads/product/{{$Pro->image_one}}" alt="{{$Pro->name}}">
+	                            <a href="{{url('/')}}/fullscreen/{{$Pro->slung}}" class="btn-fullscreen">
                                     <i class="icon-arrows"></i>
                                 </a>
 		                    </div><!-- End .intro-slide -->
 
 		                    <div class="intro-slide" data-hash="two">
-	                            <img src="{{url('/')}}/uploads/product/{{$Pro->image_one}}" alt="Image Desc">
-	                            <a href="https://www.portotheme.com/html/molla/popup/popup/fullscreen.html" class="btn-fullscreen">
+	                            <img src="{{url('/')}}/uploads/product/{{$Pro->image_one}}" alt="{{$Pro->name}}">
+	                            <a href="{{url('/')}}/fullscreen/{{$Pro->slung}}" class="btn-fullscreen">
                                     <i class="icon-arrows"></i>
                                 </a>
 		                    </div><!-- End .intro-slide -->
 
 		                    <div class="intro-slide" data-hash="three">
-	                            <img src="{{url('/')}}/uploads/product/{{$Pro->image_two}}" alt="Image Desc">
-	                            <a href="https://www.portotheme.com/html/molla/popup/popup/fullscreen.html" class="btn-fullscreen">
+	                            <img src="{{url('/')}}/uploads/product/{{$Pro->fb_pixels}}" alt="{{$Pro->name}}">
+	                            <a href="{{url('/')}}/fullscreen/{{$Pro->slung}}" class="btn-fullscreen">
                                     <i class="icon-arrows"></i>
                                 </a>
 		                    </div><!-- End .intro-slide -->
 
 		                    <div class="intro-slide" data-hash="four">
-	                            <img src="{{url('/')}}/uploads/product/{{$Pro->image_three}}" alt="Image Desc">
-	                            <a href="https://www.portotheme.com/html/molla/popup/popup/fullscreen.html" class="btn-fullscreen">
+	                            <img src="{{url('/')}}/uploads/product/{{$Pro->image_three}}" alt="{{$Pro->name}}">
+	                            <a href="{{url('/')}}/fullscreen/{{$Pro->slung}}" class="btn-fullscreen">
                                     <i class="icon-arrows"></i>
                                 </a>
 		                    </div><!-- End .intro-slide -->

@@ -200,7 +200,7 @@
 
     <div class="mb-3"></div><!-- End .mb-3 -->
 
-    <?php $Category = DB::table('category')->limit('10')->get(); ?>
+    <?php $Category = DB::table('category')->limit('15')->get(); ?>
     @foreach ($Category as $category)
     <div class="container electronics">
         <div class="heading heading-flex heading-border mb-3">
@@ -420,126 +420,48 @@
                             "items":3
                         },
                         "1280": {
-                            "items":4,
+                            "items":3,
                             "nav": true, 
                             "dots": false
                         }
                     }
                 }'>
+                <?php $Blogs = DB::table('blogs')->orderBy('id','DESC')->limit('5')->get(); ?>
+                @foreach ($Blogs as $item)
                 <article class="entry">
                     <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="{{asset('theme/assets/images/demos/demo-13/blog/post-1.jpg')}}" alt="image desc">
+                        <a href="{{url('/')}}/blog-posts/{{$item->slung}}">
+                            <img src="{{url('/')}}/uploads/blog/{{$item->image_one}}" alt="{{$item->title}}">
                         </a>
                     </figure><!-- End .entry-media -->
 
                     <div class="entry-body">
                         <div class="entry-meta">
-                            <a href="#">Nov 22, 2018</a>, 0 Comments
+                            <a href="#">
+                                <?php 
+                                    $RawDate = $item->created_at;
+                                    $FormatDate = strtotime($RawDate);
+                                    $Month = date('M',$FormatDate);
+                                    $Date = date('D',$FormatDate);
+                                    $date = date('d',$FormatDate);
+                                    $Year = date('Y',$FormatDate);
+                                ?>
+                                {{$Month}} {{$date}}, {{$Year}}
+                            </a> &nbsp; | &nbsp;
+                            <?php echo count($Comments = DB::table('comments')->where('blog_id',$item->id)->get()); ?> Comments
                         </div><!-- End .entry-meta -->
 
                         <h3 class="entry-title">
-                            <a href="single.html">Sed adipiscing ornare.</a>
+                            <a href="{{url('/')}}/blog-posts/{{$item->slung}}">{{$item->title}}</a>
                         </h3><!-- End .entry-title -->
 
                         <div class="entry-content">
-                            <p>Lorem ipsum dolor consectetuer adipiscing elit. Phasellus hendrerit. Pelletesque aliquet nibh ...</p>
-                            <a href="single.html" class="read-more">Read More</a>
+                            <p>{{$item->meta}}...</p>
+                            <a href="{{url('/')}}/blog-posts/{{$item->slung}}" class="read-more">Read More</a>
                         </div><!-- End .entry-content -->
                     </div><!-- End .entry-body -->
                 </article><!-- End .entry -->
-            
-                <article class="entry">
-                    <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="{{asset('theme/assets/images/demos/demo-13/blog/post-2.jpg')}}" alt="image desc">
-                        </a>
-                    </figure><!-- End .entry-media -->
-
-                    <div class="entry-body">
-                        <div class="entry-meta">
-                            <a href="#">Dec 12, 2018</a>, 0 Comments
-                        </div><!-- End .entry-meta -->
-
-                        <h3 class="entry-title">
-                            <a href="single.html">Vivamus vestibulum ntulla.</a>
-                        </h3><!-- End .entry-title -->
-
-                        <div class="entry-content">
-                            <p>Phasellus hendrerit. Pelletesque aliquet nibh necurna In nisi neque, aliquet vel, dapibus id ... </p>
-                            <a href="single.html" class="read-more">Read More</a>
-                        </div><!-- End .entry-content -->
-                    </div><!-- End .entry-body -->
-                </article><!-- End .entry -->
-
-                <article class="entry">
-                    <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="{{asset('theme/assets/images/demos/demo-13/blog/post-3.jpg')}}" alt="image desc">
-                        </a>
-                    </figure><!-- End .entry-media -->
-
-                    <div class="entry-body">
-                        <div class="entry-meta">
-                            <a href="#">Dec 19, 2018</a>, 2 Comments
-                        </div><!-- End .entry-meta -->
-
-                        <h3 class="entry-title">
-                            <a href="single.html">Praesent placerat risus.</a>
-                        </h3><!-- End .entry-title -->
-
-                        <div class="entry-content">
-                            <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc ...</p>
-                            <a href="single.html" class="read-more">Read More</a>
-                        </div><!-- End .entry-content -->
-                    </div><!-- End .entry-body -->
-                </article><!-- End .entry -->
-
-                <article class="entry">
-                    <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="{{asset('theme/assets/images/demos/demo-13/blog/post-4.jpg')}}" alt="image desc">
-                        </a>
-                    </figure><!-- End .entry-media -->
-
-                    <div class="entry-body">
-                        <div class="entry-meta">
-                            <a href="#">Dec 19, 2018</a>, 2 Comments
-                        </div><!-- End .entry-meta -->
-
-                        <h3 class="entry-title">
-                            <a href="single.html">Fusce pellentesque suscipit.</a>
-                        </h3><!-- End .entry-title -->
-
-                        <div class="entry-content">
-                            <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero augue. </p>
-                            <a href="single.html" class="read-more">Read More</a>
-                        </div><!-- End .entry-content -->
-                    </div><!-- End .entry-body -->
-                </article><!-- End .entry -->
-
-                <article class="entry">
-                    <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="{{asset('theme/assets/images/demos/demo-13/blog/post-1.jpg')}}" alt="image desc">
-                        </a>
-                    </figure><!-- End .entry-media -->
-
-                    <div class="entry-body">
-                        <div class="entry-meta">
-                            <a href="#">Nov 22, 2018</a>, 0 Comments
-                        </div><!-- End .entry-meta -->
-
-                        <h3 class="entry-title">
-                            <a href="single.html">Sed adipiscing ornare.</a>
-                        </h3><!-- End .entry-title -->
-
-                        <div class="entry-content">
-                            <p>Lorem ipsum dolor consectetuer adipiscing elit. Phasellus hendrerit. Pelletesque aliquet nibh ...</p>
-                            <a href="single.html" class="read-more">Read More</a>
-                        </div><!-- End .entry-content -->
-                    </div><!-- End .entry-body -->
-                </article><!-- End .entry -->
+                @endforeach
             </div><!-- End .owl-carousel -->
         </div><!-- End .container -->
     </div><!-- End .blog-posts -->

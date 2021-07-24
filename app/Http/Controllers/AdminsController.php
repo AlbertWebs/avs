@@ -2670,13 +2670,13 @@ public function edit_Blog(Request $request, $id){
       
         
     );
-    DB::table('blog')->where('id',$id)->update($updateDetails);
+    DB::table('blogs')->where('id',$id)->update($updateDetails);
     Session::flash('message', "Changes have been saved");
     return Redirect::back();
 }
 
 public function delete_Blog($id){
-    DB::table('blog')->where('id',$id)->delete();
+    DB::table('blogs')->where('id',$id)->delete();
    
     return Redirect::back();
 }
