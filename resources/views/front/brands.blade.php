@@ -6,7 +6,7 @@
     <div class="mb-4"></div><!-- End .mb-2 -->
 
     <div class="container">
-        <h2 class="title text-center mb-2">Explore Popular Categories</h2><!-- End .title -->
+        <h2 class="title text-center mb-2">Explore Popular Brands</h2><!-- End .title -->
 
         <div class="cat-blocks-container">
             <div class="row">

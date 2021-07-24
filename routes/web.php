@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminsController;
+use App\Http\Controllers\BlogController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +20,25 @@ use App\Http\Controllers\AdminsController;
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-Route::get('/products', [App\Http\Controllers\HomeController::class, 'all'])->name('all');
-Route::get('/products/shop-by-category', [App\Http\Controllers\HomeController::class, 'categories'])->name('shop-by-category');
-Route::get('/products/shop-by-brand', [App\Http\Controllers\HomeController::class, 'brand'])->name('shop-by-brand');
-Route::get('/products/{slung}', [App\Http\Controllers\HomeController::class, 'product_category'])->name('product-category');
+
+// Products
+Route::group(['prefix'=>'products'], function(){
+Route::get('/', [App\Http\Controllers\HomeController::class, 'all'])->name('all');
+Route::get('/shop-by-category', [App\Http\Controllers\HomeController::class, 'categories'])->name('shop-by-category');
+Route::get('/shop-by-brand', [App\Http\Controllers\HomeController::class, 'brand'])->name('shop-by-brand');
+Route::get('/{slung}', [App\Http\Controllers\HomeController::class, 'product_category'])->name('product-category');
+Route::get('/brand/{brand}', [App\Http\Controllers\HomeController::class, 'brands'])->name('shop-by-brand');
+});
+// Single Product
+Route::get('product/{slung}', [App\Http\Controllers\HomeController::class, 'product_single'])->name('product-single');
+// Product Helpers
 Route::get('/popup/{slung}', [App\Http\Controllers\HomeController::class, 'popup'])->name('popup');
 Route::get('/fullscreen/{slung}', [App\Http\Controllers\HomeController::class, 'fullscreen'])->name('fullscreen');
-Route::get('/products/brand/{brand}', [App\Http\Controllers\HomeController::class, 'brands'])->name('shop-by-brand');
+// Blog Posts
+Route::group(['prefix'=>'blog-posts'], function(){
+    Route::get('/', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
+    Route::get('/{slung}', [App\Http\Controllers\BlogController::class, 'blog'])->name('blog.post');
+});
 
 Auth::routes();
 
