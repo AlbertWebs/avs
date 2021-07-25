@@ -57,10 +57,9 @@ class WishListController extends Controller
         $UserIP = Request::ip();
         if(Auth::check()) {
             $UserId = Auth::User()->id;
-            Wishlist::removeByItem($ProductID, $UserId);
+            DB::table('wishlist')->where('user_id',$UserId)->where('item_id',$ProductID)->delete();
         }else{
-            $UserIP = Request::ip();
-            Wishlist::removeByItem($ProductID, $UserIP, 'session');
+            DB::table('wishlist')->where('session_id',$UserIP)->where('item_id',$ProductID)->delete();
         }
         // Return something
         return Redirect::back();

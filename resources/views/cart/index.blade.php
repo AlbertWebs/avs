@@ -70,11 +70,19 @@
                                                 </td>
                                                 <td class="price-col">KES {{$Product->price}}</td>
                                                 <td class="quantity-col">
-                                                    <div class="cart-product-quantity">
-                                                        <input type="number" class="form-control" value="{{$CartItem->qty}}" min="1" max="10" step="1" data-decimals="0" required>
-                                                    </div><!-- End .cart-product-quantity -->
+                                                    <form id="updateQTY_{{$CartItem->rowId}}">
+                                                        @csrf
+                                                        <input type="hidden" name="rowID_{{$CartItem->rowId}}" value="{{$CartItem->rowId}}">
+                                                        <div class="cart-product-quantity">
+                                                            <input name="qty_{{$CartItem->rowId}}" type="number" class="form-control" value="{{$CartItem->qty}}" min="1" max="10" step="1" data-decimals="0" required> 
+                                                            
+                                                        </div><!-- End .cart-product-quantity -->
+                                                        <button style="border:0;" type="submit" class="btn-outline-dark-2"><span>Update</span><i class="icon-refresh"></i></button>
+                                                        <br><br>
+                                                        <span class="hide_{{$CartItem->rowId}}">Updating...</span>
+                                                    </form>
                                                 </td>
-                                                <td class="total-col"><small>KES {{$CartItem->total}}</small></td>
+                                                <td class="total-col"><small><strong> {{$CartItem->total}}</strong></small></td>
                                                 <td class="remove-col"><a href="{{url('/')}}/shopping-cart/remove-from-cart/{{$CartItem->rowId}}" class="btn-remove"><i class="icon-close"></i></a></td>
                                             </tr>
                                             @endforeach
@@ -95,70 +103,55 @@
                                             </form>
                                         </div><!-- End .cart-discount -->
     
-                                        <a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
+                                        <a href="{{url('/')}}/wishlist/" class="btn btn-outline-dark-2"><span>Go To WishList</span><i class="icon-heart"></i></a>
                                     </div><!-- End .cart-bottom -->
                                 </div><!-- End .col-lg-9 -->
                                 <aside class="col-lg-3">
                                     <div class="summary summary-cart">
-                                        <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+                                        <h3 class="summary-title">Cart Summary</h3><!-- End .summary-title -->
     
                                         <table class="table table-summary">
                                             <tbody>
                                                 <tr class="summary-subtotal">
                                                     <td>Subtotal:</td>
-                                                    <td>$160.00</td>
+                                                    <td>KES {{Cart::subtotal()}}</td>
                                                 </tr><!-- End .summary-subtotal -->
                                                 <tr class="summary-shipping">
-                                                    <td>Shipping:</td>
+                                                    <td>Summary:</td>
                                                     <td>&nbsp;</td>
                                                 </tr>
-    
-                                                <tr class="summary-shipping-row">
+                                                @foreach($CartItems as $CartItem)
+                                                <?php 
+                                                                $Products = DB::table('product')->where('id',$CartItem->id)->get();
+                                                ?>
+                                                @foreach($Products as $Product)
+                                                <tr class="summary-shipping-row" style="border-bottom:1px solid">
                                                     <td>
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
-                                                            <label class="custom-control-label" for="free-shipping">Free Shipping</label>
+                                                        <div class="">
+                                                            <label class="custom-control-label" for="free-shipping">{{$Product->name}} x {{$CartItem->qty}}</label>
                                                         </div><!-- End .custom-control -->
                                                     </td>
-                                                    <td>$0.00</td>
+                                                    <td>KES {{$Product->price}}</td>
                                                 </tr><!-- End .summary-shipping-row -->
-    
-                                                <tr class="summary-shipping-row">
-                                                    <td>
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
-                                                            <label class="custom-control-label" for="standart-shipping">Standart:</label>
-                                                        </div><!-- End .custom-control -->
-                                                    </td>
-                                                    <td>$10.00</td>
-                                                </tr><!-- End .summary-shipping-row -->
-    
-                                                <tr class="summary-shipping-row">
-                                                    <td>
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
-                                                            <label class="custom-control-label" for="express-shipping">Express:</label>
-                                                        </div><!-- End .custom-control -->
-                                                    </td>
-                                                    <td>$20.00</td>
-                                                </tr><!-- End .summary-shipping-row -->
+                                                @endforeach
+                                                @endforeach
     
                                                 <tr class="summary-shipping-estimate">
-                                                    <td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
+                                                    <td>Estimate for Your Country<br> <a href="{{url('/')}}/dashboard">Change address</a></td>
                                                     <td>&nbsp;</td>
                                                 </tr><!-- End .summary-shipping-estimate -->
     
                                                 <tr class="summary-total">
                                                     <td>Total:</td>
-                                                    <td>$160.00</td>
+                                                    <td>{{Cart::total()}}</td>
                                                 </tr><!-- End .summary-total -->
                                             </tbody>
                                         </table><!-- End .table table-summary -->
     
-                                        <a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+                                        <a href="{{url('/')}}/shopping-cart/checkout" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
                                     </div><!-- End .summary -->
     
-                                    <a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+                                    <a href="{{url('/')}}/products/shop-by-category" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
                                 </aside><!-- End .col-lg-3 -->
                             </div><!-- End .row -->
                         </div><!-- End .container -->
@@ -167,4 +160,6 @@
             </main><!-- End .main -->
             {{--  --}}
             @endif
+
+          
 @endsection

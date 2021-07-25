@@ -231,7 +231,7 @@ class CartController extends Controller
      
      
      public function update(Request $request){ 
-         $rowID = $request->rowID;
+         $rowID = $request->rowId;
          $qty = $request->qty;
     
          Cart::update($rowID,$request->qty);

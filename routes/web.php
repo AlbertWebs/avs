@@ -7,6 +7,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishListController;
 use App\Http\Controllers\CompareController;
+use App\Http\Controllers\DashboadController;
+
 
 
 /*
@@ -45,7 +47,7 @@ Route::group(['prefix'=>'blog-posts'], function(){
 Route::group(['prefix'=>'shopping-cart'], function(){
 Route::get('/', [CartController::class, 'index'])->name('cart');
 Route::get('add-to-cart/{id}', [CartController::class, 'addCart'])->name('add.to.cart');
-Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
+Route::post('update-cart', [CartController::class, 'update'])->name('update.cart');
 Route::get('remove-from-cart/{id}', [CartController::class, 'destroy'])->name('remove.from.cart');
 });
 // WishList
@@ -74,8 +76,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Users Routes
 Auth::routes();
-Route::group(['prefix'=>'clientsarea'], function(){
-
+Route::group(['prefix'=>'dashboard'], function(){
+Route::get('/', [DashboadController::class, 'index']);
 // SocialMedia
 Route::get('/facebook', [LoginController::class, 'facebook']);
 Route::get('/facebook/redirect', [LoginController::class, 'facebookRedirect']);

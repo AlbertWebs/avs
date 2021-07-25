@@ -39,56 +39,25 @@
                     @if(session('compare'))
                     @foreach(session('compare') as $id => $details)
                     <?php $Product = DB::table('product')->where('id',$details['id'])->get(); ?>
-                    <div class="col-md-6">
+                    @foreach($Product as $Pro)
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <div class="product-details product-details-centered">
-                            <h1 class="product-title">Beige metal hoop tote bag</h1><!-- End .product-title -->
+                            <h1 class="product-title">{{$Pro->name}}</h1><!-- End .product-title -->
 
-                            <div class="ratings-container">
-                                <div class="ratings">
-                                    <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                </div><!-- End .ratings -->
-                                <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Reviews )</a>
-                            </div><!-- End .rating-container -->
+                          
 
                             <div class="product-price">
-                                $76.00
+                                KES {{$Pro->price}}
                             </div><!-- End .product-price -->
 
                             <div class="product-content">
-                                <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero.</p>
+                                <p> {!!html_entity_decode($Pro->meta)!!}</p>
                             </div><!-- End .product-content -->
 
-                            <div class="details-filter-row details-row-size">
-                                <label>Color:</label>
-
-                                <div class="product-nav product-nav-dots">
-                                    <a href="#" class="active" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
-                                    <a href="#" style="background: #333333;"><span class="sr-only">Color name</span></a>
-                                </div><!-- End .product-nav -->
-                            </div><!-- End .details-filter-row -->
-
-                            <div class="details-filter-row details-row-size">
-                                <label for="size">Size:</label>
-                                <div class="select-custom">
-                                    <select name="size" id="size" class="form-control">
-                                        <option value="#" selected="selected">One Size</option>
-                                        <option value="s">Small</option>
-                                        <option value="m">Medium</option>
-                                        <option value="l">Large</option>
-                                        <option value="xl">Extra Large</option>
-                                    </select>
-                                </div><!-- End .select-custom -->
-
-                                <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
-                            </div><!-- End .details-filter-row -->
 
                             <div class="product-details-action">
                                 <div class="details-action-col">
-                                    <div class="product-details-quantity">
-                                        <input type="number" id="qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                    </div><!-- End .product-details-quantity -->
-
-                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    <a href="{{url('/')}}/shopping-cart/add-to-cart/{{$Pro->id}}" class="btn-product btn-cart"><span>add to cart</span></a>
                                 </div><!-- End .details-action-col -->
 
                             </div><!-- End .product-details-action -->
@@ -105,20 +74,14 @@
                                 <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
                                     <div class="product-desc-content">
                                         <h3>Product Information</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. </p>
-                                        <ul>
-                                            <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. </li>
-                                            <li>Vivamus finibus vel mauris ut vehicula.</li>
-                                            <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.</li>
-                                        </ul>
-
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. </p>
+                                        <p>{!!html_entity_decode($Pro->content)!!}</p>
                                     </div><!-- End .product-desc-content -->
                                 </div><!-- .End .tab-pane -->
                             </div><!-- End .tab-content -->
                         </div><!-- End .product-details-tab -->
                         {{--  --}}
                     </div><!-- End .col-md-6 -->
+                    @endforeach
                     @endforeach
                     @endif
                 </div><!-- End .row -->

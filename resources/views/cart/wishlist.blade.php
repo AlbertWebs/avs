@@ -28,7 +28,6 @@
                         <th></th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @if(Auth::check())
 
@@ -72,12 +71,12 @@
                                     </td>
                                 @endif
                                 
-                                <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                <td class="remove-col"><a href="{{url('/')}}/wishlist/remove-from-wishlist/{{$CartItem->item_id}}" class="btn-remove"><i class="icon-close"></i></a></td>
                             </tr>
                             @endforeach
                             @endforeach
                     @else
-                            <?php $UserIP = \Request::ip(); ?>
+                            <?php $UserIP = \Request::ip();  ?>
                             <?php
                             
                                 $WishList = \javcorreia\Wishlist\Facades\Wishlist::getUserWishList($UserIP,'session');    
@@ -117,7 +116,7 @@
                                 </td>
                                 @endif
                                 
-                                <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+                                <td class="remove-col"><a href="{{url('/')}}/wishlist/remove-from-wishlist/{{$CartItem->item_id}}" class="btn-remove"><i class="icon-close"></i></a></td>
                             </tr>
                             @endforeach
                             @endforeach
