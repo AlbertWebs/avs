@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\BlogController;
-
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishListController;
+use App\Http\Controllers\CompareController;
 
 
 /*
@@ -39,6 +41,27 @@ Route::group(['prefix'=>'blog-posts'], function(){
     Route::get('/', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
     Route::get('/{slung}', [App\Http\Controllers\BlogController::class, 'blog'])->name('blog.post');
 });
+// Cart Routes
+Route::group(['prefix'=>'shopping-cart'], function(){
+Route::get('/', [CartController::class, 'index'])->name('cart');
+Route::get('add-to-cart/{id}', [CartController::class, 'addCart'])->name('add.to.cart');
+Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
+Route::get('remove-from-cart/{id}', [CartController::class, 'destroy'])->name('remove.from.cart');
+});
+// WishList
+Route::group(['prefix'=>'wishlist'], function(){
+Route::get('/', [WishListController::class, 'index'])->name('wishlist');
+Route::get('add-to-wishlist/{id}', [WishListController::class, 'addWish'])->name('add.to.wishlist');
+Route::get('remove-from-wishlist/{id}', [WishListController::class, 'destroy'])->name('remove.from.wishlist');
+});
+// Compare
+Route::group(['prefix'=>'compare'], function(){
+Route::get('/', [CompareController::class, 'index'])->name('compare');
+Route::get('add-to-compare/{id}', [CompareController::class, 'addCompare'])->name('add.to.compare');
+Route::get('remove-from-compare/{id}', [CompareController::class, 'destroy'])->name('remove.from.compare');
+Route::get('clear-compare', [CompareController::class, 'clear'])->name('clear.compare');
+});
+
 
 Auth::routes();
 

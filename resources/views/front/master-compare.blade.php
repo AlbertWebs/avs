@@ -32,10 +32,7 @@
     <link rel="stylesheet" href="{{asset('theme/assets/css/plugins/jquery.countdown.css')}}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{asset('theme/assets/css/style.css')}}">
-    {{--  --}}
-  
     <link rel="stylesheet" href="{{asset('theme/assets/css/plugins/nouislider/nouislider.css')}}">
-    {{--  --}}
     <link rel="stylesheet" href="{{asset('theme/assets/css/skins/skin-demo-13.css')}}">
     <link rel="stylesheet" href="{{asset('theme/assets/css/demos/demo-13.css')}}">
      <!--Floating WhatsApp css-->
@@ -139,7 +136,7 @@
                         </div><!-- End .header-search -->
                     </div>
 
-                    @include('front.shopping-cart')
+                   @include('front.shopping-cart')
                 </div><!-- End .container -->
             </div><!-- End .header-middle -->
 
@@ -151,7 +148,7 @@
                                 Browse Categories
                             </a>
 
-                            <div class="dropdown-menu ">
+                            <div class="dropdown-menu show">
                                 <nav class="side-nav">
                                     <ul class="menu-vertical sf-arrows">
                                         <?php $Category = DB::table('category')->limit(11)->get(); ?>
@@ -342,7 +339,7 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
-                   @include('front.footer-menu')
+                    @include('front.footer-menu')
                 </div><!-- .End .tab-pane -->
                 <div class="tab-pane fade" id="mobile-cats-tab" role="tabpanel" aria-labelledby="mobile-cats-link">
                     <nav class="mobile-cats-nav">
@@ -517,11 +514,11 @@
     <script src="{{asset('theme/assets/js/jquery.waypoints.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/superfish.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/wNumb.js')}}"></script>
     <script src="{{asset('theme/assets/js/bootstrap-input-spinner.js')}}"></script>
     <script src="{{asset('theme/assets/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/nouislider.min.js')}}"></script>
-       
+    <script src="{{asset('theme/assets/js/jquery.plugin.min.js')}}"></script>
+    <script src="{{asset('theme/assets/js/jquery.countdown.min.js')}}"></script>
+    
     <!-- Main JS File -->
     <script src="{{asset('theme/assets/js/main.js')}}"></script>
     <script src="{{asset('theme/assets/js/demos/demo-13.js')}}"></script>

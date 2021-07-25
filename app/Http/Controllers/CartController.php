@@ -3,30 +3,16 @@
 namespace App\Http\Controllers;
 
 use Gloudemans\Shoppingcart\Facades\Cart; //introduces the cart lib
-
-// use Illuminate\Http\Request;
-
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
-
 use App\Http\Requests;
-
 // use Request;
-
 use Illuminate\Support\Facades\Auth;
-
 use Bhavinjr\Wishlist\Facades\Wishlist;
-
 use Illuminate\Support\Facades\Redirect;
-
+use LamaLama\Wishlist\HasWishlists;
 use Session;
-
-use App\Product;
-
-use App\products;
-
-use App\Pricing;
+use App\Models\Product;
 use OpenGraph;
 use SEOMeta;
 use Twitter;
@@ -159,6 +145,8 @@ class CartController extends Controller
         Wishlist::add($id, $user);
         return Redirect::back();
     }
+
+   
 
     public function removeWishlist($id,$user){
         // Wishlist::remove(2);
