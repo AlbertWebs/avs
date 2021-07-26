@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Redirect;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
 
-use App\orders;
+use App\Models\orders;
 
-use App\User;
+use App\Models\User;
 
-use App\Invoice;
+use App\Models\Invoice;
 
-use App\Subscriber;
+use App\Models\Subscriber;
 
-use App\Payment;
+use App\Models\Payment;
 
 use Session;
 
@@ -59,7 +59,7 @@ class CheckoutController extends Controller
         
         if(Auth::check()){
             // return redirect()->route('cart/checkout/payment','CheckoutController@payment');
-            return redirect()->action('CheckoutController@payment');
+            return redirect()->route('payment');
         }
         else{
             
@@ -70,28 +70,7 @@ class CheckoutController extends Controller
         //Perfom a check to ensure that the cart is not empty
     }
 
-    public function checkout_confirm(){
-        $keywords = '';
-        $SEOSettings = DB::table('seosettings')->get();
-        foreach ($SEOSettings as $Settings) {
-            SEOMeta::setTitle('Checkout  - ' . $Settings->sitename . ' ');
-            SEOMeta::setDescription('Vehicle Sounds Systems in Kenya, Car Sound Systems in Kenya, Car alarm Systems in Kenya' . $Settings->welcome . '');
-            SEOMeta::setCanonical('' . $Settings->url . '');
-            OpenGraph::setDescription('' . $Settings->welcome . '');
-            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
-            OpenGraph::setUrl('' . $Settings->url . '');
-            OpenGraph::addProperty('type', 'articles');
-            Twitter::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
-            Twitter::setSite('' . $Settings->twitter . '');
-        $page_title = 'Confirm';
-        $page_name = 'Cobfirm';
-        $CartItems = Cart::content();
-        $SiteSettings = DB::table('sitesettings')->get();
-        $email = Auth::user()->email;
-        $User = DB::table('users')->where('email',$email)->get();
-        return view('checkout.checkout_confirm', compact('keywords','CartItems','page_title','SiteSettings','page_name'));
-        }
-    }
+ 
 
     public function payment(){
         // Check For Empty Carts
@@ -99,7 +78,7 @@ class CheckoutController extends Controller
        
         if($cart == 0){
             // Redirect To Cart
-            return redirect()->action('CartController@index');
+            return redirect()->route('payment');
         }else{
             // $ip = \Request::ip();
             $ip = '154.76.108.131';
@@ -165,7 +144,7 @@ class CheckoutController extends Controller
                  // Mail Invoice
                  $email = Auth::user()->email;
                  $name = Auth::user()->name;
-                 ReplyMessage::mailclientinvoice($email,$name,$InvoiceNumber,$ShippingFee,$TotalCost);
+                //  ReplyMessage::mailclientinvoice($email,$name,$InvoiceNumber,$ShippingFee,$TotalCost);
            
             }else{
                 // The Invoice already Exists
@@ -232,6 +211,29 @@ class CheckoutController extends Controller
             return view('checkout.index', compact('keywords','CartItems','page_title','SiteSettings','page_name'));
         }
     }
+    }
+
+    public function checkout_confirm(){
+        $keywords = '';
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Checkout  - ' . $Settings->sitename . ' ');
+            SEOMeta::setDescription('Vehicle Sounds Systems in Kenya, Car Sound Systems in Kenya, Car alarm Systems in Kenya' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '');
+            OpenGraph::addProperty('type', 'articles');
+            Twitter::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            Twitter::setSite('' . $Settings->twitter . '');
+        $page_title = 'Confirm';
+        $page_name = 'Cobfirm';
+        $CartItems = Cart::content();
+        $SiteSettings = DB::table('sitesettings')->get();
+        $email = Auth::user()->email;
+        $User = DB::table('users')->where('email',$email)->get();
+        return view('checkout.checkout_confirm', compact('keywords','CartItems','page_title','SiteSettings','page_name'));
+        }
     }
 
     public function placeOrder(Request $request){

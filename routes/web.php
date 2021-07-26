@@ -8,7 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishListController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\DashboadController;
-
+use App\Http\Controllers\CheckoutController;
 
 
 /*
@@ -49,6 +49,9 @@ Route::get('/', [CartController::class, 'index'])->name('cart');
 Route::get('add-to-cart/{id}', [CartController::class, 'addCart'])->name('add.to.cart');
 Route::post('update-cart', [CartController::class, 'update'])->name('update.cart');
 Route::get('remove-from-cart/{id}', [CartController::class, 'destroy'])->name('remove.from.cart');
+// Checkout
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::get('/checkout/payment', [CheckoutController::class, 'payment'])->name('payment');
 });
 // WishList
 Route::group(['prefix'=>'wishlist'], function(){

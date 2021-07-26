@@ -1,4 +1,4 @@
-@extends('front.master')
+@extends('front.master-pages')
 @section('content')
   <!-- offer block end  --> 
   <br><br>
