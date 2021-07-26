@@ -29,7 +29,7 @@ use Session;
 
 use Hash;
 
-use App\ReplyMessage;
+use App\Models\ReplyMessage;
 
 use App\Http\Requests;
 use OpenGraph;
@@ -93,6 +93,10 @@ class CheckoutController extends Controller
             }else{
                 $Shipping = 400;
             }
+
+            // Shipping session 
+            session()->put('Shipping', $Shipping);
+        
 
             // Create an invoice, Mail and Register
             if(Session::has('Invoice')){
@@ -163,9 +167,7 @@ class CheckoutController extends Controller
                    
                 }
             }
-            
-            
-
+            session()->put('TotalCost', $TotalCost);
             //Go to payments page     
             $keywords = '';
             $SEOSettings = DB::table('seosettings')->get();
@@ -249,48 +251,13 @@ class CheckoutController extends Controller
         return view('checkout.checkout_confirm', compact('keywords','CartItems','page_title','SiteSettings','page_name'));
         }
     }
-
-    public function placeOrder(Request $request){
-            $ip = \Request::ip();
     
-            $ip = '154.79.70.69';
+    public function placeOrder(Request $request){
 
-            $data = \Location::get($ip);
-        
-            $AreaCode =  $data->areaCode;
-            if($AreaCode == '30'){
-                $Shipping = 300;
-            }else{
-                $Shipping = 400;
-            }
-
-            // Create an invoice, Mail and Register
-            // Create Invoice
-            $MPESA = DB::table('invoices')->orderBy('id','DESC')->Limit('1')->get();
-            foreach($MPESA as $mpesa){
-            $LastID = $mpesa->transLoID;
-            $Next = $LastID+1;
-            $InvoiceNumber = "AVS0".$Next;
-   
-        
-            $TotalCart = Cart::total();
-            $PrepeTotalCart = str_replace( ',', '', $TotalCart );
-            $FormatTotalCart = round($PrepeTotalCart, 0);
-            $ShippingFee = $Shipping;
-            $TotalCost = $FormatTotalCart+$ShippingFee;
-            // Record Invoice
-            $Invoice = new Invoice;
-            $Invoice->number = $InvoiceNumber;
-            $Invoice->user_id = Auth::user()->id;
-            $Invoice->amount = $TotalCost;
-            $Invoice->save();
             // Mail Invoice
             $email = Auth::user()->email;
             $name = Auth::user()->name;
-            $Name = Auth::user()->name;
-            
-
-            $Name = Auth::user()->name;
+           
             Orders::createOrder();
             //destroy cart
             
@@ -305,11 +272,22 @@ class CheckoutController extends Controller
             
             $budget = 'Order';
             $content = 'Order';
-            // ReplyMessage::mailclient($email,$name,$InvoiceNumber,$ShippingFee,$TotalCost);
+
+            $InvoiceNumber = session()->get('Invoice');
+            $OrderNumberNumber = session()->get('Order');
+            $ShippingFee = session()->get('Shipping');
+            $TotalCost = session()->get('TotalCost');;
+            ReplyMessage::mailclient($email,$name,$InvoiceNumber,$ShippingFee,$TotalCost);
             // ReplyMessage::mailmerchantCOD($email,$name,$phone,$value->price,$value->name);
             ReplyMessage::mailmerchant($email,$name,$phone);
     
             Cart::destroy();
+            // Destrony Invoice & Order Sessions
+            session()->forget('Invoice');
+            session()->forget('Order');
+            session()->forget('Shipping');
+            session()->forget('TotalCost');
+
             /**Load The Thank You Page */
             $SEOSettings = DB::table('seosettings')->get();
             foreach($SEOSettings as $Settings){
@@ -330,108 +308,76 @@ class CheckoutController extends Controller
             $page_title = '';
             $keywords = 'Amani Vehicle Sounds';
         
-            $page_title = 'Thank You for your purchase';
-            return view('clientarea.thankyou',compact('page_title','Orders','page_name','page_title','keywords'));
+            $page_title = 'Thank You for your order';
+            return view('dashboard.thankyou',compact('page_title','page_name','page_title','keywords'));
 
             /** Load The Thank You Page */
             }
     }
 }
-    }
+    
 
     public function placeOrderGet(Request $request){
-        $ip = \Request::ip();
-  
-        $ip = '154.79.70.69';
-
-        $data = \Location::get($ip);
-       
-        $AreaCode =  $data->areaCode;
-        if($AreaCode == '30'){
-            $Shipping = 300;
-        }else{
-            $Shipping = 400;
-        }
-
-        // Create an invoice, Mail and Register
-        // Create Invoice
-        $MPESA = DB::table('invoices')->orderBy('id','DESC')->Limit('1')->get();
-        $countMPESA = count($MPESA);
-        if($countMPESA == 0){
-            $LastID = 1;
-            $Next = $LastID+1;
-            $InvoiceNumber = "AVS0".$Next;
-            $OrderNumberNumber = "AVS10".$Next;
-        }else{
-            foreach($MPESA as $mpesa){
-                $LastID = $mpesa->id;
-                $Next = $LastID+1;
-                $InvoiceNumber = "AVS0".$Next;
-                $OrderNumberNumber = "AVS10".$Next;
-              } 
-        }
-       
-        $TotalCart = Cart::total();
-        $PrepeTotalCart = str_replace( ',', '', $TotalCart );
-        $FormatTotalCart = round($PrepeTotalCart, 0);
-        $ShippingFee = $Shipping;
-        $TotalCost = $FormatTotalCart+$ShippingFee;
-
-
-        $CheckInvoice = DB::table('invoices')->where('number',$InvoiceNumber)->where('user_id',Auth::user()->id)->get();
-        $CountCheckInvoice = count($CheckInvoice);
-        if($CountCheckInvoice == 0){
-            // Proceed to placeorder
-
-        }else{
-            // Record Invoice
-            $Invoice = new Invoice;
-            $Invoice->number = $InvoiceNumber;
-            $Invoice->shipping = $Shipping;
-            $Invoice->products = serialize(Cart::Content());
-            $Invoice->user_id = Auth::user()->id;
-            $Invoice->amount = $TotalCost;
-            $Invoice->save();
-
-            
             // Mail Invoice
             $email = Auth::user()->email;
             $name = Auth::user()->name;
-            // ReplyMessage::mailclientinvoice($email,$name,$InvoiceNumber,$ShippingFee,$TotalCost);
-        }
-        $email = Auth::user()->email;
-        $name = Auth::user()->name;
-        $phone = Auth::user()->mobile;
-        ReplyMessage::mailmerchant($email,$name,$phone);
-        
-        //  Place Order
-        Orders::createOrder();
-        Cart::destroy();
-        /**Load The Thank You Page */
-        $SEOSettings = DB::table('seosettings')->get();
-        foreach($SEOSettings as $Settings){
-        SEOMeta::setTitle('Thanks You For Your Order - '.$Settings->sitename.' - Orders');
-        SEOMeta::setDescription(''.$Settings->welcome.'');
-        SEOMeta::setCanonical(''.$Settings->url.'/clientarea/thankyou');
+           
+            Orders::createOrder();
+            //destroy cart
+            
+            $page_title = 'Thank you!';
+            $name = Auth::user()->name;
+            $email = Auth::user()->email;
+            $phone = Auth::user()->mobile;
+            $service = 'Order';
+            $pricee = Cart::content();
+            foreach ($pricee as $key => $value) {
+                $price = $value->price;
+            
+            $budget = 'Order';
+            $content = 'Order';
 
-        OpenGraph::setDescription(''.$Settings->welcome.''); 
-        OpenGraph::setTitle(''.$Settings->sitename.' - '.$Settings->welcome.'');
-        OpenGraph::setUrl(''.$Settings->url.'/clientarea/thanksyou');
-        OpenGraph::addProperty('type', 'articles');
-        
-        
-        Twitter::setTitle(''.$Settings->sitename.' - '.$Settings->welcome.'');
-        Twitter::setSite(''.$Settings->twitter.'');
-        $id = Auth::user()->id;
-        $page_name = '';
-        $page_title = '';
-        $keywords = 'Amani Vehicle Sounds';
-       
-        $page_title = 'Your Order Number #'.$OrderNumberNumber.' Has Been Placed!';
-        return view('clientarea.thankyou',compact('page_title','page_name','page_title','keywords','OrderNumberNumber'));
+            $InvoiceNumber = session()->get('Invoice');
+            $OrderNumberNumber = session()->get('Order');
+            $ShippingFee = session()->get('Shipping');
+            $TotalCost = session()->get('TotalCost');;
+            ReplyMessage::mailclient($email,$name,$InvoiceNumber,$ShippingFee,$TotalCost);
+            // ReplyMessage::mailmerchantCOD($email,$name,$phone,$value->price,$value->name);
+            ReplyMessage::mailmerchant($email,$name,$phone);
+    
+            Cart::destroy();
+            // Destrony Invoice & Order Sessions
+            session()->forget('Invoice');
+            session()->forget('Order');
+            session()->forget('Shipping');
+            session()->forget('TotalCost');
 
-        /** Load The Thank You Page */
-        }
+            /**Load The Thank You Page */
+            $SEOSettings = DB::table('seosettings')->get();
+            foreach($SEOSettings as $Settings){
+            SEOMeta::setTitle('Thanks You For Your Order'.$Settings->sitename.' - Orders');
+            SEOMeta::setDescription(''.$Settings->welcome.'');
+            SEOMeta::setCanonical(''.$Settings->url.'/clientarea/thankyou');
+
+            OpenGraph::setDescription(''.$Settings->welcome.''); 
+            OpenGraph::setTitle(''.$Settings->sitename.' - '.$Settings->welcome.'');
+            OpenGraph::setUrl(''.$Settings->url.'/clientarea/thanksyou');
+            OpenGraph::addProperty('type', 'articles');
+            
+            
+            Twitter::setTitle(''.$Settings->sitename.' - '.$Settings->welcome.'');
+            Twitter::setSite(''.$Settings->twitter.'');
+            $id = Auth::user()->id;
+            $page_name = '';
+            $page_title = '';
+            $keywords = 'Amani Vehicle Sounds';
+        
+            $page_title = 'Thank You for your order';
+            return view('dashboard.thankyou',compact('page_title','page_name','page_title','keywords'));
+
+            /** Load The Thank You Page */
+            }
+    }
     }
 
     public function placeOrderGetAjaxNow(Request $request){

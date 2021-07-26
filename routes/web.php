@@ -56,6 +56,8 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::get('/checkout/payment', [CheckoutController::class, 'payment'])->name('payment');
 Route::post('checkout/login', [CheckoutController::class, 'login'])->name('checkout.login');
 Route::post('checkout/create-user', [CheckoutController::class, 'create'])->name('checkout.create');
+Route::get('checkout/placeOrder', [CheckoutController::class, 'placeOrderGet'])->name('checkout.order.get');
+Route::post('checkout/placeOrder', [CheckoutController::class, 'placeOrder'])->name('checkout.order');
 });
 // WishList
 Route::group(['prefix'=>'wishlist'], function(){

@@ -390,6 +390,7 @@
              });
          });
      </script>
+     
    
      {{--  --}}
      <?php $CartItems = Cart::content(); ?>
@@ -481,105 +482,63 @@
           {{--  --}}
           <script>
             $(function () {
-              $('#loading-image').hide();
-              $('#updateShippingForm').hide();
-              $('#verify').on('submit', function (e) {
-              $('#veryfyID').html('Checking......')
-                e.preventDefault();
-
-                $.ajax({
-
-                  type: 'post',
-                  url: '{{url('/')}}/payments/veryfy/mpesa',
-                  data: $('#verify').serialize(),
-                  success: function ($results) {
-                    $('#CardNumber').val('')
-                    if($results == 1){
-                          alert('Verification Was Successfull')
-                          $('#success-alert').html('The Purchase Was Successfull')
-                          $('#veryfyID').html('Successfull')
-                          //Submit The Order
-                          window.open('{{url('/')}}/cart/checkout/placeOrder','_self')
-                    }else{
-                          
-                          $('#veryfyID').html('Error Verifying Transaction. Wrong Transaction Code or Amount <i style="font-size:20px;color:red" class="fa fa-frown-o"></i>')
-                    }
-                  }
-                });
-
-              });
-              //StK hehe SITOKI
-              $('#sitokii').on('submit', function (e) {
-                $('#phoneNumber').prop('readonly', true);
-                $('#sitokiID').html('Check your phone....')
-                        e.preventDefault();
-
-                        $.ajax({
-                        type: 'post',
-                        url: '{{url('/')}}/payments/veryfy/sitoki',
-                        data: $('#sitoki').serialize(),
-                            success: function ($results) {
-                                        $('#sitokiID').val('')
+                    $('#loading-image').hide();
+                    $('#updateShippingForm').hide();
+                    $('#verify').on('submit', function (e) {
+                            $('#veryfyID').html('Checking......')
+                            e.preventDefault();
+                            $.ajax({
+                            type: 'post',
+                            url: '{{url('/')}}/payments/veryfy/mpesa',
+                            data: $('#verify').serialize(),
+                                    success: function ($results) {
+                                        $('#CardNumber').val('')
                                         if($results == 1){
-
-                                            /* Check If Payment Has Been Received And Redirect*/
-
+                                            // alert('Verification Was Successfull')
+                                            $('#success-alert').html('The Purchase Was Successfull')
+                                            $('#veryfyID').html('Successfull')
                                             //Submit The Order
-                                            window.open('{{url('/')}}/cart/checkout/placeOrder','_self')
-                                            //Redirect The User To Thank You Page
-                                            window.open('{{url('/')}}/clientarea/thankyou','_self')
+                                            window.open('{{url('/')}}/shopping-cart/checkout/placeOrder','_self')
                                         }else{
-
-                                            /* Return Message Here  */
-
+                                            
+                                            $('#veryfyID').html('Error Verifying Transaction. Wrong Transaction Code or Amount <i style="font-size:20px;color:red" class="fa fa-frown-o"></i>')
                                         }
-                            }
-                        });
+                                    }
+                            });
 
-              });
+                    });
 
+                    // STK Request Goes Here
+                    $( document ).ready(function() {
+                        $('.spinner').hide();
+                    });
+                    $("#stk-submit").submit(function(stay){
+                     stay.preventDefault()
+                     var formdata = $(this).serialize(); // here $(this) refere to the form its submitting
+                     $('.spinner').show();
+                     $('.instructions').delay(2000).fadeIn();
+                     $.ajax({
+                        type: 'POST',
+                        url: "{{url('/')}}/api/v1/stk/push",
+                        data: formdata, // here $(this) refers to the ajax object not form
+                        success: function (data) {
+                            $('.spinner').hide();
+                            $('.instructions').delay(4000).html('Success...');
+                            $('.instructions').delay(1000).html('Redirecting....');
+                            setTimeout(function() {
+                                // Redirect
+                                window.open('{{url('/')}}/shopping-cart/checkout/placeOrder','_self')
+                            }, 5000);
+                            },
+                            timeout: 5000 
+                     });
+                    });
         
-                //   STK Initialize
-                $('#sitoki').on('submit', function (e) {
-            
-                    $('#phoneNumber').prop('readonly', true);
-                    $('#sitokiID').html('Initializing....')
-                    $('#sitokiID').html('')
-                    $('#sitokiID').html('Check your phone....')
-                
-                        e.preventDefault();
-
-                        $.ajax({
-                        type: 'post',
-                        url: '{{url('/')}}/payments/stk',
-                        data: $('#sitoki').serialize(),
-                                success: function (results) {
-                                        $('#sitokiID').val('')
-                                
-                        
-                                        if(results == 1){
-                                            //Tell The Visitor The Payment Has Been Received
-                                            alert('Done!')
-                                            $('#sitokiID').html(' Payment Successfull <i class="fa fa-check alert-success> </i>')
-                                            //Submit The Order
-                                            window.open('{{url('/')}}/cart/checkout/placeOrderNow','_self')
-                                            //Redirect The User To Thank You Page
-                                            //   window.open('{{url('/')}}/clientarea/thankyou','_self')
-                                        }else{
-
-                                            /* Return Message Here  */
-                                            alert('Error Processing Your Payment!')
-
-                                        }
-                                }
-                        });
-
-                });
                 
 
                 
 
-                });
+            });
         </script>
           {{--  --}}
     @include('front.schema')

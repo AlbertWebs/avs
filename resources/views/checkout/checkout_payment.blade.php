@@ -255,7 +255,7 @@
 										        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
 										            <div class="card-body">
 										                {{--  --}}
-                                                        <form method="POST" action="#" id="verify">
+                                                        <form method="POST"  id="stk-submit">
                                                             {{ csrf_field() }}
                                                             <input type="hidden" name="invoice" value="{{$InvoiceNumber}}">
                                                                   <?php
@@ -285,11 +285,20 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <p for="email">Enter Your MPESA Phone Number <span>*</span></p>
-                                                                    <input type="text" name="TransactionID" class="form-control" required placeholder="NJL4E9WJ96" id="email" autocomplete="off">
+                                                                    
+                                                                    <input type="hidden" value="5" name="Amount">
+                                                                    <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
+                                                                    <input type="text" value="{{Auth::user()->mobile}}" name="phone_number" class="form-control" required placeholder="NJL4E9WJ96" id="email" autocomplete="off">
                                                                 </div>
-                                                              <div class="pull-left"><button id="veryfyID" class="btn btn-outline-primary-2 btn-order btn-block" type="submit"> Pay Now &nbsp;<i class="fa fa-arrow-right"></i> </button></div>
+                                                            {{--  --}}
+                                                            <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                                                                <span class="btn-text">Pay {{$TotalCost}} Now</span>
+                                                                
+                                                                 &nbsp; <img class="spinner" width="15" src="{{asset('uploads/preloaders/loading.gif')}}" alt="">
+                                                            </button>
+                                                            {{--  --}}
                                                             </div>
-                                                          </form>
+                                                        </form>
                                                         {{--  --}}
 										            </div><!-- End .card-body -->
 										        </div><!-- End .collapse -->
@@ -304,7 +313,46 @@
 										            </h2>
 										        </div><!-- End .card-header -->
 										        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
-										            <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. 
+										            <div class="card-body">
+                                                        <form method="POST" action="{{url('/shopping-cart/checkout/placeOrder')}}" id="verify">
+                                                            {{ csrf_field() }}
+                                                            <input type="hidden" name="invoice" value="{{$InvoiceNumber}}">
+                                                                  <?php
+                                                                      if(Session::has('campaign')){
+                                                                          $cost = Cart::total();
+                                                                          $percentage = 10;
+                                                                          $PrepeTotalCart = str_replace( ',', '', $cost );
+                                                                          $FormatTotalCart = round($PrepeTotalCart, 0);
+                                                                          $discount = ($percentage / 100) * $FormatTotalCart;
+                                                                          $TotalCart = ($FormatTotalCart - $discount);
+                                                                      }else{
+                                                                          $cost = Cart::total();
+                                                                          $percentage = 10;
+                                                                          $PrepeTotalCart = str_replace( ',', '', $cost );
+                                                                          $FormatTotalCart = round($PrepeTotalCart, 0);
+                                                                          $TotalCart = $FormatTotalCart;
+                                                                      }
+          
+                                                                      $PrepeTotalCart = str_replace( ',', '', $TotalCart );
+                                                                      $FormatTotalCart = round($PrepeTotalCart, 0);
+                                                                      $ShippingFee = $Shipping;
+                                                                      $TotalCost = $FormatTotalCart+$ShippingFee;
+                                                                      
+                                                                  
+                                                                  ?>
+                                                            <input type="hidden" name="amount" value="{{$TotalCost}}">
+                                                            <div class="col-md-12">
+                                                                {{-- <div class="form-group">
+                                                                    <textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery" spellcheck="false"></textarea>
+                                                                </div> --}}
+                                                            {{--  --}}
+                                                            <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                                                                <span class="btn-text">Place Order Now</span>
+                                                                <span class="btn-hover-text">Proceed to Chekout</span>
+                                                            </button>
+                                                            {{--  --}}
+                                                            </div>
+                                                        </form>
 										            </div><!-- End .card-body -->
 										        </div><!-- End .collapse -->
 										    </div><!-- End .card -->
@@ -313,37 +361,60 @@
 										        <div class="card-header" id="heading-4">
 										            <h2 class="card-title">
 										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
-										                    PayPal <small class="float-right paypal-link">What is PayPal?</small>
+										                    PayPal <small class="float-right paypal-link">Conversion charges may apply</small>
 										                </a>
 										            </h2>
 										        </div><!-- End .card-header -->
 										        <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
 										            <div class="card-body">
-										                Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
+										                {{--  --}}
+                                                        <form id="ShowPaypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                                            <input type="hidden" name="cmd" value="_cart">
+                                                            <input type="hidden" name="upload" value="1">
+                                                            <?php $SiteSettings = DB::table('sitesettings')->get(); ?>
+                                                            @foreach($SiteSettings as $Sett)
+                                                            <input type="hidden" name="business" value="{{$Sett->paypal}}">
+                                                            @endforeach
+                                                            <!-- Collect Data -->
+                                                            <?php $Count = 1; ?>
+                                                            @foreach($CartItems as $CartItem)
+                                                            <?php 
+                                                                $Products = DB::table('product')->where('id',$CartItem->id)->get();
+                                                            ?>
+                                                            @foreach($Products as $Product)
+                                                            <?php 
+                                                                  $RawPrice = $Product->price;
+                                                                  $dollarPrice = dollar($Product->price);
+                                                                  $PaypalCont = 0.029;
+                                                                  $paypalCut = $PaypalCont*$dollarPrice;
+                                                                  $PaypalToatal = $paypalCut+$dollarPrice;
+                                                                  
+                                                             ?>
+                                                            <input type="hidden" name="item_name_{{$Count}}" value="{{$Product->name}}">
+                                                            <input type="hidden" name="amount_{{$Count}}" value="<?php echo $PaypalToatal; ?>"><?php $PaypalToatal; ?>
+                                                            <input type="hidden" name="quantity_{{$Count}}" value="{{$CartItem->qty}}">
+                                                            <input type="hidden" name="shipping_{{$Count}}" value="<?php echo dollar($Shipping) ?>">
+                                                            @endforeach
+                                                            <?php $Count = $Count+1;  ?>
+                                                            @endforeach
+      
+                                                            
+                                                            
+                                                            <input type="hidden" name="cancel_return" id="cancel_return" value="{{url('/')}}/shopping-cart/checkout/payment" />
+                                                            <button  style="cursor:pointer" type="submit"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppcmcvdam.png" alt="Pay with PayPal Credit or any major credit card" /></button>
+                                                          </form>
+                                                        {{--  --}}
 										            </div><!-- End .card-body -->
 										        </div><!-- End .collapse -->
 										    </div><!-- End .card -->
 
-										    <div class="card">
-										        <div class="card-header" id="heading-5">
-										            <h2 class="card-title">
-										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
-										                    Credit Card (Stripe)
-										                    <img src="assets/images/payments-summary.png" alt="payments cards">
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#accordion-payment">
-										            <div class="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
+										    
 										</div><!-- End .accordion -->
 
-		                				<button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-		                					<span class="btn-text">Place Order</span>
-		                					<span class="btn-hover-text">Proceed to Checkout</span>
-		                				</button>
+		                				<a href="{{url('/')}}/dashboard" type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+		                					<span class="btn-text"><i class="icon-user"></i> My Account</span>
+		                					<span class="btn-hover-text">Proceed to My Account</span>
+                                        </a>
 		                			</div><!-- End .summary -->
 		                		</aside><!-- End .col-lg-3 -->
 		                	</div><!-- End .row -->

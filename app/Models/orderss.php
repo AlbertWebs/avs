@@ -1,23 +1,26 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use Gloudemans\Shoppingcart\Facades\Cart; //introduces the cart lib
-use App\Models\Product;
+
+use Gloudemans\Shoppingcart\Facades\Cart;
+
+use App\orders;
+
+use App\Notifications;
+
+use illuminate\support\Facades\Auth;
 
 class orders extends Model
 {
-    use HasFactory;
     protected $fillable=['total', 'status'];
     public function orderFields(){
         
         return $this->belongsToMany(products::class)->withPivot('qty', 'total');
         
     }
-
+ 
     public static function createOrder(){ 
         
         $user = Auth::user();
@@ -36,4 +39,7 @@ class orders extends Model
 
 
        }
-}
+
+       
+    }
+
