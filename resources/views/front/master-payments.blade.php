@@ -9,25 +9,23 @@
 
     {{-- SEO --}}
     {!! SEOMeta::generate() !!}
-    <?php $ProductC = 1; ?>
-    @foreach($Blog as $tProduct)
-    <meta property="og:description" content="{{$tProduct->title}}">
-    <meta property="og:image" content="{{url('/')}}/uploads/blog/{{$tProduct->image_one}}" />
-    <meta property="fb:app_id" content="350937289315471" />
-  
-        
-    @if ($ProductC == 1)
-        @break
-    @endif
-    <?php $ProductC = $ProductC+1; echo $ProductC; ?>
-    @endforeach
+    <meta name="author" content="Designekta Studios">
+    <meta property="og:description" content="Car stereo store in Nairobi, Vehicle Sounds Systems in Kenya, Vehicle Accessories in kenya, Car Sound Systems in Kenya, Car alarm Systems in Kenya">
+    <meta property="og:image" content="{{url('/')}}/uploads/logo/{{$Settings->logo}}" />
+    <meta property="fb:app_id" content="431980657174772" />
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@amanisounds" />
+    <meta name="_token" content="{{ csrf_token() }}">
     {{-- SEO --}}
     @include('front.favicon')
     @include('front.facebook')
     @include('front.tawk')
     @include('front.google')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+
 
     <link rel="stylesheet" href="{{asset('theme/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
     <!-- Plugins CSS File -->
@@ -53,7 +51,7 @@
 {{--  --}}
     <div class="page-wrapper">
         <header class="header header-10 header-intro-clearance">
-            @include('front.sign-in')
+            @include('front.top')
 
             <div class="header-middle">
                 <div class="container">
@@ -100,103 +98,7 @@
                         </div><!-- End .header-search -->
                     </div>
 
-                    <div class="header-right">
-                        <div class="header-dropdown-link">
-                            <div class="dropdown compare-dropdown">
-                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Compare Products" aria-label="Compare Products">
-                                    <i class="icon-random"></i>
-                                    <span class="compare-txt">Compare</span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <ul class="compare-products">
-                                        <li class="compare-product">
-                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                            <h4 class="compare-product-title"><a href="product.html">Blue Night Dress</a></h4>
-                                        </li>
-                                        <li class="compare-product">
-                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                            <h4 class="compare-product-title"><a href="product.html">White Long Skirt</a></h4>
-                                        </li>
-                                    </ul>
-
-                                    <div class="compare-actions">
-                                        <a href="#" class="action-link">Clear All</a>
-                                        <a href="#" class="btn btn-outline-primary-2"><span>Compare</span><i class="icon-long-arrow-right"></i></a>
-                                    </div>
-                                </div><!-- End .dropdown-menu -->
-                            </div><!-- End .compare-dropdown -->
-
-                            <a href="wishlist.html" class="wishlist-link">
-                                <i class="icon-heart-o"></i>
-                                <span class="wishlist-count">3</span>
-                                <span class="wishlist-txt">Wishlist</span>
-                            </a>
-
-                            <div class="dropdown cart-dropdown">
-                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                    <i class="icon-shopping-cart"></i>
-                                    <span class="cart-count">2</span>
-                                    <span class="cart-txt">Cart</span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-cart-products">
-                                        <div class="product">
-                                            <div class="product-cart-details">
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Beige knitted elastic runner shoes</a>
-                                                </h4>
-
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty">1</span>
-                                                    x $84.00
-                                                </span>
-                                            </div><!-- End .product-cart-details -->
-
-                                            <figure class="product-image-container">
-                                                <a href="product.html" class="product-image">
-                                                    <img src="{{asset('theme/assets/images/products/cart/product-1.jpg')}}" alt="product">
-                                                </a>
-                                            </figure>
-                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                        </div><!-- End .product -->
-
-                                        <div class="product">
-                                            <div class="product-cart-details">
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Blue utility pinafore denim dress</a>
-                                                </h4>
-
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty">1</span>
-                                                    x $76.00
-                                                </span>
-                                            </div><!-- End .product-cart-details -->
-
-                                            <figure class="product-image-container">
-                                                <a href="product.html" class="product-image">
-                                                    <img src="{{asset('theme/assets/images/products/cart/product-2.jpg')}}" alt="product">
-                                                </a>
-                                            </figure>
-                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                        </div><!-- End .product -->
-                                    </div><!-- End .cart-product -->
-
-                                    <div class="dropdown-cart-total">
-                                        <span>Total</span>
-
-                                        <span class="cart-total-price">$160.00</span>
-                                    </div><!-- End .dropdown-cart-total -->
-
-                                    <div class="dropdown-cart-action">
-                                        <a href="cart.html" class="btn btn-primary">View Cart</a>
-                                        <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
-                                    </div><!-- End .dropdown-cart-total -->
-                                </div><!-- End .dropdown-menu -->
-                            </div><!-- End .cart-dropdown -->
-                        </div>
-                    </div><!-- End .header-right -->
+                    @include('front.shopping-cart')
                 </div><!-- End .container -->
             </div><!-- End .header-middle -->
 
@@ -399,7 +301,7 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
-                    @include('front.footer-menu')
+                   @include('front.footer-menu')
                 </div><!-- .End .tab-pane -->
                 <div class="tab-pane fade" id="mobile-cats-tab" role="tabpanel" aria-labelledby="mobile-cats-link">
                     <nav class="mobile-cats-nav">
@@ -462,10 +364,10 @@
     <script src="{{asset('theme/assets/js/jquery.waypoints.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/superfish.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/owl.carousel.min.js')}}"></script>
-
-
-    <script src="{{asset('theme/assets/js/imagesloaded.pkgd.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/isotope.pkgd.min.js')}}"></script>
+    <script src="{{asset('theme/assets/js/wNumb.js')}}"></script>
+    <script src="{{asset('theme/assets/js/bootstrap-input-spinner.js')}}"></script>
+    <script src="{{asset('theme/assets/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{asset('theme/assets/js/nouislider.min.js')}}"></script>
        
     <!-- Main JS File -->
     <script src="{{asset('theme/assets/js/main.js')}}"></script>
@@ -487,7 +389,199 @@
 
              });
          });
-     </script>  
+     </script>
+   
+     {{--  --}}
+     <?php $CartItems = Cart::content(); ?>
+     @if($CartItems->isEmpty())
+
+     @else
+     @foreach($CartItems as $CartItem)
+     <script>
+        $( document ).ready(function() {
+            $('.hide_{{$CartItem->rowId}}').hide();
+           //update cart    
+                $.ajaxSetup({
+
+                    headers: {
+
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                    }
+
+                });
+                $("#updateQTY_{{$CartItem->rowId}}").submit(function(e){
+
+                    e.preventDefault();
+
+                    $('.hide_{{$CartItem->rowId}}').show();
+
+                    var rowId = $("input[name=rowID_{{$CartItem->rowId}}]").val();
+
+                    var qty = $("input[name=qty_{{$CartItem->rowId}}]").val();
+
+                    $.ajax({
+
+                        type:'POST',
+
+                        url:"{{ route('update.cart') }}",
+
+                        data:{rowId:rowId, qty:qty},
+
+                        success:function(data){
+
+                                $('.hide_{{$CartItem->rowId}}').hide(1000);
+
+                        }
+                        
+                    });
+
+                });
+        });
+    </script>
+    @endforeach
+    @endif
+     {{--  --}}
+
+          <!-- Check Mail Exists -->
+          <script type="text/javascript">
+            function duplicateEmail(element){
+
+                $('#mailChecking').html('Checking...........')
+                var email = $(element).val();
+                $.ajax({
+                    type: "POST",
+                    url: '{{url('checkemail')}}',
+                    data: {
+                            email:email,
+                            "_token": "{{ csrf_token() }}",
+                        },
+                    dataType: "json",
+                    success: function(res) {
+
+                        if(res.exists){
+                            // Exists
+                            $('#mailChecking').hide();
+                            $('#mailAvailable').hide();
+                            $('#mailExists').html('The Email is already in use by another person')
+                        }else{
+                            // Available
+                            $('#mailChecking').hide();
+                            $('#mailExists').hide();
+
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+
+                    }
+                });
+            }
+          </script>
+          <!-- </Check mail Exists -->
+          {{--  --}}
+          <script>
+            $(function () {
+              $('#loading-image').hide();
+              $('#updateShippingForm').hide();
+              $('#verify').on('submit', function (e) {
+              $('#veryfyID').html('Checking......')
+                e.preventDefault();
+
+                $.ajax({
+
+                  type: 'post',
+                  url: '{{url('/')}}/payments/veryfy/mpesa',
+                  data: $('#verify').serialize(),
+                  success: function ($results) {
+                    $('#CardNumber').val('')
+                    if($results == 1){
+                          alert('Verification Was Successfull')
+                          $('#success-alert').html('The Purchase Was Successfull')
+                          $('#veryfyID').html('Successfull')
+                          //Submit The Order
+                          window.open('{{url('/')}}/cart/checkout/placeOrder','_self')
+                    }else{
+                          
+                          $('#veryfyID').html('Error Verifying Transaction. Wrong Transaction Code or Amount <i style="font-size:20px;color:red" class="fa fa-frown-o"></i>')
+                    }
+                  }
+                });
+
+              });
+              //StK hehe SITOKI
+              $('#sitokii').on('submit', function (e) {
+                $('#phoneNumber').prop('readonly', true);
+                $('#sitokiID').html('Check your phone....')
+                        e.preventDefault();
+
+                        $.ajax({
+                        type: 'post',
+                        url: '{{url('/')}}/payments/veryfy/sitoki',
+                        data: $('#sitoki').serialize(),
+                            success: function ($results) {
+                                        $('#sitokiID').val('')
+                                        if($results == 1){
+
+                                            /* Check If Payment Has Been Received And Redirect*/
+
+                                            //Submit The Order
+                                            window.open('{{url('/')}}/cart/checkout/placeOrder','_self')
+                                            //Redirect The User To Thank You Page
+                                            window.open('{{url('/')}}/clientarea/thankyou','_self')
+                                        }else{
+
+                                            /* Return Message Here  */
+
+                                        }
+                            }
+                        });
+
+              });
+
+        
+                //   STK Initialize
+                $('#sitoki').on('submit', function (e) {
+            
+                    $('#phoneNumber').prop('readonly', true);
+                    $('#sitokiID').html('Initializing....')
+                    $('#sitokiID').html('')
+                    $('#sitokiID').html('Check your phone....')
+                
+                        e.preventDefault();
+
+                        $.ajax({
+                        type: 'post',
+                        url: '{{url('/')}}/payments/stk',
+                        data: $('#sitoki').serialize(),
+                                success: function (results) {
+                                        $('#sitokiID').val('')
+                                
+                        
+                                        if(results == 1){
+                                            //Tell The Visitor The Payment Has Been Received
+                                            alert('Done!')
+                                            $('#sitokiID').html(' Payment Successfull <i class="fa fa-check alert-success> </i>')
+                                            //Submit The Order
+                                            window.open('{{url('/')}}/cart/checkout/placeOrderNow','_self')
+                                            //Redirect The User To Thank You Page
+                                            //   window.open('{{url('/')}}/clientarea/thankyou','_self')
+                                        }else{
+
+                                            /* Return Message Here  */
+                                            alert('Error Processing Your Payment!')
+
+                                        }
+                                }
+                        });
+
+                });
+                
+
+                
+
+                });
+        </script>
+          {{--  --}}
     @include('front.schema')
 </body>
 @endforeach

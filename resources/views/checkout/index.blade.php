@@ -1,4 +1,4 @@
-@extends('front.master-pages')
+@extends('front.master-payments')
 @section('content')
   <!-- offer block end  --> 
   <br><br>
@@ -19,7 +19,7 @@
           <div class="row">
             <div class="col-xs-12 col-sm-6 ">
               <h4 class="block-title-2"> Create an account </h4>
-              <form class="account-creat" method="POST" action="{{url('cart/checkout/create-user')}}">
+              <form class="account-creat" method="POST" action="{{url('shopping-cart/checkout/create-user')}}">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                   <input type="text" name="name" placeholder="Enter name" id="exampleInputName" value="{{ old('name') }}" class="form-control" required>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 ">
               <h4 class="block-title-2"><span>Already registered?</span></h4>
-              <form class="registered" action="{{url('cart/checkout/login')}}" method="POST">
+              <form class="registered" action="{{url('shopping-cart/checkout/login')}}" method="POST">
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                   <input type="email" name="email" placeholder="Enter email" id="InputEmail2" class="form-control" value="{{ old('email') }}" required>

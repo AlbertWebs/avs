@@ -9,6 +9,8 @@ use App\Http\Controllers\WishListController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\DashboadController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentsConroller;
+
 
 
 /*
@@ -52,6 +54,8 @@ Route::get('remove-from-cart/{id}', [CartController::class, 'destroy'])->name('r
 // Checkout
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::get('/checkout/payment', [CheckoutController::class, 'payment'])->name('payment');
+Route::post('checkout/login', [CheckoutController::class, 'login'])->name('checkout.login');
+Route::post('checkout/create-user', [CheckoutController::class, 'create'])->name('checkout.create');
 });
 // WishList
 Route::group(['prefix'=>'wishlist'], function(){
@@ -66,6 +70,14 @@ Route::get('add-to-compare/{id}', [CompareController::class, 'addCompare'])->nam
 Route::get('remove-from-compare/{id}', [CompareController::class, 'destroy'])->name('remove.from.compare');
 Route::get('clear-compare', [CompareController::class, 'clear'])->name('clear.compare');
 });
+
+//Payment pages
+
+Route::post('payments/veryfy/mpesa',[PaymentsConroller::class, 'verify']);//The Lipa na MPESA Page
+Route::post('payments/veryfy/sitoki',[PaymentsConroller::class, 'stk']); //The Lipa na MPESA Page
+Route::get('mpesa/confirm',[PaymentsConroller::class, 'confirm']);           //Rquired URL
+Route::get('mpesa/validate',[PaymentsConroller::class, 'validation']);         //Rquired URL
+Route::get('mpesa/register',[PaymentsConroller::class, 'register']);           //Rquired URL
 
 
 Auth::routes();

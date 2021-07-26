@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Redirect;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
 
+use Stevebauman\Location\Facades\Location;
+
 use App\Models\orders;
 
 use App\Models\User;
@@ -93,21 +95,29 @@ class CheckoutController extends Controller
             }
 
             // Create an invoice, Mail and Register
-            // Create Invoice
-            $MPESA = DB::table('invoices')->orderBy('id','DESC')->Limit('1')->get();
-            $count_mpesa = count($MPESA);
-            if($count_mpesa == 0){
-                $InvoiceNumber = 'AVS001';
-                $OrderNumberNumber = 'AVS001';
+            if(Session::has('Invoice')){
+                $InvoiceNumber = session()->get('Invoice');
+                $OrderNumberNumber = session()->get('Order');
             }else{
-                foreach($MPESA as $mpesa){
-                    $LastID = $mpesa->id;
-                    $Next = $LastID+1;
-                    $InvoiceNumber = "AVS0".$Next;
-                    $OrderNumberNumber = "AVS10".$Next;
-            
-                    }
+                // Create Invoice
+                $MPESA = DB::table('invoices')->orderBy('id','DESC')->Limit('1')->get();
+                $count_mpesa = count($MPESA);
+                if($count_mpesa == 0){
+                    $InvoiceNumber = 'AVS001';
+                    $OrderNumberNumber = 'AVS001';
+                }else{
+                    foreach($MPESA as $mpesa){
+                        $LastID = $mpesa->id;
+                        $Next = $LastID+1;
+                        $InvoiceNumber = "AVS0".$Next;
+                        $OrderNumberNumber = "AVS10".$Next;
+                        // Create Session
+                        session()->put('Order', $OrderNumberNumber);
+                        session()->put('Invoice', $InvoiceNumber);
+                        }
+                }
             }
+            
             
             // AmountVariables
             if(Session::has('campaign')){
@@ -129,27 +139,31 @@ class CheckoutController extends Controller
             }
             // 
             
+            if(Session::has('Invoice')){
 
-            $CheckInvoice = DB::table('invoices')->where('number',$InvoiceNumber)->where('status','0')->where('user_id',Auth::user()->id)->get();
-            $CountCheckInvoice = count($CheckInvoice);
-            if($CountCheckInvoice == 0){
-                 // Record Invoice
-                 $Invoice = new Invoice;
-                 $Invoice->number = $InvoiceNumber;
-                 $Invoice->shipping = $Shipping;
-                 $Invoice->products = serialize(Cart::Content());
-                 $Invoice->user_id = Auth::user()->id;
-                 $Invoice->amount = $TotalCost;
-                 $Invoice->save();
-                 // Mail Invoice
-                 $email = Auth::user()->email;
-                 $name = Auth::user()->name;
-                //  ReplyMessage::mailclientinvoice($email,$name,$InvoiceNumber,$ShippingFee,$TotalCost);
-           
             }else{
-                // The Invoice already Exists
+                $CheckInvoice = DB::table('invoices')->where('number',$InvoiceNumber)->where('status','0')->where('user_id',Auth::user()->id)->get();
+                $CountCheckInvoice = count($CheckInvoice);
+                if($CountCheckInvoice == 0){
+                     // Record Invoice
+                     $Invoice = new Invoice;
+                     $Invoice->number = $InvoiceNumber;
+                     $Invoice->shipping = $Shipping;
+                     $Invoice->products = serialize(Cart::Content());
+                     $Invoice->user_id = Auth::user()->id;
+                     $Invoice->amount = $TotalCost;
+                     $Invoice->save();
+                     // Mail Invoice
+                     $email = Auth::user()->email;
+                     $name = Auth::user()->name;
+                    //  ReplyMessage::mailclientinvoice($email,$name,$InvoiceNumber,$ShippingFee,$TotalCost);
                
+                }else{
+                    // The Invoice already Exists
+                   
+                }
             }
+            
             
 
             //Go to payments page     
