@@ -44,51 +44,7 @@
 {{--  --}}
     <div class="page-wrapper">
         <header class="header header-10 header-intro-clearance">
-            <div class="header-top">
-                <div class="container">
-                    <div class="header-left">
-                        <a href="tel:{{$Settings->mobile_one}}"><i class="icon-phone"></i>Call: {{$Settings->mobile_one_display}}</a> &nbsp; | &nbsp;
-                        <a href="tel:{{$Settings->mobile_two}}"><i class="icon-phone"></i>Call: {{$Settings->mobile_two_display}}</a>
-                    </div><!-- End .header-left -->
-
-                    <div class="header-right">
-
-                        <ul class="top-menu">
-                            <li>
-                                <a href="#">Links</a>
-                                <ul>
-                                    <li>
-                                        <div class="header-dropdown">
-                                            <a href="#">USD</a>
-                                            <div class="header-menu">
-                                                <ul>
-                                                    <li><a href="#">Eur</a></li>
-                                                    <li><a href="#">Usd</a></li>
-                                                </ul>
-                                            </div><!-- End .header-menu -->
-                                        </div><!-- End .header-dropdown -->
-                                    </li>
-                                    <li>   
-                                        <div class="header-dropdown">
-                                            <a href="#">Engligh</a>
-                                            <div class="header-menu">
-                                                <ul>
-                                                    <li><a href="#">English</a></li>
-                                                    <li><a href="#">French</a></li>
-                                                    <li><a href="#">Spanish</a></li>
-                                                </ul>
-                                            </div><!-- End .header-menu -->
-                                        </div><!-- End .header-dropdown -->
-                                    </li>
-                                    <li class="login">
-                                        <a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul><!-- End .top-menu -->
-                    </div><!-- End .header-right -->
-                </div><!-- End .container -->
-            </div><!-- End .header-top -->
+            @include('front.top')
 
             <div class="header-middle">
                 <div class="container">
@@ -103,37 +59,7 @@
                         </a>
                     </div><!-- End .header-left -->
 
-                    <div class="header-center">
-                        <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
-                            <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                            <form action="#" method="get">
-                                <div class="header-search-wrapper search-wrapper-wide">
-                                    <div class="select-custom">
-                                        <select id="cat" name="cat">
-                                            <option value="">All Departments</option>
-                                            <option value="1">Fashion</option>
-                                            <option value="2">- Women</option>
-                                            <option value="3">- Men</option>
-                                            <option value="4">- Jewellery</option>
-                                            <option value="5">- Kids Fashion</option>
-                                            <option value="6">Electronics</option>
-                                            <option value="7">- Smart TVs</option>
-                                            <option value="8">- Cameras</option>
-                                            <option value="9">- Games</option>
-                                            <option value="10">Home &amp; Garden</option>
-                                            <option value="11">Motors</option>
-                                            <option value="12">- Cars and Trucks</option>
-                                            <option value="15">- Boats</option>
-                                            <option value="16">- Auto Tools &amp; Supplies</option>
-                                        </select>
-                                    </div><!-- End .select-custom -->
-                                    <label for="q" class="sr-only">Search</label>
-                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search product ..." required>
-                                    <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-                                </div><!-- End .header-search-wrapper -->
-                            </form>
-                        </div><!-- End .header-search -->
-                    </div>
+                    @include('front.search')
 
                    @include('front.shopping-cart')
                 </div><!-- End .container -->
@@ -427,6 +353,29 @@
              });
          });
      </script>  
+     {{--  --}}
+    <!-- Live Search Scripts -->
+    <script type="text/javascript">
+        $('#search').on('keyup',function(){
+            // Add preloader
+            $('#loading-image').show();
+            $value=$(this).val();
+            $.ajax({
+            type : 'get',
+            url : '{{URL::to('search')}}',
+            data:{'search':$value},
+            success:function(data){
+            $('#loading-image').hide();
+            $('tbody').html(data);
+            }
+            });
+        })
+    </script>
+    <script type="text/javascript">
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script>
+    <!-- </Live Search Scripts -->
+     {{--  --}}
     @include('front.schema')
 </body>
 @endforeach

@@ -911,7 +911,7 @@ blockquote {
 .header-search {
   position: relative;
   margin: 0;
-  font-size: 0;
+  font-size: 12;
   line-height: 1;
   padding: 0;
   border: none; }

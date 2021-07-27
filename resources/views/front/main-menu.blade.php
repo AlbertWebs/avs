@@ -6,7 +6,7 @@
                 <a href="{{url('/')}}">Home</a>
             </li>
             <li class="megamenu-container">
-                <a href="{{url('/')}}">About</a>
+                <a href="{{url('/')}}/about-us">About</a>
             </li>
             <li>
                 <a href="{{url('/')}}/products">Shop</a>

@@ -1,4 +1,4 @@
-@extends('front.master-category')
+@extends('front.master-pages')
 @section('content')
 <main class="main">
     <div class="page-header text-center" style="background-image: url('{{asset('theme/assets/images/page-header-bg.jpg')}}')">
@@ -11,7 +11,6 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                <li class="breadcrumb-item"><a href="{{url('/')}}/products/shop-by-brand">Categories</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{$page_name}}</li>
             </ol>
         </div><!-- End .container -->
@@ -53,7 +52,7 @@
                                 {{-- <span class="product-label label-out">Out of Stock</span> --}}
                                 {{-- <span class="product-label label-new">New</span> --}}
                                 <a href="{{url('/')}}/product/{{$item->slung}}">
-                                    <img src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
+                                    <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
                                 </a>
     
                                 <div class="product-action-vertical">

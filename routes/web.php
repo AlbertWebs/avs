@@ -29,6 +29,12 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 Route::get('/find-us',[App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/about-us',[App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
+//Search
+Route::get('/search',[App\Http\Controllers\HomeController::class, 'search'])->name('search');
+
+// Tags
+Route::get('/product-tags/{slung}', [App\Http\Controllers\HomeController::class, 'product_tags'])->name('product_tags');
+
 // Products
 Route::group(['prefix'=>'products'], function(){
 Route::get('/', [App\Http\Controllers\HomeController::class, 'all'])->name('all');

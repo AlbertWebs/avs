@@ -247,6 +247,62 @@ class HomeController extends Controller
         }
     }
 
+    public function search(Request $request)
+            {
+            if($request->search == null or $request->search == ''){
+                $output = '';
+                return Response($output);
+            }else
+                $url = url('/product-tags/');
+                if($request->ajax())
+                {
+                $output="";
+                $products=DB::table('tags')->where('title','LIKE','%'.$request->search."%")->paginate(10);
+                if($products)
+                {
+                foreach ($products as $key => $product) {
+                $output.='<tr>'.
+                
+                '<td style="padding:10px 10px 10px 10px;"><a style="color:#66139B; visibility:visible;" href="'.$url.'/'.$product->slung.'"><b>'.$product->title.'</b></a></td>'.
+                
+                '</tr>';
+                }
+                return Response($output);
+                    }
+                    }
+     }
+
+     public function product_tags($slung){
+       
+        $Category = DB::table('tags')->where('slung',$slung)->get();
+            foreach ($Category as $key => $value) { 
+                $page_name = $value->title;
+                $SEOSettings = DB::table('seosettings')->get();
+                foreach ($SEOSettings as $Settings) {
+                    SEOMeta::setTitle(' '.$value->title.'  | ' . $Settings->sitename .'');
+                    SEOMeta::setDescription(''.$value->title.' '.$value->keywords.'');
+                    SEOMeta::setCanonical('' . $Settings->url . '/product-tags/'.$slung.'');
+                    OpenGraph::setDescription('' . $value->title . '');
+                    OpenGraph::setTitle('' . $value->title . '');
+                    OpenGraph::setUrl('' . $Settings->url . '/product-tags/'.$slung.'');
+                    OpenGraph::addProperty('type', 'website');
+                    Twitter::setTitle('' . $Settings->sitename. '');
+                    Twitter::setSite('@amanisounds');
+                    // Set Session Here
+                   
+                    // End Session Here
+                    $page_name = $value->title;
+                
+                    $page_title = 'Products';
+                    $search_results ='';
+                    $search_results_category = '';
+                    $keywords = "$value->title, $value->keywords";
+                    $Products = DB::table('product')->where('tag',$value->id)->paginate(12);
+                    return view('front.tags', compact('Category','keywords','page_title', 'Products', 'page_name','search_results','search_results_category'));
+            }
+        }
+    }
+
     
 }
 
