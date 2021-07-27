@@ -138,7 +138,7 @@
                                     "items":4
                                 },
                                 "1280": {
-                                    "items":6,
+                                    "items":4,
                                     "nav": true
                                 }
                             }
@@ -175,19 +175,31 @@
                                 <div class="product-price">
                                     KES{{$item->price}}
                                 </div><!-- End .product-price -->
+                                <?php 
+                                $Reviews = DB::table('reviews')->where('product_id',$item->id)->get(); 
+                                $CountReviews = count($Reviews);
+                                $Ratings = DB::table('reviews')->where('product_id',$item->id)->avg('rating');
+                                $avg = ceil($Ratings);
+                                    ?>
+                                    @if($Reviews->isEmpty())
 
-                                {{-- <div class="ratings-container">
-                                    <div class="ratings">
-                                        <div class="ratings-val" style="width: 90%;"></div><!-- End .ratings-val -->
+                                    @else
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <?php
+                                                //Average Rating 
+                                            ?>
+                                            <div class="ratings-val" style="width: {{$avg}}%;"></div><!-- End .ratings-val -->
+                                        </div>
+                                        <span class="ratings-text">( {{$CountReviews}} Reviews )</span>
                                     </div>
-                                    <span class="ratings-text">( 12 Reviews )</span>
-                                </div> --}}
-                                <!-- End .rating-container -->
-                                {{--  --}}
-                                {{-- <div class="product-cat">
-                                    <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
-                                </div> --}}
-                                <!-- End .product-cat -->
+                                    @endif
+                                    <!-- End .rating-container -->
+                                    {{--  --}}
+                                    <div class="product-cat">
+                                        <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
+                                    </div>
+                            <!-- End .product-cat -->
                                 {{--  --}}
                             </div><!-- End .product-body -->
                         </div><!-- End .product -->
@@ -228,7 +240,7 @@
                                 {{-- <span class="product-label label-out">Out of Stock</span> --}}
                                 {{-- <span class="product-label label-new">New</span> --}}
                                 <a href="{{url('/')}}/product/{{$item->slung}}">
-                                    <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
+                                    <img style="max-width:217px !important; margin:0 auto;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
                                 </a>
 
                                 <div class="product-action-vertical">
@@ -253,18 +265,30 @@
                                 <div class="product-price">
                                     KES{{$item->price}}
                                 </div><!-- End .product-price -->
+                                <?php 
+                                    $Reviews = DB::table('reviews')->where('product_id',$item->id)->get(); 
+                                    $CountReviews = count($Reviews);
+                                    $Ratings = DB::table('reviews')->where('product_id',$item->id)->avg('rating');
+                                    $avg = ceil($Ratings);
+                                ?>
+                                @if($Reviews->isEmpty())
 
-                                {{-- <div class="ratings-container">
+                                @else
+                                <div class="ratings-container">
                                     <div class="ratings">
-                                        <div class="ratings-val" style="width: 90%;"></div><!-- End .ratings-val -->
+                                        <?php
+                                             //Average Rating 
+                                        ?>
+                                        <div class="ratings-val" style="width: {{$avg}}%;"></div><!-- End .ratings-val -->
                                     </div>
-                                    <span class="ratings-text">( 12 Reviews )</span>
-                                </div> --}}
+                                    <span class="ratings-text">( {{$CountReviews}} Reviews )</span>
+                                </div>
+                                @endif
                                 <!-- End .rating-container -->
                                 {{--  --}}
-                                {{-- <div class="product-cat">
+                                <div class="product-cat">
                                     <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
-                                </div> --}}
+                                </div>
                                 <!-- End .product-cat -->
                                 {{--  --}}
                             </div><!-- End .product-body -->
