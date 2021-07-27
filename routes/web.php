@@ -26,6 +26,8 @@ use App\Http\Controllers\PaymentsConroller;
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('/find-us',[App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+Route::get('/about-us',[App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
 // Products
 Route::group(['prefix'=>'products'], function(){

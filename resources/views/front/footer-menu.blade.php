@@ -16,7 +16,7 @@
             <a href="{{url('/')}}/blog-posts">Blog</a>
         </li>
         <li class="active">
-            <a href="{{url('/')}}/contact-us">Find Us</a>
+            <a href="{{url('/')}}/find-us">Find Us</a>
         </li>
     </ul>
 </nav><!-- End .mobile-nav -->

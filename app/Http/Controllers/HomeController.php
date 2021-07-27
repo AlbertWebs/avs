@@ -198,7 +198,54 @@ class HomeController extends Controller
         return view('front.fullscreen',compact('Product'));
     }
 
-    
+    public function contact()
+    {
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Contact Us | ' . $Settings->sitename . '');
+            SEOMeta::setDescription('Amani Vehicle Sounds, Contact Vehicles Speakers in Kenya, Car Bass Speakers');
+            SEOMeta::setCanonical('' . $Settings->url . '/contact-us');
+
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/contact-us');
+            OpenGraph::addProperty('type', 'website');
+
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Contact';
+            $page_title = 'Contact Us';
+            $SiteSettings = DB::table('sitesettings')->get();
+            $keywords = 'Vehicle Sound Systems, Vehicle Alarm Systems, Vehicle Surveillance Systems';
+            return view('front.contact', compact('page_title', 'SiteSettings', 'page_name','keywords'));
+        }
+    }
+
+    public function about()
+    {
+        $SEOSettings = DB::table('seosettings')->get();
+        
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('About Us | ' . $Settings->sitename . '');
+            SEOMeta::setDescription('Amani Vehicle Sounds, Amani Car Sound Systems  Car Speakers systems. Pioneer Car stereo, Speakers for sale in kenya ');
+            SEOMeta::setCanonical('' . $Settings->url . '/about-us');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/about-us');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+         
+            $About = DB::table('about')->get();
+            $SiteSettings = DB::table('sitesettings')->get();
+            $Services = DB::table('services')->inRandomOrder()->paginate(2);
+            $page_title = 'About Us';
+            $Testimonial = DB::table('testimonial')->inRandomOrder()->paginate(3);
+            $page_name = 'About';
+            $keywords = 'Car Music in kenya, Vehicle Alarm Systems in kenya';
+            return view('front.about', compact('keywords','Testimonial', 'page_title', 'page_name', 'Services', 'SiteSettings', 'About'));
+        }
+    }
 
     
 }

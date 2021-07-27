@@ -21,7 +21,7 @@
                 <a href="{{url('/')}}/blog-posts">Blogs</a>
             </li>
             <li>
-                <a href="{{url('/')}}/contact-us"> <i class="la la-map-marker"></i> Find Us</a>
+                <a href="{{url('/')}}/find-us"> <i class="la la-map-marker"></i> Find Us</a>
             </li>
           
             
