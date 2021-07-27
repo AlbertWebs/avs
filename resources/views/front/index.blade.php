@@ -72,7 +72,7 @@
 
     <div class="mb-2"></div><!-- End .mb-2 -->
     <h1 style="font-size:2px; margin:0 auto; color:#fff">Car Audio Shop in Nairobi</h1>
-    <?php $Full = DB::table('product')->where('stock','In Stock')->where('offer','1')->limit('10')->inRandomOrder()->get();  ?>
+    <?php $Full = DB::table('product')->where('stock','In Stock')->where('offer','11')->limit('10')->inRandomOrder()->get();  ?>
     @if($Full->isEmpty())
 
     @else
@@ -80,7 +80,7 @@
         <div class="row">
             @foreach($Full as $full)
             <div class="col-sm-6 col-lg-4 ">
-                <div class="banner banner-overlay">
+                <div class="banner banner-overlay"> 
                     <a href="{{url('/')}}/product/{{$full->slung}}">
                         <img src="{{url('/')}}/uploads/product/{{$full->offer_banner}}" alt="{{$full->name}}">
                     </a>
