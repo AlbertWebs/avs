@@ -303,6 +303,32 @@ class HomeController extends Controller
         }
     }
 
+    public function product_single($title){
+        Session::forget('Category');
+        $SEOSettings = DB::table('seosettings')->get();
+        $Products = DB::table('product')->where('slung',$title)->get();
+        foreach ($Products as $key => $value) {
+            foreach ($SEOSettings as $Settings) {
+                SEOMeta::setTitle(' '.$value->name.' | ' . $Settings->sitename .'');
+                SEOMeta::setDescription(''.$value->meta.'');
+                SEOMeta::setCanonical('' . $Settings->url . '/product/'.$title.'');
+                OpenGraph::setDescription(''.$value->meta.'');
+                OpenGraph::setTitle(' '.$value->name.' | ' . $Settings->sitename .'');
+                OpenGraph::setUrl('' . $Settings->url . '/product/'.$title.'');
+                OpenGraph::addProperty('type', 'product.item');
+                Twitter::setTitle('' . $Settings->sitename. '');
+                Twitter::setSite('@amanisounds');
+                $page_name = 'details';
+                $Copyright = DB::table('copyright')->get();
+                $page_title = $title;
+                $Products = DB::table('product')->where('slung',$title)->get();
+                $keywords = $value->name;
+                return view('front.product', compact('keywords','page_title', 'Products', 'page_name'));
+            }
+        }
+        
+        
+    }
     
 }
 
