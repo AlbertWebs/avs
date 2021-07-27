@@ -353,19 +353,23 @@
              });
          });
      </script>  
+     
      {{--  --}}
     <!-- Live Search Scripts -->
     <script type="text/javascript">
+        $(document).ready(function(){
+            $('.loading-image').hide();
+        });
         $('#search').on('keyup',function(){
             // Add preloader
-            $('#loading-image').show();
+            $('.loading-image').show();
             $value=$(this).val();
             $.ajax({
             type : 'get',
             url : '{{URL::to('search')}}',
             data:{'search':$value},
             success:function(data){
-            $('#loading-image').hide();
+            $('.loading-image').hide();
             $('tbody').html(data);
             }
             });

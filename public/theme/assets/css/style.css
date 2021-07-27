@@ -757,7 +757,7 @@ blockquote {
 
 .compare-product-title {
   color: #666666;
-  font-weight: 300;
+  font-weight: 600;
   font-size: 1.3rem;
   line-height: 1.35;
   margin: 0;
@@ -16866,6 +16866,10 @@ button:focus {
 }
 .width-300{
   max-width:300px;
+}
+.product-title{
+  font-weight:600;
+  color:#66139B;
 }
 /* '' */
 

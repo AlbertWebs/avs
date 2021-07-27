@@ -6,7 +6,7 @@
             
                 <label for="q" class="sr-only">Search</label>
                 <input autocomplete="off" type="search" class="form-control" name="q" id="search" placeholder="Search Product Brand or category..." required>
-                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                <button class="btn btn-primary" type="submit"><i class="icon-search"></i><img class="loading-image" width="22" src="{{url('/')}}/uploads/preloaders/loading.gif" alt="Amani vehicle Sound Loading"></button>
             </div><!-- End .header-search-wrapper -->
         </form>
         {{--  --}}
