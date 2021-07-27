@@ -1,3 +1,30 @@
+   {{--  --}}
+    <!-- Live Search Scripts -->
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $('.loading-image').hide();
+      });
+      $('#search').on('keyup',function(){
+          // Add preloader
+          $('.loading-image').show();
+          $value=$(this).val();
+          $.ajax({
+          type : 'get',
+          url : '{{URL::to('search')}}',
+          data:{'search':$value},
+          success:function(data){
+          $('.loading-image').hide();
+          $('tbody').html(data);
+          }
+          });
+      })
+  </script>
+  <script type="text/javascript">
+  $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+  </script>
+  <!-- </Live Search Scripts -->
+   {{--  --}}
+
 <script type='application/ld+json'>
     {
       "@context": "http://www.schema.org",

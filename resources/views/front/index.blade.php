@@ -211,8 +211,30 @@
     </div><!-- End .bg-light pt-5 pb-5 -->
 
     <div class="mb-3"></div><!-- End .mb-3 -->
+    <?php $ctaBanner = DB::table('product')->where('id','127')->get(); ?>
+    @if($ctaBanner->isEmpty())
 
-    <?php $Category = DB::table('category')->limit('15')->get(); ?>
+    @else
+    @foreach ($ctaBanner as $item)
+    <div class="container">
+        <div class="cta cta-border mb-5" style="background-image: url('{{asset('theme/assets/images/demos/demo-4/bg-1.jpg')}}');">
+            <img width="258" src="{{url('/')}}/uploads/product/5-Inch-Foldable-Car-LCD-Dashboard-mon-001-removebg-preview.png" alt="camera" class="cta-img">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="cta-content">
+                        <div class="cta-text text-right text-white">
+                            <p>{{$item->meta}} <br><strong>{{$item->name}}</strong></p>
+                        </div><!-- End .cta-text -->
+                        <a href="{{url('/')}}/product/{{$item->slung}}" class="btn btn-primary btn-round"><span>Shop Now - KES{{$item->price}}</span><i class="icon-long-arrow-right"></i></a>
+                    </div><!-- End .cta-content -->
+                </div><!-- End .col-md-12 -->
+            </div><!-- End .row -->
+        </div><!-- End .cta -->
+    </div>
+    @endforeach
+    @endif
+
+    <?php $Category = DB::table('category')->limit('15')->get(); $counter = 1; ?>
     @foreach ($Category as $category)
     <div class="container electronics">
         <div class="heading heading-flex heading-border mb-3">
@@ -232,9 +254,10 @@
         <div class="tab-content tab-content-carousel">
             <div class="products">
                 <div class="row">
-                    <?php $Featured = DB::table('product')->where('stock','In Stock')->where('cat',$category->id)->where('featured','1')->limit('8')->get(); ?>
+                    <?php $Featured = DB::table('product')->where('stock','In Stock')->where('cat',$category->id)->where('featured','1')->limit('8')->get(); $CountFeatured = count($Featured); $balance = 8-$CountFeatured; ?>
+                    
                     @foreach ($Featured as $item)
-                    <div class="col-6 col-md-4 col-lg-4 col-xl-3">
+                    <div class="col-6 col-md-4 col-lg-4 col-xl-3" >
                         <div class="product">
                             <figure class="product-media">
                                 {{-- <span class="product-label label-out">Out of Stock</span> --}}
@@ -295,6 +318,75 @@
                         </div><!-- End .product -->
                     </div>
                     @endforeach
+                    @if($CountFeatured < 8)
+                    {{--  --}}
+                    <?php $ProductsOffer = DB::table('product')->where('offer','1')->limit($balance)->inRandomOrder()->get(); ?>
+                    @foreach ($ProductsOffer as $item)
+                    <div class="col-6 col-md-4 col-lg-4 col-xl-3" >
+                        <div class="product">
+                            <figure class="product-media">
+                                <span class="product-label label-top">Offer</span>
+                                {{-- <span class="product-label label-sale">Sale</span> --}}
+                                <a href="{{url('/')}}/product/{{$item->slung}}">
+                                    <img style="max-width:217px !important; margin:0 auto;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
+                                </a>
+
+                                <div class="product-countdown is-countdown" data-until="+9h" data-format="HMS" data-relative="true" data-labels-short="true"><span class="countdown-row countdown-show3"><span class="countdown-section"><span class="countdown-amount">08</span><span class="countdown-period">Hours</span></span><span class="countdown-section"><span class="countdown-amount">58</span><span class="countdown-period">Mins</span></span><span class="countdown-section"><span class="countdown-amount">22</span><span class="countdown-period">Secs</span></span></span></div><!-- End .product-countdown -->
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <?php $Category = DB::table('category')->where('id',$item->cat)->get(); ?>
+                                    @foreach ($Category as $Cat)
+                                    <a href="{{url('/products')}}/{{$Cat->slung}}"> {{$Cat->cat}} </a> 
+                                    @endforeach
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="{{url('/')}}/product/{{$item->slung}}">{{$item->name}}</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    KES{{$item->price}}
+                                </div><!-- End .product-price -->
+                                <?php 
+                                    $Reviews = DB::table('reviews')->where('product_id',$item->id)->get(); 
+                                    $CountReviews = count($Reviews);
+                                    $Ratings = DB::table('reviews')->where('product_id',$item->id)->avg('rating');
+                                    $avg = ceil($Ratings);
+                                ?>
+                                @if($Reviews->isEmpty())
+
+                                @else
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <?php
+                                             //Average Rating 
+                                        ?>
+                                        <div class="ratings-val" style="width: {{$avg}}%;"></div><!-- End .ratings-val -->
+                                    </div>
+                                    <span class="ratings-text">( {{$CountReviews}} Reviews )</span>
+                                </div>
+                                @endif
+                                <!-- End .rating-container -->
+                                {{--  --}}
+                                <div class="product-cat">
+                                    <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
+                                </div>
+                                <!-- End .product-cat -->
+                                {{--  --}}
+                            </div><!-- End .product-body -->
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
+                    {{--  --}}
                 </div><!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->
         </div><!-- End .tab-content -->
@@ -303,6 +395,7 @@
 {{-- Offer Banner Area --}}
     <div class="mb-3"></div><!-- End .mb-3 -->
 
+    @if($counter==1)
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -343,6 +436,10 @@
         </div>
         <!-- End .row -->
     </div><!-- End .container -->
+    @else
+    
+    @endif
+    <?php $counter = $counter+1; ?>
     @endforeach
     <div class="mb-1"></div><!-- End .mb-1 -->
 
