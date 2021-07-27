@@ -779,7 +779,8 @@
     }
     .intro-title{
       font-size:15px;
-      max-width:180px;
+      max-width:240px;
+      font-weight:600;
     }
     .meta{
       display:none;
