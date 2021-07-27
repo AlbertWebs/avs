@@ -781,6 +781,9 @@
       font-size:15px;
       max-width:180px;
     }
+    .meta{
+      display:none;
+    }
   }
 
 /*# sourceMappingURL=demo-13.css.map */

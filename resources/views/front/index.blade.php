@@ -196,7 +196,7 @@
                                     @endif
                                     <!-- End .rating-container -->
                                     {{--  --}}
-                                    <div class="product-cat">
+                                    <div class="product-cat meta">
                                         <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
                                     </div>
                             <!-- End .product-cat -->
@@ -309,7 +309,7 @@
                                 @endif
                                 <!-- End .rating-container -->
                                 {{--  --}}
-                                <div class="product-cat">
+                                <div class="product-cat meta">
                                     <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
                                 </div>
                                 <!-- End .product-cat -->
@@ -376,7 +376,7 @@
                                 @endif
                                 <!-- End .rating-container -->
                                 {{--  --}}
-                                <div class="product-cat">
+                                <div class="product-cat meta">
                                     <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
                                 </div>
                                 <!-- End .product-cat -->
