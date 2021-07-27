@@ -100,7 +100,7 @@
                             <?php $Brand = DB::table('brands')->get() ?>
                             @foreach($Brand as $brand)
                             <div class="col-6 col-sm-4">
-                                <a href="#" class="brand">
+                                <a href="{{url('/')}}/products/brand/{{$brand->name}}" class="brand">
                                     <img src="{{url('/')}}/uploads/brands/{{$brand->image}}" alt="{{$brand->name}}">
                                 </a>
                             </div><!-- End .col-sm-4 -->

@@ -218,80 +218,58 @@
         </div><!-- End .heading -->
 
         <div class="tab-content tab-content-carousel">
-            <div class="tab-pane p-0 fade show active" id="elec-new-tab" role="tabpanel" aria-labelledby="elec-new-link">
-                <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
-                    data-owl-options='{
-                        "nav": false, 
-                        "dots": true,
-                        "margin": 20,
-                        "loop": false,
-                        "responsive": {
-                            "0": {
-                                "items":2
-                            },
-                            "480": {
-                                "items":2
-                            },
-                            "768": {
-                                "items":3
-                            },
-                            "992": {
-                                "items":4
-                            },
-                            "1280": {
-                                "items":5,
-                                "nav": true
-                            }
-                        }
-                    }'>
-                    <?php $Featured = DB::table('product')->where('stock','In Stock')->where('cat',$category->id)->where('featured','1')->limit('10')->get(); ?>
+            <div class="products">
+                <div class="row">
+                    <?php $Featured = DB::table('product')->where('stock','In Stock')->where('cat',$category->id)->where('featured','1')->limit('8')->get(); ?>
                     @foreach ($Featured as $item)
-                    <div class="product">
-                        <figure class="product-media">
-                            {{-- <span class="product-label label-out">Out of Stock</span> --}}
-                            {{-- <span class="product-label label-new">New</span> --}}
-                            <a href="{{url('/')}}/product/{{$item->slung}}">
-                                <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
-                            </a>
+                    <div class="col-6 col-md-4 col-lg-4 col-xl-3">
+                        <div class="product">
+                            <figure class="product-media">
+                                {{-- <span class="product-label label-out">Out of Stock</span> --}}
+                                {{-- <span class="product-label label-new">New</span> --}}
+                                <a href="{{url('/')}}/product/{{$item->slung}}">
+                                    <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
+                                </a>
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                <a href="popup/{{$item->slung}}" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                            </div><!-- End .product-action-vertical -->
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                    <a href="popup/{{$item->slung}}" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                            <div class="product-action">
-                                <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
-                            </div><!-- End .product-action -->
-                        </figure><!-- End .product-media -->
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
 
-                        <div class="product-body">
-                            <div class="product-cat">
-                                <?php $Category = DB::table('category')->where('id',$item->cat)->get(); ?>
-                                @foreach ($Category as $Cat)
-                                <a href="{{url('/products')}}/{{$Cat->slung}}"> {{$Cat->cat}} </a> 
-                                @endforeach
-                            </div><!-- End .product-cat -->
-                            <h3 class="product-title"><a href="{{url('/')}}/product/{{$item->slung}}">{{$item->name}}</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                KES{{$item->price}}
-                            </div><!-- End .product-price -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <?php $Category = DB::table('category')->where('id',$item->cat)->get(); ?>
+                                    @foreach ($Category as $Cat)
+                                    <a href="{{url('/products')}}/{{$Cat->slung}}"> {{$Cat->cat}} </a> 
+                                    @endforeach
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="{{url('/')}}/product/{{$item->slung}}">{{$item->name}}</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    KES{{$item->price}}
+                                </div><!-- End .product-price -->
 
-                            {{-- <div class="ratings-container">
-                                <div class="ratings">
-                                    <div class="ratings-val" style="width: 90%;"></div><!-- End .ratings-val -->
-                                </div>
-                                <span class="ratings-text">( 12 Reviews )</span>
-                            </div> --}}
-                            <!-- End .rating-container -->
-                            {{--  --}}
-                            {{-- <div class="product-cat">
-                                <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
-                            </div> --}}
-                            <!-- End .product-cat -->
-                            {{--  --}}
-                        </div><!-- End .product-body -->
-                    </div><!-- End .product -->
+                                {{-- <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 90%;"></div><!-- End .ratings-val -->
+                                    </div>
+                                    <span class="ratings-text">( 12 Reviews )</span>
+                                </div> --}}
+                                <!-- End .rating-container -->
+                                {{--  --}}
+                                {{-- <div class="product-cat">
+                                    <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
+                                </div> --}}
+                                <!-- End .product-cat -->
+                                {{--  --}}
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+                    </div>
                     @endforeach
                 </div><!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->
@@ -369,7 +347,7 @@
             }'>
             <?php $Brand = DB::table('brands')->get() ?>
             @foreach($Brand as $brand)
-            <a href="{{url('/')}}/product/brands/{{$brand->name}}" class="brand">
+            <a href="{{url('/')}}/products/brand/{{$brand->name}}" class="brand">
                 <img src="{{url('/')}}/uploads/brands/{{$brand->image}}" alt="{{$brand->name}}">
             </a>
             @endforeach
