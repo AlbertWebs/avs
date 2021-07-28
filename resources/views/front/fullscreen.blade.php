@@ -27,10 +27,13 @@
                     <div class="intro-slide" data-hash="three">
                         <img src="{{url('/')}}/uploads/product/{{$Pro->fb_pixels}}" alt="Image Desc">
                     </div><!-- End .intro-slide -->
+                    @if($Pro->image_three == '0' or $Pro->image_three == null)
 
+                    @else
                     <div class="intro-slide" data-hash="four">
                         <img src="{{url('/')}}/uploads/product/{{$Pro->image_three}}" alt="Image Desc">
                     </div><!-- End .intro-slide -->
+                    @endif
                 @endforeach
                 </div>
 
@@ -44,9 +47,13 @@
 					<a href="#three" class="carousel-dot">
 						<img src="{{url('/')}}/uploads/product/{{$Pro->fb_pixels}}">
 					</a>
+                    @if($Pro->image_three == '0' or $Pro->image_three == null)
+
+                    @else
 					<a href="#four" class="carousel-dot">
 						<img src="{{url('/')}}/uploads/product/{{$Pro->image_three}}">
 					</a>
+                    @endif
                 </div>
 
 			</div>

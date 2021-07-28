@@ -331,6 +331,8 @@
     <script src="{{asset('theme/assets/js/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/jquery.plugin.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/jquery.countdown.min.js')}}"></script>
+
+
     
     <!-- Main JS File -->
     <script src="{{asset('theme/assets/js/main.js')}}"></script>

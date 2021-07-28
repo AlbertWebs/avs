@@ -331,7 +331,8 @@
                                     <img style="max-width:217px !important; margin:0 auto;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
                                 </a>
 
-                                <div class="product-countdown is-countdown" data-until="+9h" data-format="HMS" data-relative="true" data-labels-short="true"><span class="countdown-row countdown-show3"><span class="countdown-section"><span class="countdown-amount">08</span><span class="countdown-period">Hours</span></span><span class="countdown-section"><span class="countdown-amount">58</span><span class="countdown-period">Mins</span></span><span class="countdown-section"><span class="countdown-amount">22</span><span class="countdown-period">Secs</span></span></span></div><!-- End .product-countdown -->
+                                {{-- <div class="product-countdown is-countdown" data-until="+2h" data-format="HMS" data-relative="true" data-labels-short="true"><span class="countdown-row countdown-show3"><span class="countdown-section"><span class="countdown-amount">08</span><span class="countdown-period">Hours</span></span><span class="countdown-section"><span class="countdown-amount">58</span><span class="countdown-period">Mins</span></span><span class="countdown-section"><span class="countdown-amount">22</span><span class="countdown-period">Secs</span></span></span></div><!-- End .product-countdown --> --}}
+                                <div class="product-countdown is-countdown" data-until="+9h" data-format="HMS" data-relative="true" data-labels-short="true"><span class="countdown-row countdown-show3"><span class="countdown-section"><span class="countdown-amount">08</span><span class="countdown-period">Hours</span></span><span class="countdown-section"><span class="countdown-amount">50</span><span class="countdown-period">Mins</span></span><span class="countdown-section"><span class="countdown-amount">20</span><span class="countdown-period">Secs</span></span></span></div>
 
                                 <div class="product-action-vertical">
                                     <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
@@ -396,52 +397,123 @@
     <div class="mb-3"></div><!-- End .mb-3 -->
 
     @if($counter==1)
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="banner banner-overlay banner-overlay-light">
-                    <a href="#">
-                        <img src="{{url('/')}}/uploads/banners/offer.jpg" alt="Banner">
-                    </a>
+    <div class="bg-light deal-container pt-7 pb-7 mb-5">
+        <div class="container">
+            <div class="heading text-center mb-4">
+                <h2 class="title">Weekly Deals</h2><!-- End .title -->
+                <p class="title-desc">Best Deals This Week</p><!-- End .title-desc -->
+            </div><!-- End .heading -->
 
-                    <div class="banner-content">
-                        <h4 class="banner-subtitle d-none d-sm-block"><a href="#">
-                            {{-- Spring Sale is Coming --}}
-                        </a></h4><!-- End .banner-subtitle -->
-                        <h3 class="banner-title"><a href="#">
-                            {{-- All Smart Watches <br>Discount <br><span class="text-primary">15% off</span> --}}
-                        </a></h3><!-- End .banner-title -->
-                        <a href="#" class="banner-link banner-link-dark">Discover Now <i class="icon-long-arrow-right"></i></a>
-                    </div><!-- End .banner-content -->
-                </div><!-- End .banner -->
-            </div><!-- End .col-lg-6 -->
+            <div class="row">
+                <?php $WeeklySpecial = DB::table('product')->where('offer','1')->limit('1')->get(); ?>
+                @foreach($WeeklySpecial as $week)
+                <div class="col-lg-6 deal-col">
+                    <div class="deal" style="background-image: url('{{url('/')}}/uploads/product/{{$week->fb_pixels}}'); ">
+                        {{-- <div class="deal-top">
+                            <h2>Deal of the Week.</h2>
+                            <h4>Limited quantities. </h4>
+                        </div> --}}
+                        <!-- End .deal-top -->
 
-            <div class="col-lg-6">
-                <div class="banner banner-overlay">
-                    <a href="#">
-                        <img src="{{url('/')}}/uploads/banners/offer-two.jpg" alt="Banner">
-                    </a>
+                        <div class="deal-content">
+                            {{-- <h3 class="product-title"><a href="{{url('/')}}/product/{{$week->slung}}">{{$week->name}}</a></h3><!-- End .product-title --> --}}
 
-                    <div class="banner-content">
-                        <h4 class="banner-subtitle d-none d-sm-block"><a href="#">
-                            {{-- Spring Sale is Coming --}}
-                        </a></h4><!-- End .banner-subtitle -->
-                        <h3 class="banner-title"><a href="#">
-                            {{-- All Smart Watches <br>Discount <br><span class="text-primary">15% off</span> --}}
-                        </a></h3><!-- End .banner-title -->
-                        <a href="#" class="banner-link banner-link-dark">Discover Now <i class="icon-long-arrow-right"></i></a>
-                    </div><!-- End .banner-content -->
-                </div><!-- End .banner -->
-            </div><!-- End .col-lg-6 -->
-        </div>
-        <!-- End .row -->
-    </div><!-- End .container -->
+                            {{-- <div class="product-price">
+                                <span class="new-price">KES {{$week->price}}</span>
+                                <span class="old-price">Was {{$week->price_raw}}</span>
+                            </div> --}}
+                            <!-- End .product-price -->
+
+                            {{-- <a href="{{url('/')}}/product/{{$week->slung}}" class="btn btn-link"><span>Shop Now</span><i class="icon-long-arrow-right"></i></a> --}}
+                        </div><!-- End .deal-content -->
+
+                        <div class="deal-bottom">
+                            {{-- <div class="deal-countdown is-countdown" data-until="+10h"><span class="countdown-row countdown-show3"><span class="countdown-section"><span class="countdown-amount">09</span><span class="countdown-period">hours</span></span><span class="countdown-section"><span class="countdown-amount">00</span><span class="countdown-period">minutes</span></span><span class="countdown-section"><span class="countdown-amount">46</span><span class="countdown-period">seconds</span></span></span></div><!-- End .deal-countdown --> --}}
+                        </div><!-- End .deal-bottom -->
+                    </div><!-- End .deal -->
+                </div><!-- End .col-lg-6 -->
+                @endforeach
+                <div class="col-lg-6">
+                    <div class="products">
+                        <div class="row">
+                            <?php $Weekly = DB::table('product')->where('weekly','1')->limit('2')->get(); ?>
+                            @foreach($Weekly as $week)
+                            <div class="col-6">
+                                <div class="product product-2">
+                                    <figure class="product-media">
+                                        <a href="{{url('/')}}/product/{{$week->slung}}">
+                                            <img  src="{{url('/')}}/uploads/product/{{$week->thumbnail}}" alt="{{$week->name}}" class="product-image">
+                                        </a>
+
+                                        <div class="product-action-vertical">
+                                            <a href="{{url('/')}}/wishlist/add-to-wishlist/{{$item->id}}" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                        </div><!-- End .product-action -->
+
+                                        <div class="product-action product-action-dark">
+                                            <a href="{{url('/')}}/shopping-cart/add-to-cart/{{$item->id}}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                            <a href="{{url('/')}}/popup/{{$item->slung}}" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                        </div><!-- End .product-action -->
+                                    </figure><!-- End .product-media -->
+
+                                    <div class="product-body">
+                                        <div class="product-cat">
+                                            <?php $Category = DB::table('category')->where('id',$item->cat)->get(); ?>
+                                            @foreach ($Category as $Cat)
+                                            <a href="{{url('/products')}}/{{$Cat->slung}}"> {{$Cat->cat}} </a> 
+                                            @endforeach
+                                        </div><!-- End .product-cat -->
+                                        <h3 class="product-title"><a href="{{url('/')}}/product/{{$item->slung}}">{{$item->name}}</a></h3><!-- End .product-title -->
+                                        <div class="product-price">
+                                            KES{{$item->price}}
+                                        </div><!-- End .product-price -->
+                                        <?php 
+                                        $Reviews = DB::table('reviews')->where('product_id',$item->id)->get(); 
+                                        $CountReviews = count($Reviews);
+                                        $Ratings = DB::table('reviews')->where('product_id',$item->id)->avg('rating');
+                                        $avg = ceil($Ratings);
+                                            ?>
+                                            @if($Reviews->isEmpty())
+        
+                                            @else
+                                            <div class="ratings-container">
+                                                <div class="ratings">
+                                                    <?php
+                                                        //Average Rating 
+                                                    ?>
+                                                    <div class="ratings-val" style="width: {{$avg}}%;"></div><!-- End .ratings-val -->
+                                                </div>
+                                                <span class="ratings-text">( {{$CountReviews}} Reviews )</span>
+                                            </div>
+                                            @endif
+                                            <!-- End .rating-container -->
+                                            {{--  --}}
+                                            <div class="product-cat meta">
+                                                <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
+                                            </div>
+                                        <!-- End .product-cat -->
+                                        {{--  --}}
+                                    </div><!-- End .product-body -->
+                                </div><!-- End .product -->
+                            </div><!-- End .col-sm-6 -->
+                            @endforeach
+                        </div><!-- End .row -->
+                    </div><!-- End .products -->
+                </div><!-- End .col-lg-6 -->
+            </div><!-- End .row -->
+
+            <div class="more-container text-center mt-3 mb-0">
+                <a href="{{url('/')}}/special-offers" class="btn btn-outline-dark-2 btn-round btn-more"><span>Shop more Weekly deals</span><i class="icon-long-arrow-right"></i></a>
+            </div><!-- End .more-container -->
+        </div><!-- End .container -->
+    </div>
     @else
     
     @endif
     <?php $counter = $counter+1; ?>
     @endforeach
     <div class="mb-1"></div><!-- End .mb-1 -->
+
+   
 
 
     <div class="container">

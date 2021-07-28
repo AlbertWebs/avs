@@ -58,13 +58,21 @@
                                         <img src="{{url('/')}}/uploads/product/{{$Product->fb_pixels}}" alt="{{$Product->name}}">
                                     </a>
 
+                                    @if($Product->image_three == '0' or $Product->image_three == null)
+
+                                    @else
                                     <a class="product-gallery-item" href="#" data-image="{{url('/')}}/uploads/product/{{$Product->image_three}}" data-zoom-image="{{url('/')}}/uploads/product/{{$Product->image_three}}">
                                         <img src="{{url('/')}}/uploads/product/{{$Product->image_three}}" alt="{{$Product->name}}">
                                     </a>
+                                    @endif
 
+                                    @if($Product->image_two == '0' or $Product->image_two == null)
+
+                                    @else
                                     <a class="product-gallery-item" href="#" data-image="{{url('/')}}/uploads/product/{{$Product->image_two}}" data-zoom-image="{{url('/')}}/uploads/product/{{$Product->image_two}}">
                                         <img src="{{url('/')}}/uploads/product/{{$Product->image_two}}" alt="{{$Product->name}}">
                                     </a>
+                                    @endif
                                 </div><!-- End .product-image-gallery -->
                             </div><!-- End .row -->
                         </div><!-- End .product-gallery -->
@@ -114,10 +122,10 @@
                             </div><!-- End .details-filter-row -->
 
                             <div class="product-details-action">
-                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                <a href="{{url('/')}}/shopping-cart/add-to-cart/{{$Product->id}}" class="btn-product btn-cart"><span>add to cart</span></a>
 
-                                <a href="#" class="btn-product btn-cart" title="Wishlist"><span>Add to Wishlist</span></a>
-                                    <a href="#" class="btn-product btn-cart" title="Compare"><span>Add to Compare</span></a>
+                                <a href="{{url('/')}}/wishlist/add-to-wishlist/{{$Product->id}}" class="btn-product btn-cart" title="Wishlist"><span>Add to Wishlist</span></a>
+                                <a href="{{url('/')}}/compare/add-to-compare/{{$Product->id}}" class="btn-product btn-cart" title="Compare"><span>Add to Compare</span></a>
 
                                 <div class="details-action-wrapper" style="visibility: hidden;">
                                     <a href="#" class="btn-product btn-cart" title="Wishlist"><span>Add to Wishlist</span></a>

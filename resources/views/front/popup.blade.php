@@ -11,12 +11,20 @@
 						<a href="#two" class="carousel-dot">
 							<img src="{{url('/')}}/uploads/product/{{$Pro->fb_pixels}}">
 						</a>
+						@if($Pro->image_three == '0' or $Pro->image_three == null)
+
+						@else
 						<a href="#three" class="carousel-dot">
 							<img src="{{url('/')}}/uploads/product/{{$Pro->image_three}}">
 						</a>
+						@endif
+						@if($Pro->image_two == '0' or $Pro->image_two == null)
+
+						@else
 						<a href="#four" class="carousel-dot">
-							<img src="{{url('/')}}/uploads/product/{{$Pro->image_three}}">
+							<img src="{{url('/')}}/uploads/product/{{$Pro->image_two}}">
 						</a>
+						@endif
 					</div>
 					<div class="product-right">
 						<div class="owl-carousel owl-theme owl-nav-inside owl-light mb-0" data-toggle="owl" data-owl-options='{
@@ -50,13 +58,16 @@
                                     <i class="icon-arrows"></i>
                                 </a>
 		                    </div><!-- End .intro-slide -->
+							@if($Pro->image_three == '0' or $Pro->image_three == null)
 
+							@else
 		                    <div class="intro-slide" data-hash="four">
 	                            <img src="{{url('/')}}/uploads/product/{{$Pro->image_three}}" alt="{{$Pro->name}}">
 	                            <a href="{{url('/')}}/fullscreen/{{$Pro->slung}}" class="btn-fullscreen">
                                     <i class="icon-arrows"></i>
                                 </a>
 		                    </div><!-- End .intro-slide -->
+							@endif
 		                </div>
 					</div>
                 </div>

@@ -16924,6 +16924,8 @@ button:focus {
   min-width: 178px; }
   .product{
     border:1px #66139B solid;
+    /* box-shadow: 2px 2px #66139B; */
+    /* border-radius:10px !important; */
   }
 /* '' */
 

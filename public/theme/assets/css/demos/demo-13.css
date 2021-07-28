@@ -787,4 +787,150 @@
     }
   }
 
+  .deal-col {
+    display: flex;
+    align-items: stretch; }
+  .deal-container .heading {
+    padding-bottom: .5rem; }
+    .deal-container .heading .title {
+      margin-bottom: 1rem; }
+  .deal-container .product {
+    border: none;
+    margin-bottom: 2rem; }
+  .deal-container .btn-more {
+    text-transform: capitalize; }
+
+    
+.deal-container .heading {
+  padding-bottom: .5rem; }
+  .deal-container .heading .title {
+    margin-bottom: 1rem; }
+.deal-container .product {
+  border: none;
+  margin-bottom: 2rem; }
+.deal-container .btn-more {
+  text-transform: capitalize; }
+
+.deal-col {
+  display: flex;
+  align-items: stretch; }
+
+.deal {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 3.6rem 4rem 4.8rem;
+  background-color: #fff;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-bottom: 2rem;
+  min-height: 380px; }
+  .deal > div {
+    width: 100%; }
+  .deal .btn {
+    padding: 0 0 .2rem; }
+  .deal h4 {
+    color: #777;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.25;
+    letter-spacing: 0;
+    margin-bottom: .5rem;
+    max-width: 240px; }
+  .deal h2 {
+    color: #ef837b;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    margin-bottom: .2rem;
+    max-width: 240px; }
+  .deal .product-title {
+    max-width: 240px;
+    margin-bottom: .7rem; }
+  .deal .product-price {
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: .4rem; }
+
+.deal-content {
+  align-self: center; }
+
+.deal-bottom {
+  align-self: flex-end; }
+
+.btn.btn-outline-dark-2 {
+  border-color: #d7d7d7; }
+  .btn.btn-outline-dark-2:hover, .btn.btn-outline-dark-2:focus {
+    background-color: #fff; }
+
+.deal-countdown {
+  margin-bottom: 0;
+  margin-left: -.8rem;
+  max-width: 180px; }
+  .deal-countdown .countdown-show3 .countdown-section {
+    width: calc(33.33% - 16px); }
+  .deal-countdown .countdown-section {
+    position: relative;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1;
+    padding: .9rem 0 .3rem;
+    margin-left: .8rem;
+    margin-right: .8rem;
+    background-color: #fcb941;
+    border-radius: .3rem;
+    border: none;
+    margin-bottom: 2rem; }
+    .deal-countdown .countdown-section:not(:last-child):after {
+      color: #333333;
+      content: ':';
+      display: inline-block;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1;
+      position: absolute;
+      left: 100%;
+      margin-left: 6px;
+      margin-top: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      -ms-transform: translateY(-50%); }
+  .deal-countdown .countdown-period {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: -2rem;
+    display: block;
+    font-weight: 400;
+    color: #333333;
+    text-transform: lowercase;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .deal-countdown .countdown-amount {
+    display: inline-block;
+    color: #fff;
+    font-weight: 500;
+    font-size: 2.4rem;
+    line-height: 1;
+    letter-spacing: -.03em;
+    margin-bottom: .4rem; }
+
+    .deal-container .product {
+      border: none;
+      margin-bottom: 2rem;
+  }
+
+  .product.product-2 {
+    background-color: #fff;
+    border: .1rem solid #ebebeb;
+    overflow: hidden;
+}
+
 /*# sourceMappingURL=demo-13.css.map */

@@ -12,14 +12,9 @@
                     <a href="#">Links</a>
                     <ul>
                         <li>
-                            <div class="header-dropdown">
-                                <a href="#">USD</a>
-                                <div class="header-menu">
-                                    <ul>
-                                        <li><a href="#">Eur</a></li>
-                                        <li><a href="#">Usd</a></li>
-                                    </ul>
-                                </div><!-- End .header-menu -->
+                            <div>
+                                <a href="#mailto:{{$Settings->email}}"> <i class="icon-envelope"></i> {{$Settings->email}}</a>
+                                
                             </div><!-- End .header-dropdown -->
                         </li>
                         <li>   
