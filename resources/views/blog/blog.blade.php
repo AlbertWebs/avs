@@ -184,7 +184,7 @@
                             </div><!-- End .entry-meta -->
 
                             <h2 class="entry-title">
-                                <a href="{{url('/')}}/blog-posts/{{$item->slung}}">{{$item->title}}a>
+                                <a href="{{url('/')}}/blog-posts/{{$item->slung}}">{{$item->title}}</a>
                             </h2><!-- End .entry-title -->
 
                             <div class="entry-cats">

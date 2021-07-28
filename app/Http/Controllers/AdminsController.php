@@ -110,6 +110,8 @@ use App\Models\Action;
 
 use App\Models\File;
 
+use Illuminate\Support\Str;
+
 use App\Models\ServiceRequest;
 
 class AdminsController extends Controller
@@ -1341,7 +1343,7 @@ public function add_Product(Request $request){
     }
     //Additional images
     
-    $slung = str_slug($request->name);
+    $slung = Str::slug($request->name);
     $Product = new Product;
     $Product->name = $request->name;
     $Product->slung = $slung;
@@ -1414,7 +1416,7 @@ public function edit_Product_Details(Request $request, $id){
 public function edit_Product_slung(){
     $variable = DB::table('category')->get();
     foreach ($variable as $key => $value) {
-        $slung = str_slug($value->cat);
+        $slung = Str::slug($value->cat);
         $updateDetails = array(
         
             'slung' => $slung,
@@ -1539,7 +1541,7 @@ public function edit_Product(Request $request, $id){
    }else{
        $stock = 'Out of Stock';
    }
-   $slung = str_slug($request->name);
+   $slung = Str::slug($request->name);
 
 
    $replaced = $request->replaced;
@@ -3649,7 +3651,7 @@ public function addTag(){
 }
 
 public function add_Tag(Request $request){
-    $slung = str_slug($request->name);
+    $slung = Str::slug($request->name);
     $Tag = new Tag;
     $Tag->title = $request->name;
     $Tag->slung = $slung;
@@ -3676,7 +3678,7 @@ public function edit_Tag(Request $request, $id){
         }else{
             $image = $request->image_cheat;
         }
-    $slung = str_slug($request->name);
+    $slung = Str::slug($request->name);
     $updateDetails = array(
         'title'=>$request->name,
         'slung'=>$slung,
