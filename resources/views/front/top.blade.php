@@ -9,7 +9,7 @@
 
             <ul class="top-menu">
                 <li>
-                    <a href="#">Links</a>
+                    <a href="#">More</a>
                     <ul>
                         <li>
                             <div>
@@ -17,16 +17,10 @@
                                 
                             </div><!-- End .header-dropdown -->
                         </li>
-                        <li>   
-                            <div class="header-dropdown">
-                                <a href="#">Engligh</a>
-                                <div class="header-menu">
-                                    <ul>
-                                        <li><a href="#">English</a></li>
-                                        <li><a href="#">French</a></li>
-                                        <li><a href="#">Spanish</a></li>
-                                    </ul>
-                                </div><!-- End .header-menu -->
+                        <li>
+                            <div>
+                                <a href="{{url('/')}}/find-us"> <i class="icon-map-marker"></i> {{$Settings->location}}</a>
+                                
                             </div><!-- End .header-dropdown -->
                         </li>
                         <li class="login">
