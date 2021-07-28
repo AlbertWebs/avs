@@ -21,15 +21,23 @@
                 $PreviousProduct = \App\Models\Product::find($Previous);
              ?>
             <nav class="product-pager ml-auto" aria-label="Product">
+                @if($PreviousProduct==null)
+
+                @else
                 <a class="product-pager-link product-pager-prev" href="{{url('/')}}/product/{{$PreviousProduct->slung}}" aria-label="Previous" tabindex="-1">
                     <i class="icon-angle-left"></i>
                     <span>Prev</span>
                 </a>
+                @endif
 
+                @if($NextProduct==null)
+
+                @else
                 <a class="product-pager-link product-pager-next" href="{{url('/')}}/product/{{$NextProduct->slung}}" aria-label="Next" tabindex="-1">
                     <span>Next</span>
                     <i class="icon-angle-right"></i>
                 </a>
+                @endif
             </nav><!-- End .pager-nav -->
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->

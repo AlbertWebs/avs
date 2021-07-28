@@ -48,22 +48,23 @@ class BlogController extends Controller
 
     public function blog($title){
         $SEOSettings = DB::table('seosettings')->get();
+        $Blog = DB::table('blogs')->where('slung',$title)->get();
+        $Popular = DB::table('blogs')->paginate(8);
+        foreach($Blog as $value){
         foreach($SEOSettings as $Settings){
-        SEOMeta::setTitle(''.$Settings->sitename.' - Our Blogs');
+        SEOMeta::setTitle(''.$value->title.' - '.$Settings->sitename.' ');
         SEOMeta::setDescription(''.$Settings->welcome.'');
-        SEOMeta::setCanonical(''.$Settings->url.'/news/'.$title.'');
+        SEOMeta::setCanonical(''.$Settings->url.'/blog-posts/'.$title.'');
 
         OpenGraph::setDescription(''.$Settings->welcome.''); 
         OpenGraph::setTitle(''.$Settings->sitename.' - '.$Settings->welcome.'');
-        OpenGraph::setUrl(''.$Settings->url.'/news');
+        OpenGraph::setUrl(''.$Settings->url.'/blog-posts');
         OpenGraph::addProperty('type', 'articles');
         
         
         Twitter::setTitle(''.$Settings->sitename.' - '.$Settings->welcome.'');
         Twitter::setSite(''.$Settings->twitter.'');
-        $Blog = DB::table('blogs')->where('title',$title)->get();
-        $Popular = DB::table('blogs')->paginate(8);
-        foreach($Blog as $value){
+       
             $Cat = DB::table('category')->get();
        
             $name = $value->author;
@@ -83,7 +84,7 @@ class BlogController extends Controller
                     
                     
                     $Author = DB::table('users')->where('name',$newName)->get();
-                    return view('blog.blog',compact('page_title','Blog','page_name','Comments','Author','Popular','Tags'));
+                    return view('blog.blog',compact('page_title','Blog','page_name','Comments','Author','Popular'));
         }
         
     }

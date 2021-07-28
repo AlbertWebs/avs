@@ -3,7 +3,7 @@
 <main class="main">
     <div class="page-header text-center" style="background-image: url('{{asset('theme/assets/images/page-header-bg.jpg')}}')">
         <div class="container">
-            <h1 class="page-title">{{$page_name}}<span>Blog</span></h1>
+            <h1 class="page-title">{{$page_name}}<span>Amani Vehicle Sounds</span></h1>
         </div><!-- End .container -->
     </div><!-- End .page-header -->
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
@@ -35,7 +35,7 @@
                     <article class="entry entry-grid text-center">
                         <figure class="entry-media">
                             <a href="{{url('/')}}/blog-posts/{{$item->slung}}">
-                                <img src="{{url('/')}}/uploads/blog/{{$item->image_one}}" alt="{{$item->title}}" alt="image desc">
+                                <img src="{{url('/')}}/uploads/blog/{{$item->image_one}}" alt="{{$item->title}}">
                             </a>
                         </figure><!-- End .entry-media -->
 
@@ -59,7 +59,7 @@
                             </div><!-- End .entry-meta -->
 
                             <h2 class="entry-title">
-                                <a href="{{url('/')}}/blog-posts/{{$item->slung}}">Cras ornare tristique elit.</a>
+                                <a href="{{url('/')}}/blog-posts/{{$item->slung}}">{{$item->title}}</a>
                             </h2><!-- End .entry-title -->
 
                             <div class="entry-cats">
