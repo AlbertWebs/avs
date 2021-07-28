@@ -7,9 +7,11 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishListController;
 use App\Http\Controllers\CompareController;
-use App\Http\Controllers\DashboadController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentsConroller;
+
+
 
 
 
@@ -28,6 +30,13 @@ use App\Http\Controllers\PaymentsConroller;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::get('/find-us',[App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/about-us',[App\Http\Controllers\HomeController::class, 'about'])->name('about');
+
+Route::get('/terms-and-conditions',[App\Http\Controllers\HomeController::class, 'terms'])->name('terms');
+Route::get('/privacy-policy',[App\Http\Controllers\HomeController::class, 'privacy'])->name('privacy');
+Route::get('/shipping-policy',[App\Http\Controllers\HomeController::class, 'shipping'])->name('shipping');
+Route::get('/delivery',[App\Http\Controllers\HomeController::class, 'delivery'])->name('delivery');
+Route::get('/copyright',[App\Http\Controllers\HomeController::class, 'copyright'])->name('copyright');
+
 
 //Search
 Route::get('/search',[App\Http\Controllers\HomeController::class, 'search'])->name('search');
@@ -102,7 +111,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Users Routes
 Auth::routes();
 Route::group(['prefix'=>'dashboard'], function(){
-Route::get('/', [DashboadController::class, 'index']);
+Route::get('/', [ClientController::class, 'index'])->name('dashboard.home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 // SocialMedia
 Route::get('/facebook', [LoginController::class, 'facebook']);
 Route::get('/facebook/redirect', [LoginController::class, 'facebookRedirect']);

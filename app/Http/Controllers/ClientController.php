@@ -65,11 +65,13 @@ class ClientController extends Controller
         Twitter::setSite(''.$Settings->twitter.'');
         $id = Auth::user()->id;
         //$TraceServices = DB::table('traceservices')->where('status','0')->where('user_id',$id)->get();
+        $id = Auth::user()->id;
+        $Orders = DB::table('orders')->where('user_id',$id)->get(); 
         $page_name = '';
         $page_title = '';
         $page_title = 'ClientArea';
         $Order= DB::table('orders')->where('user_id',$id)->paginate(3);
-        return view('clientarea.index',compact('keywords','page_title','Order','page_name','page_title'));
+        return view('clientarea.index',compact('keywords','page_title','Order','page_name','page_title','Orders'));
         }
     }
 
@@ -89,12 +91,13 @@ class ClientController extends Controller
         
         Twitter::setTitle(''.$Settings->sitename.' - '.$Settings->welcome.'');
         Twitter::setSite(''.$Settings->twitter.'');
+        $Orders = DB::table('orders')->where('user_id',$id)->get(); 
         $id = Auth::user()->id;
         $User = User::find($id);
         $page_name = '';
         $page_title = '';
         $page_title = 'My Profile';
-        return view('clientarea.profile',compact('keywords','page_title','User','page_name','page_title'));
+        return view('clientarea.profile',compact('keywords','page_title','User','page_name','page_title','Orders'));
         }
     }
 

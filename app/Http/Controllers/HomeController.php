@@ -8,6 +8,10 @@ use Session;
 use OpenGraph;
 use SEOMeta;
 use Twitter;
+use App\Models\Privacy;
+use App\Models\Term;
+use App\Models\Delivery;
+
 class HomeController extends Controller
 {
     public function index()
@@ -328,6 +332,116 @@ class HomeController extends Controller
         }
         
         
+    }
+
+
+    public function terms()
+    {
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Terms and Conditions | ' . $Settings->sitename . '  ');
+            SEOMeta::setDescription('Amani Vehicle Sounds Systems' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '/terms-and-conditions');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/terms');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Terms';
+            $Term = Term::all();
+            $page_title = 'Terms Of Service';
+            $keywords = 'Vehicle Sound Systems, Vehicle Alarm Systems, Vehicle Surveillance Systems';
+            return view('front.terms', compact('page_title', 'Term', 'page_name','keywords'));
+        }
+    }
+
+    public function delivery()
+    {
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Terms Of Delivery | ' . $Settings->sitename . '  ');
+            SEOMeta::setDescription('Amani Vehicle Sounds Systems' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '/delivery');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/terms');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Terms';
+            $Term = Delivery::all();
+            $page_title = 'Terms Of Delivery';
+            $keywords = 'Vehicle Sound Systems, Vehicle Alarm Systems, Vehicle Surveillance Systems';
+            return view('front.delivery', compact('page_title', 'Term', 'page_name','keywords'));
+        }
+    }
+
+    
+
+    public function privacy()
+    {
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Privacy Policy | ' . $Settings->sitename . '  ');
+            SEOMeta::setDescription('Amani vehicle Sounds Privacy Policies' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '/privacy');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/privacy');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Terms';
+            $Privacy = Privacy::all();
+            $page_title = 'Privacy Policy';
+            $keywords = 'Vehicle Sound Systems, Vehicle Alarm Systems, Vehicle Surveillance Systems';
+            return view('front.privacy', compact('page_title', 'Privacy', 'page_name','keywords'));
+        }
+    }
+
+    public function shipping()
+    {
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Shipping Policy | ' . $Settings->sitename . '  ');
+            SEOMeta::setDescription('Amani vehicle Sounds Privacy Policies' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '/privacy');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/privacy');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Terms';
+            $Privacy = Privacy::all();
+            $page_title = 'Privacy Policy';
+            $keywords = 'Vehicle Sound Systems, Vehicle Alarm Systems, Vehicle Surveillance Systems';
+            return view('front.privacy', compact('page_title', 'Privacy', 'page_name','keywords'));
+        }
+    }
+
+    
+
+    public function copyright()
+    {
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Copyright Statement | ' . $Settings->sitename . '  ');
+            SEOMeta::setDescription('Amani Vehicle Sounds Copyrights' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '/copyright');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/copyright');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Terms';
+            $Copyright = DB::table('copyright')->get();
+            $page_title = 'Copyright Statement';
+            $keywords = 'Vehicle Sound Systems, Vehicle Alarm Systems, Vehicle Surveillance Systems';
+            return view('front.copyright', compact('page_title', 'keywords','Copyright', 'page_name'));
+        }
     }
     
 }

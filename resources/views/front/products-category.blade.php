@@ -11,7 +11,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                <li class="breadcrumb-item"><a href="{{url('/')}}/products/shop-by-brand">Categories</a></li>
+                <li class="breadcrumb-item"><a href="{{url('/')}}/products/shop-by-category">Categories</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{$page_name}}</li>
             </ol>
         </div><!-- End .container -->

@@ -23,9 +23,6 @@
     @include('front.facebook')
     @include('front.tawk')
     @include('front.google')
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-
-
 
     <link rel="stylesheet" href="{{asset('theme/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
     <!-- Plugins CSS File -->
@@ -35,10 +32,6 @@
     <link rel="stylesheet" href="{{asset('theme/assets/css/plugins/jquery.countdown.css')}}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{asset('theme/assets/css/style.css')}}">
-    {{--  --}}
-  
-    <link rel="stylesheet" href="{{asset('theme/assets/css/plugins/nouislider/nouislider.css')}}">
-    {{--  --}}
     <link rel="stylesheet" href="{{asset('theme/assets/css/skins/skin-demo-13.css')}}">
     <link rel="stylesheet" href="{{asset('theme/assets/css/demos/demo-13.css')}}">
      <!--Floating WhatsApp css-->
@@ -68,7 +61,7 @@
 
                     @include('front.search')
 
-                    @include('front.shopping-cart')
+                   @include('front.shopping-cart')
                 </div><!-- End .container -->
             </div><!-- End .header-middle -->
 
@@ -80,12 +73,12 @@
                                 Browse Categories
                             </a>
 
-                            <div class="dropdown-menu ">
+                            <div class="dropdown-menu show">
                                 <nav class="side-nav">
                                     <ul class="menu-vertical sf-arrows">
                                         <?php $Category = DB::table('category')->limit(11)->get(); ?>
                                         @foreach ($Category as $item)
-                                        <li><a href="{{url('/')}}/products/{{$item->slung}}">{{$item->cat}}(<?php echo count($All = DB::table('product')->where('cat',$item->id)->get()); ?>)</a></li> 
+                                        {{-- <li><a href="{{url('/')}}/products/{{$item->slung}}">{{$item->cat}}(<?php echo count($All = DB::table('product')->where('cat',$item->id)->get()); ?>)</a></li>  --}}
                                         @endforeach
                                     </ul><!-- End .menu-vertical -->
                                 </nav><!-- End .side-nav -->
@@ -210,7 +203,7 @@
 
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
-                   @include('front.footer-menu')
+                    @include('front.footer-menu')
                 </div><!-- .End .tab-pane -->
                 <div class="tab-pane fade" id="mobile-cats-tab" role="tabpanel" aria-labelledby="mobile-cats-link">
                     <nav class="mobile-cats-nav">
@@ -233,7 +226,7 @@
         </div><!-- End .mobile-menu-wrapper -->
     </div><!-- End .mobile-menu-container -->
 
-    @include('front.sign-in')
+     @include('front.sign-in')
 
     {{-- Newsletter Popup --}}
     {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
@@ -273,14 +266,11 @@
     <script src="{{asset('theme/assets/js/jquery.waypoints.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/superfish.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/wNumb.js')}}"></script>
-    <script src="{{asset('theme/assets/js/bootstrap-input-spinner.js')}}"></script>
-    <script src="{{asset('theme/assets/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/nouislider.min.js')}}"></script>
-       
+
+   
     <!-- Main JS File -->
     <script src="{{asset('theme/assets/js/main.js')}}"></script>
-    <script src="{{asset('theme/assets/js/demos/demo-13.js')}}"></script>
+
      <!--Floating WhatsApp javascript-->
      <script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
 
@@ -298,158 +288,9 @@
 
              });
          });
-     </script>
+     </script>  
      
-   
-     {{--  --}}
-     <?php $CartItems = Cart::content(); ?>
-     @if($CartItems->isEmpty())
-
-     @else
-     @foreach($CartItems as $CartItem)
-     <script>
-        $( document ).ready(function() {
-            $('.hide_{{$CartItem->rowId}}').hide();
-           //update cart    
-                $.ajaxSetup({
-
-                    headers: {
-
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-
-                    }
-
-                });
-                $("#updateQTY_{{$CartItem->rowId}}").submit(function(e){
-
-                    e.preventDefault();
-
-                    $('.hide_{{$CartItem->rowId}}').show();
-
-                    var rowId = $("input[name=rowID_{{$CartItem->rowId}}]").val();
-
-                    var qty = $("input[name=qty_{{$CartItem->rowId}}]").val();
-
-                    $.ajax({
-
-                        type:'POST',
-
-                        url:"{{ route('update.cart') }}",
-
-                        data:{rowId:rowId, qty:qty},
-
-                        success:function(data){
-
-                                $('.hide_{{$CartItem->rowId}}').hide(1000);
-
-                        }
-                        
-                    });
-
-                });
-        });
-    </script>
-    @endforeach
-    @endif
-     {{--  --}}
-
-          <!-- Check Mail Exists -->
-          <script type="text/javascript">
-            function duplicateEmail(element){
-
-                $('#mailChecking').html('Checking...........')
-                var email = $(element).val();
-                $.ajax({
-                    type: "POST",
-                    url: '{{url('checkemail')}}',
-                    data: {
-                            email:email,
-                            "_token": "{{ csrf_token() }}",
-                        },
-                    dataType: "json",
-                    success: function(res) {
-
-                        if(res.exists){
-                            // Exists
-                            $('#mailChecking').hide();
-                            $('#mailAvailable').hide();
-                            $('#mailExists').html('The Email is already in use by another person')
-                        }else{
-                            // Available
-                            $('#mailChecking').hide();
-                            $('#mailExists').hide();
-
-                        }
-                    },
-                    error: function (jqXHR, exception) {
-
-                    }
-                });
-            }
-          </script>
-          <!-- </Check mail Exists -->
-          {{--  --}}
-          <script>
-            $(function () {
-                    $('#loading-image').hide();
-                    $('#updateShippingForm').hide();
-                    $('#verify').on('submit', function (e) {
-                            $('#veryfyID').html('Checking......')
-                            e.preventDefault();
-                            $.ajax({
-                            type: 'post',
-                            url: '{{url('/')}}/payments/veryfy/mpesa',
-                            data: $('#verify').serialize(),
-                                    success: function ($results) {
-                                        $('#CardNumber').val('')
-                                        if($results == 1){
-                                            // alert('Verification Was Successfull')
-                                            $('#success-alert').html('The Purchase Was Successfull')
-                                            $('#veryfyID').html('Successfull')
-                                            //Submit The Order
-                                            window.open('{{url('/')}}/shopping-cart/checkout/placeOrder','_self')
-                                        }else{
-                                            
-                                            $('#veryfyID').html('Error Verifying Transaction. Wrong Transaction Code or Amount <i style="font-size:20px;color:red" class="fa fa-frown-o"></i>')
-                                        }
-                                    }
-                            });
-
-                    });
-
-                    // STK Request Goes Here
-                    $( document ).ready(function() {
-                        $('.spinner').hide();
-                    });
-                    $("#stk-submit").submit(function(stay){
-                     stay.preventDefault()
-                     var formdata = $(this).serialize(); // here $(this) refere to the form its submitting
-                     $('.spinner').show();
-                     $('.instructions').delay(2000).fadeIn();
-                     $.ajax({
-                        type: 'POST',
-                        url: "{{url('/')}}/api/v1/stk/push",
-                        data: formdata, // here $(this) refers to the ajax object not form
-                        success: function (data) {
-                            $('.spinner').hide();
-                            $('.instructions').delay(4000).html('Success...');
-                            $('.instructions').delay(1000).html('Redirecting....');
-                            setTimeout(function() {
-                                // Redirect
-                                window.open('{{url('/')}}/shopping-cart/checkout/placeOrder','_self')
-                            }, 5000);
-                            },
-                            timeout: 5000 
-                     });
-                    });
-        
-                
-
-                
-
-            });
-        </script>
-          {{--  --}}
+  
     @include('front.schema')
 </body>
 @endforeach

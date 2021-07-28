@@ -37,7 +37,7 @@ class LoginController extends Controller
     {
         $this->performLogout($request);
         Session::flash('message', "You have successfully logged out");
-        return redirect()->route('loginRoute');
+        return redirect()->route('login');
     }
     
 
@@ -72,11 +72,11 @@ class LoginController extends Controller
             if (auth()->user()->is_admin == 1) {
                 return redirect()->route('admin.home');
             }else{
-                return redirect()->route('clientarea.home');
+                return redirect()->route('dashboard.home');
             }
         }else{
             Session::flash('error', "email-address or password are wrong.");
-            return redirect()->route('loginRoute');
+            return redirect()->route('login');
         }
           
     }
@@ -93,7 +93,7 @@ class LoginController extends Controller
         ]);
 
         Auth::login($user, true);
-        return redirect()->to('/clientarea');
+        return redirect()->to('/dashboard');
     }
 
     public function facebook(){
@@ -116,7 +116,7 @@ class LoginController extends Controller
         ]);
 
         Auth::login($user, true);
-        return redirect()->to('/clientarea');
+        return redirect()->to('/dashboard');
     }
 
     
