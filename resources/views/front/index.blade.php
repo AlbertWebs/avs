@@ -1,6 +1,6 @@
 @extends('front.master')
 @section('content')
-<main class="main">
+<main class="main bg-light">
     <?php $Slider = DB::table('product')->where('stock','In Stock')->limit(10)->InRandomOrder()->where('slider','1')->get(); $CountSlider = count($Slider); ?> 
     @if($CountSlider == 0)
 
@@ -52,7 +52,7 @@
 
         <div class="cat-blocks-container">
             <div class="row">
-                <?php $Categories = DB::table('category')->limit('12')->get(); ?>
+                <?php $Categories = DB::table('category')->limit('6')->get(); ?>
                 @foreach($Categories as $Cat)
                 <div class="col-6 col-sm-4 col-lg-2">
                     <a href="{{url('/')}}/products/{{$Cat->slung}}" class="cat-block">
@@ -144,6 +144,7 @@
                             }
                         }'>
                         <?php $Trending = DB::table('product')->where('stock','In Stock')->where('trending','1')->limit('10')->get(); ?>
+                        
                         @foreach ($Trending as $item)
                         <div class="product">
                             <figure class="product-media">
@@ -160,7 +161,7 @@
                                 </div><!-- End .product-action-vertical -->
 
                                 <div class="product-action">
-                                    <a href="{{url('/')}}/shopping-cart/add-to-cart/{{$item->id}}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                    <a href="{{url('/')}}/shopping-cart/add-to-cart/{{$item->id}}" class="btn-product btn-cart" title="Buy Now"><span>Buy Now</span></a>
                                 </div><!-- End .product-action -->
                             </figure><!-- End .product-media -->
 
@@ -236,7 +237,7 @@
 
     <?php $Category = DB::table('category')->limit('15')->get(); $counter = 1; ?>
     @foreach ($Category as $category)
-    <div class="container electronics">
+    <div class="container electronics bg-light">
         <div class="heading heading-flex heading-border mb-3">
             <div class="heading-left">
                 <h2 class="title">{{$category->cat}}</h2><!-- End .title -->
@@ -254,7 +255,7 @@
         <div class="tab-content tab-content-carousel">
             <div class="products">
                 <div class="row">
-                    <?php $Featured = DB::table('product')->where('stock','In Stock')->where('cat',$category->id)->where('featured','1')->limit('8')->get(); $CountFeatured = count($Featured); $balance = 8-$CountFeatured; ?>
+                    <?php $Featured = DB::table('product')->where('stock','In Stock')->where('cat',$category->id)->where('featured','1')->limit('4')->get(); $CountFeatured = count($Featured); $balance = 8-$CountFeatured; ?>
                     
                     @foreach ($Featured as $item)
                     <div class="col-6 col-md-4 col-lg-4 col-xl-3" >
@@ -273,7 +274,7 @@
                                 </div><!-- End .product-action-vertical -->
 
                                 <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                    <a href="#" class="btn-product btn-cart" title="Buy Now"><span>Buy Now</span></a>
                                 </div><!-- End .product-action -->
                             </figure><!-- End .product-media -->
 
@@ -318,75 +319,7 @@
                         </div><!-- End .product -->
                     </div>
                     @endforeach
-                    @if($CountFeatured < 8)
-                    {{--  --}}
-                    <?php $ProductsOffer = DB::table('product')->where('offer','1')->limit($balance)->inRandomOrder()->get(); ?>
-                    @foreach ($ProductsOffer as $item)
-                    <div class="col-6 col-md-4 col-lg-4 col-xl-3" >
-                        <div class="product">
-                            <figure class="product-media">
-                                <span class="product-label label-top">Offer</span>
-                                {{-- <span class="product-label label-sale">Sale</span> --}}
-                                <a href="{{url('/')}}/product/{{$item->slung}}">
-                                    <img style="max-width:217px !important; margin:0 auto;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
-                                </a>
-
-                                {{-- <div class="product-countdown is-countdown" data-until="+2h" data-format="HMS" data-relative="true" data-labels-short="true"><span class="countdown-row countdown-show3"><span class="countdown-section"><span class="countdown-amount">08</span><span class="countdown-period">Hours</span></span><span class="countdown-section"><span class="countdown-amount">58</span><span class="countdown-period">Mins</span></span><span class="countdown-section"><span class="countdown-amount">22</span><span class="countdown-period">Secs</span></span></span></div><!-- End .product-countdown --> --}}
-                                <div class="product-countdown is-countdown" data-until="+9h" data-format="HMS" data-relative="true" data-labels-short="true"><span class="countdown-row countdown-show3"><span class="countdown-section"><span class="countdown-amount">08</span><span class="countdown-period">Hours</span></span><span class="countdown-section"><span class="countdown-amount">50</span><span class="countdown-period">Mins</span></span><span class="countdown-section"><span class="countdown-amount">20</span><span class="countdown-period">Secs</span></span></span></div>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                    <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <?php $Category = DB::table('category')->where('id',$item->cat)->get(); ?>
-                                    @foreach ($Category as $Cat)
-                                    <a href="{{url('/products')}}/{{$Cat->slung}}"> {{$Cat->cat}} </a> 
-                                    @endforeach
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="{{url('/')}}/product/{{$item->slung}}">{{$item->name}}</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    KES{{$item->price}}
-                                </div><!-- End .product-price -->
-                                <?php 
-                                    $Reviews = DB::table('reviews')->where('product_id',$item->id)->get(); 
-                                    $CountReviews = count($Reviews);
-                                    $Ratings = DB::table('reviews')->where('product_id',$item->id)->avg('rating');
-                                    $avg = ceil($Ratings);
-                                ?>
-                                @if($Reviews->isEmpty())
-
-                                @else
-                                <div class="ratings-container">
-                                    <div class="ratings">
-                                        <?php
-                                             //Average Rating 
-                                        ?>
-                                        <div class="ratings-val" style="width: {{$avg}}%;"></div><!-- End .ratings-val -->
-                                    </div>
-                                    <span class="ratings-text">( {{$CountReviews}} Reviews )</span>
-                                </div>
-                                @endif
-                                <!-- End .rating-container -->
-                                {{--  --}}
-                                <div class="product-cat meta">
-                                    <a href="{{url('/product')}}/{{$item->slung}}"> {{$item->meta}} </a> 
-                                </div>
-                                <!-- End .product-cat -->
-                                {{--  --}}
-                            </div><!-- End .product-body -->
-                        </div>
-                    </div>
-                    @endforeach
-                    @endif
+                   
                     {{--  --}}
                 </div><!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->
@@ -450,7 +383,7 @@
                                         </div><!-- End .product-action -->
 
                                         <div class="product-action product-action-dark">
-                                            <a href="{{url('/')}}/shopping-cart/add-to-cart/{{$item->id}}" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                            <a href="{{url('/')}}/shopping-cart/add-to-cart/{{$item->id}}" class="btn-product btn-cart" title="Buy Now"><span>Buy Now</span></a>
                                             <a href="{{url('/')}}/popup/{{$item->slung}}" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
                                         </div><!-- End .product-action -->
                                     </figure><!-- End .product-media -->

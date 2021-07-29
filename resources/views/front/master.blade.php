@@ -95,7 +95,7 @@
 
         @yield('content')       
 
-        <footer class="footer footer-2">
+        <footer class="footer footer-2" >
             <div class="icon-boxes-container">
                 <div class="container">
                     <div class="row">

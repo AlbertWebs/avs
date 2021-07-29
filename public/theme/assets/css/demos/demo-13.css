@@ -349,7 +349,7 @@
   color: #ccc; }
 
 .product-price {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin-bottom: 1.1rem; }
 
 .old-price {
@@ -471,7 +471,7 @@
       bottom: 0;
       left: 10px;
       right: 10px;
-      background-color: #ebebeb; }
+      background-color: #222; }
 .footer .icon-box {
   font-size: 1.4rem; }
 .footer .icon-box-icon {
@@ -493,9 +493,22 @@
   color: #66139B; }
 .footer .footer-middle {
   padding-top: 5rem; }
+  .footer {
+    background-color: #222;
+}
+
+.footer .widget-title {
+  letter-spacing: .01em;
+  color: #fff;
+}
+.icon-box-content h3{
+  color:#ffffff;
+}
 
 .widget-about-title {
-  font-weight: 400; }
+  font-weight: 400; 
+  color:#ffffff;
+}
 
 /* Category market page */
 .owl-simple .owl-nav [class*='owl-'] {
