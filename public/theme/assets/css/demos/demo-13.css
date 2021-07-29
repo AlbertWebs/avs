@@ -93,6 +93,12 @@
     letter-spacing: -.01em;
     color: #fff; }
 
+    .container {
+      /* width: 1420px; */
+      max-width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem; }
+
 .title {
   font-weight: 600;
   letter-spacing: -.025em; }
@@ -215,7 +221,8 @@
       color: #66139B; }
 
 .banner {
-  overflow: hidden; }
+  /* overflow: hidden; */
+ }
 
 .banner,
 .banner img {
@@ -724,7 +731,10 @@
   }
 
 }
+
 @media screen and (min-width: 1200px) {
+  body {
+    background-image: url("../../images/demos/demo-19/bg-1.jpg"); }
   .intro-content .btn {
     min-width: 200px; }
 
@@ -797,6 +807,10 @@
     }
     .meta{
       display:none;
+    }
+
+    .car-audio{
+      min-height:auto !important;
     }
   }
 
@@ -944,6 +958,51 @@
     background-color: #fff;
     border: .1rem solid #ebebeb;
     overflow: hidden;
+}
+
+.banner-subtitle {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #66139B;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: .3rem;
+}
+
+.banner-txt {
+  margin-top: .3rem;
+  font-size: 2.4rem;
+  letter-spacing: -.025em;
+  font-weight: 300;
+  color: #e7e7e7;
+}
+
+
+.banner-group-2 {
+  min-height: 220px;
+}
+.banner-group-2 .banner-content {
+  transform: none;
+  padding: 3.4rem 0 2.9rem 4.9rem;
+}
+.banner-group-2 .banner-text {
+  font-size: 2rem;
+}
+.banner-group-2 .btn-product {
+  display: inline-block;
+  padding: 0.85rem 2.25rem;
+  background-color: #fcb941;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+.banner-group-2 .btn-product:hover {
+  background-color: #fff;
+  border-color: #fff;
+}
+.banner-group-2 .banner-text {
+  margin-bottom: 1.7rem;
+}
+.car-audio{
+  min-height:200px;
 }
 
 /*# sourceMappingURL=demo-13.css.map */

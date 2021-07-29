@@ -101,7 +101,7 @@
     <div class="mb-3"></div><!-- End .mb-3 -->
     
     <div class="bg-light pt-3 pb-5">
-        <div class="container">
+        <div class="container mt-2" >
             <div class="heading heading-flex heading-border mb-3">
                 <div class="heading-left">
                     <h2 class="title">Hot Deals Products</h2><!-- End .title -->
@@ -211,6 +211,8 @@
         </div><!-- End .container -->
     </div><!-- End .bg-light pt-5 pb-5 -->
 
+   
+
     <div class="mb-3"></div><!-- End .mb-3 -->
     <?php $ctaBanner = DB::table('product')->where('id','127')->get(); ?>
     @if($ctaBanner->isEmpty())
@@ -319,12 +321,14 @@
                         </div><!-- End .product -->
                     </div>
                     @endforeach
-                   
+                    
                     {{--  --}}
                 </div><!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->
         </div><!-- End .tab-content -->
     </div><!-- End .container -->
+
+
    
 {{-- Offer Banner Area --}}
     <div class="mb-3"></div><!-- End .mb-3 -->
@@ -439,15 +443,206 @@
             </div><!-- End .more-container -->
         </div><!-- End .container -->
     </div>
-    @else
+    @elseif($counter==3)
+        {{--  --}}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-6 col-md-4">
+                    <div class="banner banner-overlay banner-sm banner-ad content-right align-center">
+                        <a href="#">
+                            <img src="{{asset('theme/assets/images/demos/demo-19/banners/banner-6.jpg')}}" alt="Banner">
+                        </a>
+                        <div class="banner-content">
+                            <h4 class="banner-subtitle">Weekend Offer</h4>
+                            <img class="banner-title-img" src="{{asset('theme/assets/images/demos/demo-19/banners/banner-6-title.png')}}" alt="Banner-6">
+                            <h4 class="banner-price"><span class="price">Save $19.99</span></h4>
+                            <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                        </div>
+                    </div><!-- End .banner -->
+                </div><!-- End .col-md-4 -->
     
+                <div class="col-sm-6 col-md-4">
+                    <div class="banner banner-overlay banner-sm banner-ad content-left align-center">
+                        <a href="#">
+                            <img src="{{asset('theme/assets/images/demos/demo-19/banners/banner-7.jpg')}}" alt="Banner">
+                        </a>
+                        <div class="banner-content">
+                            <h4 class="banner-subtitle">Amazing Deal on an</h4>
+                            <img class="banner-title-img" src="{{asset('theme/assets/images/demos/demo-19/banners/banner-7-title.png')}}" alt="Banner-7">
+                            <h4 class="banner-txt">Console</h4>
+                            <h4 class="banner-price color-black mt-3">Save $50</h4>
+                            <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                        </div>
+                    </div><!-- End .banner -->
+                </div><!-- End .col-md-4 -->
+    
+                <div class="col-sm-6 col-md-4">
+                    <div class="banner banner-overlay banner-sm banner-ad content-left align-center">
+                        <a href="#">
+                            <img src="{{asset('theme/assets/images/demos/demo-19/banners/banner-8.jpg')}}" alt="Banner">
+                        </a>
+                        <div class="banner-content">
+                            <h4 class="banner-price text-white mb-1">Save $29.00</h4>
+                            <img class="banner-title-img mb-2" src="{{asset('theme/assets/images/demos/demo-19/banners/banner-8-title.png')}}" alt="Banner-8">
+                            <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                        </div>
+                    </div><!-- End .banner -->
+                </div><!-- End .col-md-4 -->
+            </div><!-- End .row -->
+        </div>
+        {{--  --}}
+    
+        {{-- Banner --}}
+        <div class="container ">
+            <div class="row">
+                <div class="col-12">
+                    <div class="banner banner-rad mt-5">
+                        <div class="bg-image d-flex justify-content-center pt-4 pb-4 mb-4 car-audio" style=" background-image: url('{{asset('/uploads/banners/Hero-banner-car-speakers.jpg')}}'); background-size:cover">
+                            <div class="banner-content position-relative pt-0">
+                                <h4 class="banner-subtitle letter-spacing-normal font-size-normal text-white text-center pt-0 mb-1">
+                                    <a href="#"></a>
+                                </h4>
+                                <!-- End .banner-subtitle letter-spacing-normal font-size-normal -->
+                                <h3 class="banner-title text-white text-center font-weight-bold mb-0">
+                                    <a href="#">
+                                        <br> </a>
+                                </h3>
+                                <!-- End .banner-title -->
+                                {{-- <h4 class="banner-text text-secondary text-center font-weight-light text-uppercase">Sale Up 35% Off</h4> --}}
+                            </div>
+                            <!-- End .banner-content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+    @elseif($counter==6)
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-4">
+                <div class="banner banner-overlay banner-sm banner-ad content-right align-center">
+                    <a href="#">
+                        <img src="{{asset('theme/assets/images/demos/demo-19/banners/banner-6.jpg')}}" alt="Banner">
+                    </a>
+                    <div class="banner-content">
+                        <h4 class="banner-subtitle">Weekend Offer</h4>
+                        <img class="banner-title-img" src="{{asset('theme/assets/images/demos/demo-19/banners/banner-6-title.png')}}" alt="Banner-6">
+                        <h4 class="banner-price"><span class="price">Save $19.99</span></h4>
+                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                    </div>
+                </div><!-- End .banner -->
+            </div><!-- End .col-md-4 -->
+
+            <div class="col-sm-6 col-md-4">
+                <div class="banner banner-overlay banner-sm banner-ad content-left align-center">
+                    <a href="#">
+                        <img src="{{asset('theme/assets/images/demos/demo-19/banners/banner-7.jpg')}}" alt="Banner">
+                    </a>
+                    <div class="banner-content">
+                        <h4 class="banner-subtitle">Amazing Deal on an</h4>
+                        <img class="banner-title-img" src="{{asset('theme/assets/images/demos/demo-19/banners/banner-7-title.png')}}" alt="Banner-7">
+                        <h4 class="banner-txt">Console</h4>
+                        <h4 class="banner-price color-black mt-3">Save $50</h4>
+                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                    </div>
+                </div><!-- End .banner -->
+            </div><!-- End .col-md-4 -->
+
+            <div class="col-sm-6 col-md-4">
+                <div class="banner banner-overlay banner-sm banner-ad content-left align-center">
+                    <a href="#">
+                        <img src="{{asset('theme/assets/images/demos/demo-19/banners/banner-8.jpg')}}" alt="Banner">
+                    </a>
+                    <div class="banner-content">
+                        <h4 class="banner-price text-white mb-1">Save $29.00</h4>
+                        <img class="banner-title-img mb-2" src="{{asset('theme/assets/images/demos/demo-19/banners/banner-8-title.png')}}" alt="Banner-8">
+                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                    </div>
+                </div><!-- End .banner -->
+            </div><!-- End .col-md-4 -->
+        </div><!-- End .row -->
+    </div>
     @endif
     <?php $counter = $counter+1; ?>
     @endforeach
     <div class="mb-1"></div><!-- End .mb-1 -->
 
    
+    {{-- Category Offers --}}
+    {{--  --}}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-4">
+                <div class="banner banner-overlay banner-sm banner-ad content-right align-center">
+                    <a href="#">
+                        <img src="{{asset('theme/assets/images/demos/demo-19/banners/banner-6.jpg')}}" alt="Banner">
+                    </a>
+                    <div class="banner-content">
+                        <h4 class="banner-subtitle">Weekend Offer</h4>
+                        <img class="banner-title-img" src="{{asset('theme/assets/images/demos/demo-19/banners/banner-6-title.png')}}" alt="Banner-6">
+                        <h4 class="banner-price"><span class="price">Save $19.99</span></h4>
+                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                    </div>
+                </div><!-- End .banner -->
+            </div><!-- End .col-md-4 -->
 
+            <div class="col-sm-6 col-md-4">
+                <div class="banner banner-overlay banner-sm banner-ad content-left align-center">
+                    <a href="#">
+                        <img src="{{asset('theme/assets/images/demos/demo-19/banners/banner-7.jpg')}}" alt="Banner">
+                    </a>
+                    <div class="banner-content">
+                        <h4 class="banner-subtitle">Amazing Deal on an</h4>
+                        <img class="banner-title-img" src="{{asset('theme/assets/images/demos/demo-19/banners/banner-7-title.png')}}" alt="Banner-7">
+                        <h4 class="banner-txt">Console</h4>
+                        <h4 class="banner-price color-black mt-3">Save $50</h4>
+                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                    </div>
+                </div><!-- End .banner -->
+            </div><!-- End .col-md-4 -->
+
+            <div class="col-sm-6 col-md-4">
+                <div class="banner banner-overlay banner-sm banner-ad content-left align-center">
+                    <a href="#">
+                        <img src="{{asset('theme/assets/images/demos/demo-19/banners/banner-8.jpg')}}" alt="Banner">
+                    </a>
+                    <div class="banner-content">
+                        <h4 class="banner-price text-white mb-1">Save $29.00</h4>
+                        <img class="banner-title-img mb-2" src="{{asset('theme/assets/images/demos/demo-19/banners/banner-8-title.png')}}" alt="Banner-8">
+                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                    </div>
+                </div><!-- End .banner -->
+            </div><!-- End .col-md-4 -->
+        </div><!-- End .row -->
+    </div>
+    {{--  --}}
+
+    {{-- Banner --}}
+    <div class="container ">
+        <div class="row">
+            <div class="col-12">
+                <div class="banner banner-rad mt-5">
+                    <div class="bg-image d-flex justify-content-center pt-4 pb-4 mb-4 car-audio" style=" background-image: url('{{asset('/uploads/banners/Hero-banner-car-speakers.jpg')}}'); background-size:cover">
+                        <div class="banner-content position-relative pt-0">
+                            <h4 class="banner-subtitle letter-spacing-normal font-size-normal text-white text-center pt-0 mb-1">
+                                <a href="#"></a>
+                            </h4>
+                            <!-- End .banner-subtitle letter-spacing-normal font-size-normal -->
+                            <h3 class="banner-title text-white text-center font-weight-bold mb-0">
+                                <a href="#">
+                                    <br> </a>
+                            </h3>
+                            <!-- End .banner-title -->
+                            {{-- <h4 class="banner-text text-secondary text-center font-weight-light text-uppercase">Sale Up 35% Off</h4> --}}
+                        </div>
+                        <!-- End .banner-content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
 
     <div class="container">
         <h2 class="title title-border mb-5">Shop by Brands</h2><!-- End .title -->
