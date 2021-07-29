@@ -122,7 +122,7 @@
                         data-owl-options='{
                             "nav": false, 
                             "dots": true,
-                            "margin": 20,
+                            "margin": 10,
                             "loop": true,
                             "responsive": {
                                 "0": {
@@ -138,7 +138,7 @@
                                     "items":4
                                 },
                                 "1280": {
-                                    "items":4,
+                                    "items":5,
                                     "nav": true
                                 }
                             }
