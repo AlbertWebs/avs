@@ -6839,7 +6839,13 @@ a:focus {
   padding-bottom: 2rem;
   margin-bottom: 0; }
   .icon-box-side p {
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.8);  
+  }
+  .icon-box-side i {
+    /* margin-bottom: 0; */
+    color: rgba(255, 255, 255, 0.8);  
+  }
   .icon-box-side .icon-box-icon {
     display: inline-block;
     line-height: 0;
@@ -16938,8 +16944,8 @@ button:focus {
     /* background-image: url('../../../uploads/banners/maxresdefault.jpg'); */
     background: linear-gradient(
     to bottom,
-    rgba(0,0,0, 0.1),
-    rgba(0,0,0, 0.3),
+    /* rgba(0,0,0, 0.1), */
+    /* rgba(0,0,0, 0.3), */
     rgba(0,0,0, 0.6),
     rgba(0,0,0, 0.9),
     rgba(0,0,0, 1)

@@ -734,7 +734,8 @@
 
 @media screen and (min-width: 1200px) {
   body {
-    background-image: url("../../images/demos/demo-19/bg-1.jpg"); }
+    /* background-image: url("../../images/demos/demo-19/bg-1.jpg"); */
+   }
   .intro-content .btn {
     min-width: 200px; }
 

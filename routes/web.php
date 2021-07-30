@@ -360,6 +360,13 @@ Route::post('/edit_Category/{id}',  [AdminsController::class, 'edit_Category'])-
 Route::get('/addCategory',  [AdminsController::class, 'addCategory'])->middleware('is_admin');
 Route::post('/add_Category',  [AdminsController::class, 'add_Category'])->middleware('is_admin');
 
+Route::get('/categoriesBanners', [AdminsController::class, 'categoriesBanners'])->middleware('is_admin');
+Route::get('/editCategoriesBanners/{id}', [AdminsController::class, 'editCategoriesBanners'])->middleware('is_admin');
+Route::get('/deleteCategoryBanners/{id}', [AdminsController::class, 'deleteCategoryBanners'])->middleware('is_admin');
+Route::post('/edit_CategoryBanners/{id}',  [AdminsController::class, 'edit_CategoryBanners'])->middleware('is_admin');
+Route::get('/addCategoryBanners',  [AdminsController::class, 'addCategoryBanners'])->middleware('is_admin');
+Route::post('/add_CategoryBanners',  [AdminsController::class, 'add_CategoryBanners'])->middleware('is_admin');
+
 Route::get('/tags', [AdminsController::class, 'tags'])->middleware('is_admin');
 Route::get('/editTag/{id}', [AdminsController::class, 'editTag'])->middleware('is_admin');
 Route::get('/deleteTag/{id}', [AdminsController::class, 'deleteTag'])->middleware('is_admin');

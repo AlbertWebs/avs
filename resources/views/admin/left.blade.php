@@ -39,7 +39,7 @@
                 
                 <li><a href="{{url('admin/addCategory')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Category </a></li>
                 <li><a href="{{url('admin/addSubCategory')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Sub Category </a></li>
-                <li><a href="{{url('admin/addCategory')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Category </a></li>
+                <li><a href="{{url('admin/addCategoryBanners')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Category Banner </a></li>
                 <li><a href="{{url('admin/addBrand')}}"><i class="icon-plus"></i>  <i class="icon-wrench"></i> Add Brand </a></li>
                 
                 

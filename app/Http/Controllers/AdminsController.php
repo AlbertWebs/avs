@@ -60,6 +60,8 @@ use App\Models\Message;
 
 use App\Models\ReplyMessage;
 
+use App\Models\CategoryBanners;
+
 use App\Models\Category;
 
 use App\Models\Special;
@@ -3761,6 +3763,85 @@ public function emptyProductToFacebookPixel(){
     DB::table('_pro_excel')->delete();
     echo "done";
 }
+
+
+public function categoriesBanners(){
+    $Category = CategoryBanners::all();
+    $page_title = 'list';
+    $page_name = 'Categories';
+    return view('admin.categoriesBanners',compact('page_title','Category','page_name'));
+}
+
+public function addCategoryBanners(){
+    $page_title = 'formfiletext';
+    $page_name = 'Add Category';
+    return view('admin.addCategoryBanners',compact('page_title','page_name'));
+}
+
+public function add_CategoryBanners(Request $request){
+    $path = 'uploads/CategoryBanners';
+        if(isset($request->image)){
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $file->move($path, $filename);
+            $image = $filename;
+        }else{
+            $image = "0";
+        }
+    $CategoryBanners = new CategoryBanners;
+    $CategoryBanners->product_id = $request->product_id;
+    $CategoryBanners->category_id = $request->category_id;
+    $CategoryBanners->title = $request->title;
+    $CategoryBanners->status = "1";
+    $CategoryBanners->content = $request->content;
+    $CategoryBanners->format = $request->format;
+    $CategoryBanners->link = $request->link;
+    $CategoryBanners->status = $request->status;
+    $CategoryBanners->banner = $image;
+    $CategoryBanners->save();
+
+    Session::flash('message', "Category Has Been Added");
+    return Redirect::back();
+}
+
+public function editCategoriesBanners($id){
+    $Category = CategoryBanners::find($id);
+    $page_title = 'formfiletext';
+    $page_name = 'Edit Home Page Slider';
+    return view('admin.editCategoriesBanners',compact('page_title','Category','page_name'));
+}
+
+public function edit_CategoryBanners(Request $request, $id){
+    $path = 'uploads/CategoryBanners';
+        if(isset($request->image)){
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $file->move($path, $filename);
+            $image = $filename;
+        }else{
+            $image = $request->image_cheat;
+        }
+    $updateDetails = array(
+        'product_id'=>$request->product_id,
+        'category_id'=>$request->category_id,
+        'title'=>$request->title,
+        'content'=>$request->content,
+        'format'=>$request->format,
+        'link'=>$request->link,
+        'status'=>$request->status,
+        'banner'=>$image
+    );
+    DB::table('offers')->where('id',$id)->update($updateDetails);
+    Session::flash('message', "Changes have been saved");
+    return Redirect::back();
+}
+
+public function deleteCategoryBanners($id){
+    DB::table('offers')->where('id',$id)->delete();
+    return Redirect::back();
+}
+
+
 }
 
 

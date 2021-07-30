@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12 col-lg-6">
         <div class="widget widget-about">
-            <img src="{{asset('theme/assets/images/demos/demo-13/logo.png')}}" class="footer-logo" alt="{{$Settings->sitename}}" width="253" height="62">
+            <img src="{{asset('uploads/logo/logofooter.png')}}" class="footer-logo" alt="{{$Settings->sitename}}" width="353" height="62">
          
             <div class="widget-about-info">
                 <div class="row">

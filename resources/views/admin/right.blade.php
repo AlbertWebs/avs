@@ -12,6 +12,7 @@
             <div class="well well-small">
                 <button type="button" onclick="window.open('{{url('/admin/version')}}','_self')" class="btn btn-block"> Version Control </button>
                 <button type="button" onclick="window.open('{{url('/admin/Products_offer')}}','_self')" class="btn btn-success btn-block"> Special Offers </button>
+                <button type="button" onclick="window.open('{{url('/admin/categoriesBanners')}}','_self')" class="btn btn-success btn-block"> Category Banners </button>
                 <button type="button" title="Use This To Load All Products without Images" onclick="window.open('{{url('/admin/Products-lte')}}','_self')" class="btn btn-success btn-block"> Products LTE </button>
                 <!-- <button type="button" onclick="window.open('{{url('/admin/special_offer')}}','_self')" class="btn btn-success btn-block"> Special Offer </button> -->
                 <button type="button" onclick="window.open('{{url('/admin/myApi')}}','_self')" class="btn btn-danger btn-block"> M-PESA </button>
