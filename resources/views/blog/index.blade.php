@@ -1,5 +1,6 @@
 @extends('front.master-blog')
 @section('content')
+<?php $Blog = DB::table('blogs')->paginate(24);  ?>
 <main class="main">
     <div class="page-header text-center" style="background-image: url('{{asset('theme/assets/images/page-header-bg.jpg')}}')">
         <div class="container">
@@ -29,7 +30,7 @@
             </nav><!-- End .blog-nav -->
 
             <div class="entry-container max-col-3">
-                <?php $Blog = DB::table('blogs')->get();  ?>
+               
                 @foreach($Blog as $item)
                 <div class="entry-item filter_{{$item->category}} shopping col-sm-6 col-lg-4">
                     <article class="entry entry-grid text-center">
@@ -73,20 +74,7 @@
             </div><!-- End .entry-container -->
 
             <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
-                            <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
-                        </a>
-                    </li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item">
-                        <a class="page-link page-link-next" href="#" aria-label="Next">
-                            Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
-                        </a>
-                    </li>
-                </ul>
+                <?php echo $Blog ?>
             </nav>
         </div><!-- End .container -->
     </div><!-- End .page-content -->

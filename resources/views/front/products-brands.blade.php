@@ -98,9 +98,10 @@
                     @endforeach
                 </div><!-- End .row -->
 
-                <div class="load-more-container text-center">
-                    <a href="#" class="btn btn-outline-darker btn-load-more">More Products <i class="icon-refresh"></i></a>
-                </div><!-- End .load-more-container -->
+                <nav aria-label="Page navigation">
+                    <?php echo $Products ?>
+                </nav>
+                <!-- End .load-more-container -->
             </div><!-- End .products -->
 
             <div class="sidebar-filter-overlay"></div><!-- End .sidebar-filter-overlay -->

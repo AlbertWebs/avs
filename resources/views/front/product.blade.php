@@ -288,7 +288,7 @@
                         {{-- <span class="product-label label-out">Out of Stock</span> --}}
                         {{-- <span class="product-label label-new">New</span> --}}
                         <a href="{{url('/')}}/product/{{$item->slung}}">
-                            <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
+                            <img style="max-width:217px !important; !important; margin:0 auto;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
                         </a>
 
                         <div class="product-action-vertical">
