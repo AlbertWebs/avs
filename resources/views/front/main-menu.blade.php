@@ -19,7 +19,7 @@
                 <a href="{{url('/')}}/products">Shop</a>
             </li>
             <li class="" style="display:none">
-                <a href="elements-list.html" class="sf-with-ul">Tags</a>
+                <a href="#" class="sf-with-ul">Tags</a>
 
                 <ul style="display: none;">
                     <?php $Tags = DB::table('tags')->get(); ?>
@@ -30,7 +30,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{url('/')}}/blog-posts">Blogs</a>
+                <a href="{{url('/')}}/knowledge-base">Blogs</a>
             </li>
             <li>
                 <a href="{{url('/')}}/find-us"> <i class="la la-map-marker"></i> Find Us</a>
