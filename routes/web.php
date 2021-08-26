@@ -525,3 +525,48 @@ Route::get('/C2B','PaymentsConroller@C2B');
 Route::post('/stk','PaymentsConroller@stk');
 Route::get('/check/{ref}','PaymentsConroller@check');
 });
+
+
+Route::get('sitemap', function() {
+
+	// create new sitemap object
+	$sitemap = App::make('sitemap');
+
+	// set cache key (string), duration in minutes (Carbon|Datetime|int), turn on/off (boolean)
+	// by default cache is disabled
+	$sitemap->setCache('laravel.sitemap', 10);
+
+	// check if there is cached sitemap and build new only if is not
+	if (!$sitemap->isCached()) {
+		// add item to the sitemap (url, date, priority, freq)
+		$sitemap->add(URL::to('/'), '2012-08-25T20:10:00+02:00', '1.0', 'daily');
+		
+
+	
+		// get all posts from db
+		$post = DB::table('category')->orderBy('created_at', 'desc')->get();
+
+        // add every category to the sitemap
+		foreach ($post as $post) {
+			$sitemap->add("https://www.amanivehiclesounds.co.ke/products/$post->slung",'2012-08-25T20:10:00+02:00', '0.9', 'daily');
+		}
+
+        // get all posts from db
+		$post = DB::table('brands')->orderBy('created_at', 'desc')->get();
+
+        // add every category to the sitemap
+		foreach ($post as $post) {
+			$sitemap->add("https://www.amanivehiclesounds.co.ke/products/brand/$post->name",'2012-08-25T20:10:00+02:00', '0.9', 'daily');
+		}
+
+        // get all posts from db
+        $posts = DB::table('product')->orderBy('created_at', 'desc')->get();
+		// add every product to the sitemap
+		foreach ($posts as $post) {
+			$sitemap->add("https://www.amanivehiclesounds.co.ke/product/$post->slung",'2012-08-25T20:10:00+02:00', '0.8', 'daily');
+		}
+	}
+
+	// show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
+	return $sitemap->render('xml');
+});
