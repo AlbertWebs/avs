@@ -150,7 +150,7 @@
     
                         <div class="col-lg-8">
                             <select name="tag" data-placeholder="Choose tag" class="form-control chzn-select" tabindex="2">
-                              <option selected="selected" value="{{$Product->title}}">@foreach($TheCategory as $valuee){{$valuee->title}} @endforeach</option>
+                              <option selected="selected" value="{{$Product->tag}}">@foreach($TheCategory as $valuee){{$valuee->title}} @endforeach</option>
                                <?php $TheCategoryList = DB::table('tags')->get(); ?>
                                @foreach($TheCategoryList as $value)
                                   <option value="{{$value->id}}">{{$value->title}}</option>
