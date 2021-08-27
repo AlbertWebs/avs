@@ -118,7 +118,7 @@
 
                             <div class="panel-body">
 
-                            <a target='new'  href="{{url('/')}}/sitemap" class="btn btn-block btn-default"> Generate Site Maps </a>
+                            <a target="new"  href="{{url('/')}}/sitemap" class="btn btn-block btn-default"> Generate Site Maps </a>
 
 
                             </div>
