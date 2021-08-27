@@ -22,9 +22,13 @@ use datetime;
 
 use App\Models\Offer;
 
+use App\Models\Coupon;
+
 use App\Models\Tag;
 
 use App\Models\Term;
+
+use App\Models\CouponCode;
 
 use App\Models\Brand;
 
@@ -3838,6 +3842,55 @@ public function edit_CategoryBanners(Request $request, $id){
 
 public function deleteCategoryBanners($id){
     DB::table('offers')->where('id',$id)->delete();
+    return Redirect::back();
+}
+
+/// /// /// ///
+
+public function addcoupon(){
+    $page_name = 'Add Core coupon';
+    $page_title = 'formfiletext';//For Style Inheritance
+    return view('admin.addCoupon',compact('page_title','page_name'));
+}
+public function add_coupon(Request $request){
+    $Value = new CouponCode;
+    $Value->title = $request->title;
+    $Value->code = $request->code;
+    $Value->expired_at = $request->expired_at;
+    
+    $Value->value = $request->value;
+   
+    $Value->save();
+    Session::flash('message', "Content Has been Added");
+    return Redirect::back();
+}
+
+public function coupons(){
+    $Corecoupon = DB::table('coupon_codes')->get();
+    $page_name = 'Core Value';
+    $page_title = 'list';
+    return view('admin.coupon',compact('page_title','Corecoupon','page_name'));
+}
+public function editcoupon($id){
+    $Value = CouponCode::find($id);
+    $page_name = $Value->title;
+    $page_title = 'formfiletext';//For Style Inheritance
+    
+    return view('admin.editCoupon')->with('Value',$Value)->with('page_name',$page_name)->with('page_title',$page_title);
+}
+
+public function edit_coupon(Request $request, $id){
+   $updateDetails = array(
+       'title'=>$request->title,
+       'content' =>$request->content
+   );
+   DB::table('coupon')->where('id',$id)->update($updateDetails);
+   Session::flash('message', "Changes have been saved");
+    return Redirect::back();
+}
+
+public function delete_coupon($id){
+    DB::table('coupon')->where('id',$id)->delete();
     return Redirect::back();
 }
 

@@ -36,6 +36,7 @@
                 <li><a href="{{url('admin/addTag')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Tags </a></li>
                 <li><a href="{{url('admin/addService')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Services </a></li>
                 <li><a href="{{url('admin/addBlog')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Blog </a></li>
+                <li><a href="{{url('admin/addCoupon')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Coupon </a></li>
                 
                 <li><a href="{{url('admin/addCategory')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Category </a></li>
                 <li><a href="{{url('admin/addSubCategory')}}"><i class="icon-plus"></i>  <i class="icon-user-md"></i> Add Sub Category </a></li>

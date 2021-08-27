@@ -165,6 +165,15 @@ Route::get('/editPrivacy/{id}',  [AdminsController::class, 'editPrivacy'])->midd
 Route::post('/add_privacy',  [AdminsController::class, 'add_privacy'])->middleware('is_admin');
 Route::get('/delete_privacy/{id}', [AdminsController::class, 'delete_privacy'])->middleware('is_admin');
 Route::post('/edit_privacy/{id}',  [AdminsController::class, 'edit_privacy'])->middleware('is_admin');
+
+//values
+Route::get('/coupons', [AdminsController::class, 'coupons'])->middleware('is_admin');
+Route::get('/addCoupon',  [AdminsController::class, 'addCoupon'])->middleware('is_admin');
+Route::get('/editCoupon/{id}',  [AdminsController::class, 'editCoupon'])->middleware('is_admin');
+Route::post('/add_Coupon',  [AdminsController::class, 'add_Coupon'])->middleware('is_admin');
+Route::get('/delete_Coupon/{id}', [AdminsController::class, 'delete_Coupon'])->middleware('is_admin');
+Route::post('/edit_Coupon/{id}',  [AdminsController::class, 'edit_Coupon'])->middleware('is_admin');
+
 //values
 Route::get('/values', [AdminsController::class, 'values'])->middleware('is_admin');
 Route::get('/addValues',  [AdminsController::class, 'addValues'])->middleware('is_admin');
@@ -172,6 +181,7 @@ Route::get('/editValues/{id}',  [AdminsController::class, 'editValues'])->middle
 Route::post('/add_values',  [AdminsController::class, 'add_values'])->middleware('is_admin');
 Route::get('/delete_values/{id}', [AdminsController::class, 'delete_values'])->middleware('is_admin');
 Route::post('/edit_values/{id}',  [AdminsController::class, 'edit_values'])->middleware('is_admin');
+
 
 //Offers
 Route::get('/Products_offer', [AdminsController::class, 'Products_offer'])->middleware('is_admin');

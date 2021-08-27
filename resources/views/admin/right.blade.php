@@ -16,6 +16,7 @@
                 <button type="button" title="Use This To Load All Products without Images" onclick="window.open('{{url('/admin/Products-lte')}}','_self')" class="btn btn-success btn-block"> Products LTE </button>
                 <!-- <button type="button" onclick="window.open('{{url('/admin/special_offer')}}','_self')" class="btn btn-success btn-block"> Special Offer </button> -->
                 <button type="button" onclick="window.open('{{url('/admin/myApi')}}','_self')" class="btn btn-danger btn-block"> M-PESA </button>
+                <button type="button" onclick="window.open('{{url('/admin/coupons')}}','_self')" class="btn btn-danger btn-block"> Coupons </button>
                 <button type="button" onclick="window.open('{{url('/admin/invoices')}}','_self')" class="btn btn-danger btn-block"> Invoices </button>
                 <button type="button" onclick="window.open('{{url('/admin/banner')}}','_self')" class="btn btn-primary btn-block"> Banners</button>
                 <button type="button" onclick="window.open('{{url('/admin/videos')}}','_self')" class="btn btn-primary btn-block"> Videos </button>
