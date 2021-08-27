@@ -266,6 +266,8 @@
             </div>
         </div>
     </div> --}}
+
+    {{--  --}}
     <!-- Plugins JS File -->
     <script src="{{asset('theme/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/bootstrap.bundle.min.js')}}"></script>
@@ -273,14 +275,9 @@
     <script src="{{asset('theme/assets/js/jquery.waypoints.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/superfish.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/wNumb.js')}}"></script>
-    <script src="{{asset('theme/assets/js/bootstrap-input-spinner.js')}}"></script>
-    <script src="{{asset('theme/assets/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/nouislider.min.js')}}"></script>
-       
     <!-- Main JS File -->
     <script src="{{asset('theme/assets/js/main.js')}}"></script>
-    <script src="{{asset('theme/assets/js/demos/demo-13.js')}}"></script>
+    {{--  --}}
      <!--Floating WhatsApp javascript-->
      <script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
 
@@ -451,6 +448,7 @@
         </script>
           {{--  --}}
     @include('front.schema')
+    @include('checkout.coupon')
 </body>
 @endforeach
 

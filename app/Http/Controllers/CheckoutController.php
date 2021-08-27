@@ -17,6 +17,8 @@ use Stevebauman\Location\Facades\Location;
 
 use App\Models\orders;
 
+use App\Models\Coupon;
+
 use App\Models\User;
 
 use App\Models\Invoice;
@@ -70,6 +72,52 @@ class CheckoutController extends Controller
     }
          
         //Perfom a check to ensure that the cart is not empty
+    }
+
+    public function process_coupon(Request $request){
+        $code = $request->code;
+        // Check Coupon Code
+        $CouponCodes = DB::table('coupon_codes')->where('code',$code)->get();
+        if($CouponCodes->isEmpty()){
+            $message = "The coupon code is invalid";
+            return $message;
+        }else{
+            foreach ($CouponCodes as $key => $value) {
+                if($value->status == '1'){
+                    // Process here
+
+                    // check if user has used this coupon
+                    $CouponTable = DB::table('coupons')->where('coupons_code_id',$value->id)->where('user_id',Auth::user()->id)->get();
+                    if($CouponTable->isEmpty()){
+                        $Coupon = new Coupon;
+                        $Coupon->status = '1';
+                        $Coupon->coupons_code_id = $value->id;
+                        $Coupon->user_id = Auth::user()->id;
+                        $Coupon->save();
+
+                        // Take out from Cart
+                        $TotalCart = str_replace( ',', '', Cart::total());
+
+                        $CeilTotal = ceil($TotalCart);
+                        $NewCartTotal = $CeilTotal - $value->value;
+                        // Update Cart
+                        Session::put('coupon', $value->value);
+                        Session::put('coupon-total', $NewCartTotal);
+                        // End Processsing
+                        $message = "The coupon has been applied";
+                        return $message;
+                    }else{
+                        $message = "You have already used that coupon";
+                        return $message;
+                    }
+                    
+                }else{
+                    $message = "The Coupon code is Invalid";
+                    return $message;
+                }
+            }
+        }        
+       
     }
 
  

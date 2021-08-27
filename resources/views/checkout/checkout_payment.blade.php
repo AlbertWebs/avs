@@ -26,11 +26,15 @@
             	<div class="checkout">
 	                <div class="container">
             			<div class="checkout-discount">
-            				<form action="#">
-        						<input type="text" class="form-control" required id="checkout-discount-input">
-            					<label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to enter your code</span></label>
+            				<form action="#" method="POST" id="submit-coupon">
+                                @csrf
+                                <label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to enter your code then press enter</span></label>
+        						<input autocomplete="off" type="text" name="code" class="form-control" required id="checkout-discount-input">
+            					
             				</form>
+                            
             			</div><!-- End .checkout-discount -->
+                        <p id="coupon-processing" style="color:#66139B; font-weight:600;">Processing....</p>
             			{{-- <form action="#"> --}}
 		                	<div class="row">
 		                		<div class="col-lg-9">

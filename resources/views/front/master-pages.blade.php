@@ -352,6 +352,7 @@
     @endif
      {{--  --}}
     @include('front.schema')
+    @include('checkout.coupon')
 </body>
 @endforeach
 

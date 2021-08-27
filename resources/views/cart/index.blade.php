@@ -92,16 +92,23 @@
                                     </table><!-- End .table table-wishlist -->
     
                                     <div class="cart-bottom">
+                                        @if(Auth::user())
                                         <div class="cart-discount">
-                                            <form action="#">
+                                            <form action="#"  method="POST" id="submit-coupon">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" required placeholder="coupon code">
+                                                    <input type="text" name="code" class="form-control" required placeholder="coupon code">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
                                                     </div><!-- .End .input-group-append -->
                                                 </div><!-- End .input-group -->
                                             </form>
+                                            <br>
+                                            <p id="coupon-processing" style="color:#66139B; font-weight:600;">Processing....</p>
+                                            
                                         </div><!-- End .cart-discount -->
+                                        
+
+                                        @endif
     
                                         <a href="{{url('/')}}/wishlist/" class="btn btn-outline-dark-2"><span>Go To WishList</span><i class="icon-heart"></i></a>
                                     </div><!-- End .cart-bottom -->

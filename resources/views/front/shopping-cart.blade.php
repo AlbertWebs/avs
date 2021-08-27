@@ -64,7 +64,7 @@
                     <div class="product">
                         <div class="product-cart-details">
                             <h4 class="product-title">
-                                <a href="{{url('/')}}/product/{{$Product->slung}}">Beige knitted elastic runner shoes</a>
+                                <a href="{{url('/')}}/product/{{$Product->slung}}">{{$Product->name}}</a>
                             </h4>
 
                             <span class="cart-product-info">
@@ -83,12 +83,32 @@
                     @endforeach
                     @endforeach
                 </div><!-- End .cart-product -->
+                @if(Session::has('coupon'))
+                <div class="dropdown-cart-total">
+                    <span>Coupon</span>
 
+                    <span class="cart-total-price">KES{{ Session::get('coupon')}}</span>
+                </div><!-- End .dropdown-cart-total -->
+                @endif
+
+                @if(Session::has('coupon'))
+                <div class="dropdown-cart-total">
+                    <span>Subtotal</span>
+
+                    <span class="cart-total-price">KES{{Cart::subtotal()}}</span>
+                </div><!-- End .dropdown-cart-total -->
+                <div class="dropdown-cart-total">
+                    <span>Total</span>
+
+                    <span class="cart-total-price">KES{{ Session::get('coupon-total')}}</span>
+                </div><!-- End .dropdown-cart-total -->
+                @else 
                 <div class="dropdown-cart-total">
                     <span>Total</span>
 
                     <span class="cart-total-price">KES{{Cart::subtotal()}}</span>
                 </div><!-- End .dropdown-cart-total -->
+                @endif
 
                 <div class="dropdown-cart-action">
                     <a href="{{url('/shopping-cart')}}" class="btn btn-primary">View Cart</a>

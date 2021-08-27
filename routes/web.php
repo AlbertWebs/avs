@@ -75,6 +75,8 @@ Route::post('checkout/login', [CheckoutController::class, 'login'])->name('check
 Route::post('checkout/create-user', [CheckoutController::class, 'create'])->name('checkout.create');
 Route::get('checkout/placeOrder', [CheckoutController::class, 'placeOrderGet'])->name('checkout.order.get');
 Route::post('checkout/placeOrder', [CheckoutController::class, 'placeOrder'])->name('checkout.order');
+Route::post('/checkout/process-coupon', [CheckoutController::class, 'process_coupon'])->name('process_coupon');
+
 });
 // WishList
 Route::group(['prefix'=>'wishlist'], function(){
@@ -97,6 +99,8 @@ Route::post('payments/veryfy/sitoki',[PaymentsConroller::class, 'stk']); //The L
 Route::get('mpesa/confirm',[PaymentsConroller::class, 'confirm']);           //Rquired URL
 Route::get('mpesa/validate',[PaymentsConroller::class, 'validation']);         //Rquired URL
 Route::get('mpesa/register',[PaymentsConroller::class, 'register']);           //Rquired URL
+
+
 
 
 Auth::routes();
@@ -558,6 +562,16 @@ Route::get('sitemap', function() {
 		foreach ($post as $post) {
 			$sitemap->add("https://www.amanivehiclesounds.co.ke/products/brand/$post->name",'2012-08-25T20:10:00+02:00', '0.9', 'daily');
 		}
+
+
+		  // get all posts from db
+		  $post = DB::table('tags')->orderBy('created_at', 'desc')->get();
+
+		  // add every category to the sitemap
+		  foreach ($post as $post) {
+			  $sitemap->add("https://www.amanivehiclesounds.co.ke/product-tags/$post->slung",'2012-08-25T20:10:00+02:00', '0.9', 'daily');
+		  }
+
 
         // get all posts from db
         $posts = DB::table('product')->orderBy('created_at', 'desc')->get();
