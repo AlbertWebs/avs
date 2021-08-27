@@ -61,7 +61,7 @@
                                             @foreach($Corecoupon as $value)
                                                 <tr class="odd gradeX">
                                                     <td>{{$value->id}}</td>
-                                                    <td> Title: {{$value->title}} <br> Code: <strong>{{$value->code}}</strong> </td>
+                                                    <td> Title: {{$value->title}} <br> Code: <strong>{{$value->code}}</strong> <br> Expired: <strong>{{$value->expired_at}}</strong> </td>
                                                     <td class="center"><a href="{{url('/admin')}}/editCoupon/{{$value->id}}"   class="btn btn-info"><i class="icon-pencil icon-white"></i> Edit</a> <br><br></td>
                                                     <td class="center"><a onclick="return confirm('Deleting this May affect Tables that depend on this item, Are you sure you want to continue')" href="{{url('/admin')}}/delete_Coupon/{{$value->id}}"   class="btn btn-danger"><i class="icon-trash icon-white"></i> Del</a></td>
                                                </tr>
