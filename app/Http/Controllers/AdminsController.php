@@ -3739,7 +3739,8 @@ public function addProductToFacebookPixel(){
         
     }
 
-    return "Done";
+    Session::flash('message', "Table has been updated");
+    return Redirect::back();
     // Once all the pixel data has been added return done
 }
 
@@ -3765,7 +3766,8 @@ public function google_product_category(){
 
 public function emptyProductToFacebookPixel(){
     DB::table('_pro_excel')->delete();
-    echo "done";
+    Session::flash('message', "Table Has been cleared");
+    return Redirect::back();
 }
 
 
@@ -3893,6 +3895,14 @@ public function delete_coupon($id){
     DB::table('coupon')->where('id',$id)->delete();
     return Redirect::back();
 }
+
+public function operations(){
+    $Corecoupon = DB::table('coupon_codes')->get();
+    $page_name = 'Operations';
+    $page_title = 'list';
+    return view('admin.operations',compact('page_title','Corecoupon','page_name'));
+}
+
 
 
 }

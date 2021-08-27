@@ -17,6 +17,7 @@
                 <!-- <button type="button" onclick="window.open('{{url('/admin/special_offer')}}','_self')" class="btn btn-success btn-block"> Special Offer </button> -->
                 <button type="button" onclick="window.open('{{url('/admin/myApi')}}','_self')" class="btn btn-danger btn-block"> M-PESA </button>
                 <button type="button" onclick="window.open('{{url('/admin/coupons')}}','_self')" class="btn btn-danger btn-block"> Coupons </button>
+                <button type="button" onclick="window.open('{{url('/admin/operations')}}','_self')" class="btn btn-danger btn-block"> Operations </button>
                 <button type="button" onclick="window.open('{{url('/admin/invoices')}}','_self')" class="btn btn-danger btn-block"> Invoices </button>
                 <button type="button" onclick="window.open('{{url('/admin/banner')}}','_self')" class="btn btn-primary btn-block"> Banners</button>
                 <button type="button" onclick="window.open('{{url('/admin/videos')}}','_self')" class="btn btn-primary btn-block"> Videos </button>

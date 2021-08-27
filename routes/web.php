@@ -10,6 +10,9 @@ use App\Http\Controllers\CompareController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentsConroller;
+use App\Http\Controllers\DemoController;
+
+
 
 
 
@@ -100,6 +103,10 @@ Route::get('mpesa/confirm',[PaymentsConroller::class, 'confirm']);           //R
 Route::get('mpesa/validate',[PaymentsConroller::class, 'validation']);         //Rquired URL
 Route::get('mpesa/register',[PaymentsConroller::class, 'register']);           //Rquired URL
 
+Route::get('export', [DemoController::class, 'export']); 
+Route::get('importExportView', [DemoController::class, 'importExportView']); 
+Route::get('import', [DemoController::class, 'import']); 
+
 
 
 
@@ -150,6 +157,8 @@ Route::post('/edit_Testimonial/{id}',  [AdminsController::class, 'edit_Testimoni
 
 Route::get('/edit-Product-slung',  [AdminsController::class, 'edit_Product_slung'])->middleware('is_admin');
 
+Route::get('/addProductToFacebookPixel','AdminsController@addProductToFacebookPixel');
+Route::get('/emptyProductToFacebookPixel','AdminsController@emptyProductToFacebookPixel');
 
 //Terms Privacy copyright
 //copyright
@@ -173,6 +182,9 @@ Route::get('/editCoupon/{id}',  [AdminsController::class, 'editCoupon'])->middle
 Route::post('/add_Coupon',  [AdminsController::class, 'add_Coupon'])->middleware('is_admin');
 Route::get('/delete_Coupon/{id}', [AdminsController::class, 'delete_Coupon'])->middleware('is_admin');
 Route::post('/edit_Coupon/{id}',  [AdminsController::class, 'edit_Coupon'])->middleware('is_admin');
+
+// Operations
+Route::get('/operations', [AdminsController::class, 'operations'])->middleware('is_admin');
 
 //values
 Route::get('/values', [AdminsController::class, 'values'])->middleware('is_admin');
@@ -594,3 +606,5 @@ Route::get('sitemap', function() {
 	// show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
 	return $sitemap->render('xml');
 });
+
+
