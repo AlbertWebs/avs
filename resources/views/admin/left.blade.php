@@ -1,7 +1,7 @@
 <div id="left" >
             <div class="media user-media well-small">
                 <a class="user-link" href="{{url('/admin')}}/editAdmin/{{Auth::user()->id}}">
-                    <img width="64" height="64" class="media-object img-thumbnail user-img" alt="{{Auth::user()->name}}" src="{{url('/')}}/uploads/admins/{{Auth::user()->image}}" />
+                    <img width="64" height="64" class="media-object img-thumbnail user-img" alt="{{Auth::user()->name}}" src="{{url('/')}}/uploads/users/{{Auth::user()->image}}" />
                 </a>
                 <br />
                 <div class="media-body">

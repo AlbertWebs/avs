@@ -59,7 +59,7 @@
                  </center>
                  
 
-                 <form class="form-horizontal" method="post"  action="{{url('/admin/add_Category')}}" enctype="multipart/form-data">
+                 <form class="form-horizontal" method="post"  action="{{url('/admin/edit_Coupon')}}/{{$Value->id}}" enctype="multipart/form-data">
                     
                  <div class="form-group">
                         <label for="text1" class="control-label col-lg-4">Title</label>
@@ -97,7 +97,7 @@
                    
                     <br><br>
                     <div class="col-lg-12 text-center">
-                      <button type="submit" class="btn btn-success"><i class="icon-plus icon-white"></i> Add Coupon</button>
+                      <button type="submit" class="btn btn-success"><i class="icon-save icon-white"> </i> Save Changes </button>
                     </div>
                     
                     

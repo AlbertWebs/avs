@@ -3884,15 +3884,18 @@ public function editcoupon($id){
 public function edit_coupon(Request $request, $id){
    $updateDetails = array(
        'title'=>$request->title,
-       'content' =>$request->content
+       'code'=>$request->code,
+       'expired_at'=>$request->expired_at,
+       'value'=>$request->value,
+     
    );
-   DB::table('coupon')->where('id',$id)->update($updateDetails);
+   DB::table('coupon_codes')->where('id',$id)->update($updateDetails);
    Session::flash('message', "Changes have been saved");
     return Redirect::back();
 }
 
 public function delete_coupon($id){
-    DB::table('coupon')->where('id',$id)->delete();
+    DB::table('coupon_codes')->where('id',$id)->delete();
     return Redirect::back();
 }
 

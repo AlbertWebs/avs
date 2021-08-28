@@ -170,26 +170,49 @@ class CheckoutController extends Controller
                 }
             }
             
+            if(Session::has('coupon-total')){
+                $totalWithCoupon = Session::get('coupon-total');
+                // AmountVariables
+                if(Session::has('campaign')){
+                    $cost = Cart::total();
+                    $percentage = 10;
+                    $PrepeTotalCart = str_replace( ',', '', $totalWithCoupon);
+                    $FormatTotalCart = round($PrepeTotalCart, 0);
+                    $discount = ($percentage / 100) * $FormatTotalCart;
+                    $TotalCart = ($FormatTotalCart - $discount);
+                    $ShippingFee = $Shipping;
+                    $TotalCost = $TotalCart+$Shipping;
+                }
+                else{
+                    $TotalCart = Cart::total();
+                    $PrepeTotalCart = str_replace( ',', '', $TotalCart );
+                    $FormatTotalCart = round($PrepeTotalCart, 0);
+                    $ShippingFee = $Shipping;
+                    $TotalCost = $FormatTotalCart+$ShippingFee;
+                }
+
+            }else{
+                // AmountVariables
+                if(Session::has('campaign')){
+                    $cost = Cart::total();
+                    $percentage = 10;
+                    $PrepeTotalCart = str_replace( ',', '', $cost );
+                    $FormatTotalCart = round($PrepeTotalCart, 0);
+                    $discount = ($percentage / 100) * $FormatTotalCart;
+                    $TotalCart = ($FormatTotalCart - $discount);
+                    $ShippingFee = $Shipping;
+                    $TotalCost = $TotalCart+$Shipping;
+                }
+                else{
+                    $TotalCart = Cart::total();
+                    $PrepeTotalCart = str_replace( ',', '', $TotalCart );
+                    $FormatTotalCart = round($PrepeTotalCart, 0);
+                    $ShippingFee = $Shipping;
+                    $TotalCost = $FormatTotalCart+$ShippingFee;
+                }
+                // 
+            }
             
-            // AmountVariables
-            if(Session::has('campaign')){
-                $cost = Cart::total();
-                $percentage = 10;
-                $PrepeTotalCart = str_replace( ',', '', $cost );
-                $FormatTotalCart = round($PrepeTotalCart, 0);
-                $discount = ($percentage / 100) * $FormatTotalCart;
-                $TotalCart = ($FormatTotalCart - $discount);
-                $ShippingFee = $Shipping;
-                $TotalCost = $TotalCart+$Shipping;
-            }
-            else{
-                $TotalCart = Cart::total();
-                $PrepeTotalCart = str_replace( ',', '', $TotalCart );
-                $FormatTotalCart = round($PrepeTotalCart, 0);
-                $ShippingFee = $Shipping;
-                $TotalCost = $FormatTotalCart+$ShippingFee;
-            }
-            // 
             
             if(Session::has('Invoice')){
 
