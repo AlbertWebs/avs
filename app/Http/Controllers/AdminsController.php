@@ -3711,6 +3711,9 @@ public function wishlist(){
 }
 
 public function addProductToFacebookPixel(){
+
+    // Empty
+    DB::table('_pro_excel')->delete();
     // $Products = Product::whereNotNull('fb_pixels');
     $Products = DB::table('product')->whereNotNull('code')->whereNotNull('fb_pixels')->get();
     // $Products = DB::table('product')->where('code','MVH-S325BT')->get();

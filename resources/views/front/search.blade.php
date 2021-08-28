@@ -1,11 +1,12 @@
 <div class="header-center">
     <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
         <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-        <form action="#" method="get">
+        <form action="{{url('/search-results')}}" method="get">
+            
             <div class="header-search-wrapper search-wrapper-wide">
             
                 <label for="q" class="sr-only">Search</label>
-                <input autocomplete="off" type="search" class="form-control" name="q" id="search" placeholder="Search Product Brand or category..." required>
+                <input autocomplete="off" type="search" class="form-control" name="keyword" id="search" placeholder="Search Product, Brand or Category" required>
                 <button class="btn btn-primary" type="submit"><i class="icon-search"></i><img class="loading-image" width="22" src="{{url('/')}}/uploads/preloaders/loading.gif" alt="Amani vehicle Sound Loading"></button>
             </div><!-- End .header-search-wrapper -->
         </form>

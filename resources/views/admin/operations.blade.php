@@ -72,7 +72,7 @@
 
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="col-lg-6">
 
                        <div class="panel panel-danger">
 
@@ -89,7 +89,7 @@
 
 
                     </div>
-                    <div class="col-lg-3">
+                    {{-- <div class="col-lg-3">
 
                        <div class="panel panel-danger">
 
@@ -97,16 +97,16 @@
                             <div class="panel-body">
                          
                             
-                          <!-- Modal -->
+                  
                           <a  type="button" href="{{url('/')}}/admin/emptyProductToFacebookPixel" class="btn btn-block btn-danger"> Empty Pixels </a>
-                            <!-- Modal -->
+                        
                             </div>
 
                         </div>
 
 
 
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="row">
