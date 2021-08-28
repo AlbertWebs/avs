@@ -443,6 +443,44 @@ class HomeController extends Controller
             return view('front.copyright', compact('page_title', 'keywords','Copyright', 'page_name'));
         }
     }
+
+
+    public function searchsite(Request $request)
+    {
+        $keywords = '';
+        $category = $request->category;
+        $search = $request->keyword;
+           
+                $Products = DB::table('product')->where('name', 'like', '%' . $request->keyword . '%')->paginate(200);
+                $page_name = $request->search;
+                $page_title = $request->search;
+                $search_results = $search;
+                $search_results_category = 'All Categories';
+                $SEOSettings = DB::table('seosettings')->get();
+                foreach ($SEOSettings as $Settings) {
+                    SEOMeta::setTitle('Our Products | ' . $Settings->sitename .'');
+                    SEOMeta::setDescription('Pioneer Car Speakers, Sony Car Speakers, Kenwood Car speakers, Kenwood speakers, Sony Speakers' . $Settings->welcome . '');
+                    SEOMeta::setCanonical('' . $Settings->url . '/search-results/'.$search_results_category.'');
+                    OpenGraph::setDescription('' . $Settings->welcome . '');
+                    OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+                    OpenGraph::setUrl('' . $Settings->url . '/products/grid');
+                    OpenGraph::addProperty('type', 'website');
+                    Twitter::setTitle('' . $Settings->sitename. '');
+                    Twitter::setSite('@amanisounds');
+                    $ProductsCategory = DB::table('category')->where('keywords', 'like', '%' . $request->search . '%')->limit(4)->get();
+                    $ProductsTag = DB::table('tags')->where('title', 'like', '%' . $request->search . '%')->limit(1)->get();
+                    $ProductsBrand = DB::table('brands')->where('name', 'like', '%' . $request->search . '%')->limit(1)->get();
+                
+                    // Call Route
+                    // return redirect()->route('search-results', ['ProductsTag'=>$ProductsTag,'ProductsBrand'=>$ProductsBrand,'ProductsCategory'=>$ProductsCategory]);
+                    
+                    return view('front.search-results', compact('ProductsCategory','ProductsTag','ProductsBrand','page_title','keywords', 'Products', 'page_name', 'search_results', 'search_results_category','search'));
+          
+            
+        }
+       
+        
+    }
     
 }
 

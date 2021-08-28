@@ -43,7 +43,7 @@ Route::get('/copyright',[App\Http\Controllers\HomeController::class, 'copyright'
 
 //Search
 Route::get('/search',[App\Http\Controllers\HomeController::class, 'search'])->name('search');
-Route::get('/search-results/{search}',[App\Http\Controllers\HomeController::class, 'search_page'])->name('search-results');
+Route::post('/search-results',[App\Http\Controllers\HomeController::class, 'searchsite'])->name('search-results');
 
 // Tags
 Route::get('/product-tags/{slung}', [App\Http\Controllers\HomeController::class, 'product_tags'])->name('product_tags');
