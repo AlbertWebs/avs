@@ -28,6 +28,7 @@
     @include('front.facebook')
     @include('front.tawk')
     @include('front.google')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <link rel="stylesheet" href="{{asset('theme/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
     <!-- Plugins CSS File -->
@@ -300,9 +301,54 @@
 
              });
          });
+     </script>
+     <script>
+        $('document').ready(function(){
+            $('.loading-images').hide();
+        });    
      </script>  
+     <script type="text/javascript">
+        $(".chb").change(function(){
+            $(".chb").prop('checked',false);
+            $(this).prop('checked',true);
+        });
+
+        $(".ch").change(function(){
+            $(".ch").prop('checked',false);
+            $(this).prop('checked',true);
+        });
+    </script>
+
+    <script>
+        $("#filter-now").submit(function(stay){
+                     stay.preventDefault()
+                     //var formdata = $(this).serialize(); // here $(this) refere to the form its submitting
+                     $('.loading-images').show();
+                     var category = $('.chb:checked').val();
+                     var brand = $('.ch:checked').val();
+                     $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                     $.ajax({
+                        type: 'GET',
+                        url: "{{url('/')}}/filter",
+                        data: {category:category,brand:brand}, // here $(this) refers to the ajax object not form
+                        success: function (data) {
+                            $('.spinner').hide();
+                            setTimeout(function() {
+                                // Redirect
+                                // window.open('{{url('/')}}/shopping-cart/checkout/placeOrder','_self')
+                            }, 5000);
+                            },
+                            timeout: 5000 
+                     });
+        });
+    </script>
     @include('front.schema')
 </body>
 @endforeach
+
 
 </html>

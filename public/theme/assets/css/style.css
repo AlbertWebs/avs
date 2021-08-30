@@ -7751,7 +7751,7 @@ a:focus {
   margin-bottom: .3rem; }
 
 .product-cat a {
-  color: inherit; }
+   color: #333333; }
   .product-cat a:hover, .product-cat a:focus {
     color: #666; }
 

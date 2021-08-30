@@ -26,7 +26,7 @@
 
                 <div class="toolbox-center">
                     <div class="toolbox-info">
-                        Showing <span>12 of 56</span> Products
+                        Showing <span>Page {{$Products->currentPage()}} | {{$Products->perPage()}} of {{$Products->total()}}</span> Products
                     </div><!-- End .toolbox-info -->
                 </div><!-- End .toolbox-center -->
 

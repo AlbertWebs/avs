@@ -25,7 +25,7 @@
 
                 <div class="toolbox-center">
                     <div class="toolbox-info">
-                        Showing <span>12 of 56</span> Products
+                        Showing <span>Page {{$Products->currentPage()}} | {{$Products->perPage()}} of {{$Products->total()}}</span> Products
                     </div><!-- End .toolbox-info -->
                 </div><!-- End .toolbox-center -->
 
@@ -34,8 +34,8 @@
                         <label for="sortby">Sort by:</label>
                         <div class="select-custom">
                             <select name="sortby" id="sortby" class="form-control">
-                                <option value="popularity" selected="selected">Most Popular</option>
-                                <option value="rating">Most Rated</option>
+                                <option value="popularity" selected="selected"> Lowest to Highest </option>
+                                <option value="rating">Highest to Lowest </option>
                                 <option value="date">Date</option>
                             </select>
                         </div>
