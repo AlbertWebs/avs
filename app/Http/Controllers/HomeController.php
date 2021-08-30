@@ -11,6 +11,7 @@ use Twitter;
 use App\Models\Privacy;
 use App\Models\Term;
 use App\Models\Delivery;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -519,6 +520,22 @@ class HomeController extends Controller
         
        
         
+    }
+
+    // manual login
+    public function handleLogin(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            $status = 1;
+            return $status;
+        }
+            
+        // authentication failed...
+        $status = 0;
+        return $status;
     }
 
     

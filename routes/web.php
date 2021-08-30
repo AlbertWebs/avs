@@ -110,6 +110,8 @@ Route::get('export', [DemoController::class, 'export']);
 Route::get('importExportView', [DemoController::class, 'importExportView']); 
 Route::get('import', [DemoController::class, 'import']); 
 
+Route::post('/secure-login', [App\Http\Controllers\HomeController::class, 'handleLogin']); 
+
 
 
 

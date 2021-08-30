@@ -293,7 +293,9 @@
              });
          });
      </script>  
+      @include('front.sign')
     @include('front.schema')
+    
 </body>
 @endforeach
 
