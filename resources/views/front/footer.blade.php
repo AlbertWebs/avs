@@ -40,7 +40,7 @@
             <ul class="widget-list">
                 <li><a href="#">Home</a></li>
                 <li><a href="{{url('/')}}">About Us</a></li>
-                <li><a href="{{url('/our-products')}}">Products</a></li>
+                <li><a href="{{url('/products')}}">Products</a></li>
                 <li><a href="{{url('/our-portfolio')}}">Our Portfolio</a></li>
             </ul><!-- End .widget-list -->
         </div><!-- End .widget -->

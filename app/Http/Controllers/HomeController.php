@@ -539,6 +539,55 @@ class HomeController extends Controller
     }
 
     
+    public function portfolio(){ 
+       
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Our Work | ' . $Settings->sitename .'');
+            SEOMeta::setDescription('Sony Car Speakers, Kenwood Car speakers, Pioneer Car Speakers,   Sony Speakers' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '/our-portfolio');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/products');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Products';
+            $Copyright = DB::table('copyright')->get();
+            $page_title = 'Portfolio';
+            $search_results ='';
+            $search_results_category = '';
+            $Products = DB::table('portfolio')->OrderBy('id','DESC')->paginate(18);
+            $keywords = 'Sony Car Tweeters, Sony Car Ampifires, Kenwood Car Speakers, Kenwood Car Subwoofers, Sony car Subwoofers';
+            return view('front.portfolio', compact('keywords','page_title', 'Products', 'page_name', 'search_results', 'search_results_category'));
+        }
+        
+    }
+
+    public function folio($id){ 
+       
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Our Work | ' . $Settings->sitename .'');
+            SEOMeta::setDescription('Sony Car Speakers, Kenwood Car speakers, Pioneer Car Speakers,   Sony Speakers' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '/our-portfolio');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/products');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Products';
+            $Copyright = DB::table('copyright')->get();
+            $page_title = 'Portfolio';
+            $search_results ='';
+            $search_results_category = '';
+            $Products = DB::table('portfolio')->where('id',$id)->OrderBy('id','DESC')->get();
+            $keywords = 'Sony Car Tweeters, Sony Car Ampifires, Kenwood Car Speakers, Kenwood Car Subwoofers, Sony car Subwoofers';
+            return view('front.folio', compact('keywords','page_title', 'Products', 'page_name', 'search_results', 'search_results_category'));
+        }
+        
+    }
     
 }
 

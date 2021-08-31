@@ -59,13 +59,13 @@
                  </center>
                  
 
-                 <form class="form-horizontal" method="post"  action="{{url('/admin/edit_CategoryBanners')}}" enctype="multipart/form-data">
+                 <form class="form-horizontal" method="post"  action="{{url('/admin/edit_CategoryBanners')}}/{{$Category->id}}" enctype="multipart/form-data">
                     
                     <div class="form-group">
                         <label for="text1" class="control-label col-lg-2">Title</label>
 
                         <div class="col-lg-10">
-                            <input type="text" id="text1" name="title" value="" placeholder="e.g Get Started " class="form-control" />
+                            <input type="text" id="text1" name="title" value="{{$Category->title}}" placeholder="e.g Get Started " class="form-control" />
                         </div>
                     </div>
 
@@ -78,7 +78,7 @@
                         <div class="col-lg-10">
                             <select name="category_id" data-placeholder="Choose Product in Banner" class="form-control chzn-select" tabindex="2">
                               
-                               
+                                <option selected value="{{$Category->category_id}}"><?php $Service = DB::table('category')->where('id',$Category->category_id)->get() ?>@foreach($Service as $ser) {{$ser->cat}} @endforeach</option>
                                <?php $ThebrandList = DB::table('category')->get(); ?>
                                @foreach($ThebrandList as $brandvalue)
                                   <option value="{{$brandvalue->id}}">{{$brandvalue->cat}}</option>
@@ -96,7 +96,8 @@
     
                         <div class="col-lg-10">
                             <select name="product_id" data-placeholder="Choose Product in Banner" class="form-control chzn-select" tabindex="2">
-                              
+
+                                <option selected value="{{$Category->product_id}}"><?php $Service = DB::table('product')->where('id',$Category->product_id)->get() ?>@foreach($Service as $ser) {{$ser->name}} @endforeach</option>
                                
                                <?php $ThebrandList = DB::table('product')->get(); ?>
                                @foreach($ThebrandList as $brandvalue)
@@ -112,6 +113,8 @@
                         <div class="col-lg-10">
                             <select name="format" data-placeholder="Choose Product in Banner" class="form-control chzn-select" tabindex="2">
                               
+                                
+                                <option selected value="{{$Category->format}}">{{$Category->format}}</option>
                                   <option value="1">One Grid</option>
                                   <option value="2">Two Grids</option>
                                   <option value="3">Three Grids</option>
@@ -122,7 +125,7 @@
                     <div class="form-group">
                         <label class="control-label col-lg-2">Offer Description</label>
                         <div class="form-group col-lg-10">
-                        <textarea name="content" id="article_ckeditor" rows="10" cols="80"></textarea>
+                        <textarea name="content" id="article_ckeditor" value="{{$Category->content}}" rows="10" cols="80"></textarea>
                         </div>
                     </div>
                            
@@ -139,7 +142,7 @@
                     <label>Thumbnail</label>
                     
                         <div class="fileupload fileupload-new" data-provides="fileupload">
-                            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="#" alt="" /></div>
+                            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{{url('/')}}/uploads/CategoryBanners/{{$Category->banner}}" alt="" /></div>
                             <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                             <div>
                                 <span class="btn btn-file btn-primary"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="image" /></span>
@@ -162,7 +165,7 @@
                       <button type="submit" class="btn btn-success"><i class="icon-check icon-white"></i> Save Changes</button>
                     </div>
                     
-                    <input type="hidden" name="image_cheat" value="{{$CategoryBanners->image}}">
+                    <input type="hidden" name="image_cheat" value="{{$Category->image}}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     
                 <form>

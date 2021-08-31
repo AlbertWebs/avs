@@ -39,7 +39,8 @@ Route::get('/privacy-policy',[App\Http\Controllers\HomeController::class, 'priva
 Route::get('/shipping-policy',[App\Http\Controllers\HomeController::class, 'shipping'])->name('shipping');
 Route::get('/delivery',[App\Http\Controllers\HomeController::class, 'delivery'])->name('delivery');
 Route::get('/copyright',[App\Http\Controllers\HomeController::class, 'copyright'])->name('copyright');
-
+Route::get('/our-portfolio',[App\Http\Controllers\HomeController::class, 'portfolio'])->name('portfolio');
+Route::get('/our-portfolio/{id}',[App\Http\Controllers\HomeController::class, 'folio'])->name('folio');
 
 //Search
 Route::get('/search',[App\Http\Controllers\HomeController::class, 'search'])->name('search');
