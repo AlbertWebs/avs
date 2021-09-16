@@ -1541,8 +1541,6 @@ public function edit_Product(Request $request, $id){
         $image_three = $request->image_three_cheat;
     }
     //Additional images
-    echo $image_two;
-    die();
     
    if($request->stock == 'on'){
        $stock = 'In Stock';
