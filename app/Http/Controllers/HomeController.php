@@ -452,7 +452,7 @@ class HomeController extends Controller
         $category = $request->category;
         $search = $request->keyword;
            
-                $Products = DB::table('product')->where('name', 'like', '%' . $request->keyword . '%')->paginate(200);
+                $Products = DB::table('product')->where('code', 'like', '%' . $request->keyword . '%')->where('name', 'like', '%' . $request->keyword . '%')->paginate(200);
                 $page_name = $request->search;
                 $page_title = $request->search;
                 $search_results = $search;

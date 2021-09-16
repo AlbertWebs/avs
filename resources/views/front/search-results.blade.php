@@ -26,7 +26,8 @@
 
                 <div class="toolbox-center">
                     <div class="toolbox-info">
-                        Showing <span>12 of 56</span> Products
+                        Showing <span>Page {{$Products->currentPage()}}  of {{$Products->lastPage()}}</span> Products
+                        {{-- <span>Showing: {{$Products->currentPage()}} of {{$Products->lastPage()}}</span> --}}
                     </div><!-- End .toolbox-info -->
                 </div><!-- End .toolbox-center -->
 
@@ -34,15 +35,35 @@
                     <div class="toolbox-sort">
                         <label for="sortby">Sort by:</label>
                         <div class="select-custom">
-                            <select name="sortby" id="sortby" class="form-control">
+                            <select name="sortby" onchange="changeFunc();" id="selectBox" class="form-control">
                                 <option value="popularity" selected="selected">Most Popular</option>
-                                <option value="rating">Most Rated</option>
-                                <option value="date">Date</option>
+                                <option value="rating">Ratings</option>
+                                <option value="date">Date Posted</option>
                             </select>
                         </div>
                     </div><!-- End .toolbox-sort -->
                 </div><!-- End .toolbox-right -->
             </div><!-- End .toolbox -->
+
+            {{-- Script Generate Swap Option --}}
+            <script type="text/javascript">
+
+                function changeFunc() {
+                    var selectBox = document.getElementById("selectBox");
+                    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+                    var url = "{!! url('/search-results?keyword=') !!}";
+
+            
+
+                    window.open(url+'{{ request()->get('keyword') }}?sort='+selectedValue,"_self");
+
+
+
+                }
+
+            </script>
+            {{-- Script Generate Swap Option --}}
 
             <div class="products">
                 <div class="row">
