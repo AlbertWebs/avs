@@ -276,10 +276,10 @@
     <script src="{{asset('theme/assets/js/jquery.waypoints.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/superfish.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/wNumb.js')}}"></script>
     <script src="{{asset('theme/assets/js/bootstrap-input-spinner.js')}}"></script>
     <script src="{{asset('theme/assets/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('theme/assets/js/nouislider.min.js')}}"></script>
+    <script src="{{asset('theme/assets/js/jquery.plugin.min.js')}}"></script>
+    <script src="{{asset('theme/assets/js/jquery.countdown.min.js')}}"></script>
        
     <!-- Main JS File -->
     <script src="{{asset('theme/assets/js/main.js')}}"></script>
