@@ -16871,7 +16871,7 @@ button:focus {
   border:1px solid #66139B;
 }
 .width-300{
-  max-width:300px;
+  max-width:500px;
 }
 .product-title{
   font-weight:600;
@@ -16952,6 +16952,27 @@ button:focus {
   ),url('../../../uploads/banners/maxresdefault.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  @media screen and (max-width: 768px) {
+    .width-300{
+      max-width:200px;
+     
+    }
+    .intro-title{
+      font-size:20px !important;
+      max-width:200px !important;
+    }
+    .the-price{
+      display:none !important;
+    }
+    .product-title{
+      font-weight:600;
+      color:#66139B;
+    }
+    .intro-slide{
+      background-position:75% 50% !important;
+    }
   }
 /* '' */
 

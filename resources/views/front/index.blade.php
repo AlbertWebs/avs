@@ -23,7 +23,7 @@
                         <div class="col-auto offset-lg-3 intro-col">
                             <h3 class="intro-subtitle">{{$Cat->cat}}</h3><!-- End .h3 intro-subtitle -->
                             <h1 class="intro-title width-300">{{$slider->name}}
-                                <span>
+                                <span class="the-price">
                                     <sup class="font-weight-light">from</sup>
                                     <span class="text-primary">KES {{$slider->price}}<sup>,00</sup></span>
                                 </span>
