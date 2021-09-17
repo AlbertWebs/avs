@@ -35,7 +35,7 @@
                 <div class="entry-item filter_{{$item->category}} shopping col-sm-6 col-lg-4">
                     <article class="entry entry-grid text-center">
                         <figure class="entry-media">
-                            <a href="{{url('/')}}/blog-posts/{{$item->slung}}">
+                            <a href="{{$item->link}}">
                                 <img src="{{url('/')}}/uploads/blog/{{$item->image_one}}" alt="{{$item->title}}">
                             </a>
                         </figure><!-- End .entry-media -->
@@ -60,7 +60,7 @@
                             </div><!-- End .entry-meta -->
 
                             <h2 class="entry-title">
-                                <a href="{{url('/')}}/blog-posts/{{$item->slung}}">{{$item->title}}</a>
+                                <a href="{{$item->link}}">{{$item->title}}</a>
                             </h2><!-- End .entry-title -->
 
                             <div class="entry-cats">

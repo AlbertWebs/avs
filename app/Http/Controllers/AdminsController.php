@@ -28,6 +28,8 @@ use App\Models\Tag;
 
 use App\Models\Term;
 
+use App\Models\Search;
+
 use App\Models\CouponCode;
 
 use App\Models\Brand;
@@ -2542,9 +2544,10 @@ public function add_Blog(Request $request){
 
     $blog = new Blog; 
     $blog->title = $title;
+    $blog->link = $request->link;
     $blog->content = $description;
     $blog->author = $author;
-    $blog->cat = $category;
+    $blog->category = $category;
     $blog->image_one = $image_one;
     $blog->image_two = $image_two;
     $blog->save();
@@ -2670,7 +2673,7 @@ public function edit_Blog(Request $request, $id){
         'content' => $request->content,
         'author' => $request->author,
         'category' => $request->cat,
-        
+        'link' => $request->link,
         'image_one' =>$image_one,
         'image_two' =>$image_two,
         'image_three' =>$image_three,
@@ -3909,7 +3912,12 @@ public function operations(){
     return view('admin.operations',compact('page_title','Corecoupon','page_name'));
 }
 
-
+public function Searches(){
+    $Search = Search::all();
+    $page_title = 'list';
+    $page_name = 'Services';
+    return view('admin.Searches',compact('page_title','Search','page_name'));
+}
 
 }
 

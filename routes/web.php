@@ -151,7 +151,7 @@ Route::get('/',  [AdminsController::class, 'index'])->name('admin.home')->middle
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
  
 //reset password
-
+Route::get('/searches',  [AdminsController::class, 'Searches'])->middleware('is_admin');
 //Testimonial
 Route::get('/addTestimonial',  [AdminsController::class, 'addTestimonial'])->middleware('is_admin');
 Route::post('/add_Testimonial',  [AdminsController::class, 'add_Testimonial'])->middleware('is_admin');

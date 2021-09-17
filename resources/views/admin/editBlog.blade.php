@@ -68,6 +68,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="text1" class="control-label col-lg-4">Link</label>
+
+                        <div class="col-lg-8">
+                            <input type="text" id="text1" name="link" value="{{$Blog->link}}" placeholder="e.g https://amanivehiclesounds.co.ke/knowledge-base/2020/11/25/5-factors-to-consider-when-buying-a-car-radio/ " class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="text1" class="control-label col-lg-4">Author</label>
 
                         <div class="col-lg-8">
