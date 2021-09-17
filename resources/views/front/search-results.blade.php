@@ -38,7 +38,7 @@
                             <select name="sortby" onchange="changeFunc();" id="selectBox" class="form-control">
                                 <option value="popularity" selected="selected">Most Popular</option>
                                 <option value="rating">Ratings</option>
-                                <option value="date">Date Posted</option>
+                                <option value="date">Recently Posted</option>
                             </select>
                         </div>
                     </div><!-- End .toolbox-sort -->
@@ -46,11 +46,14 @@
             </div><!-- End .toolbox -->
 
             {{-- Script Generate Swap Option --}}
+           
             <script type="text/javascript">
 
                 function changeFunc() {
+                   
                     var selectBox = document.getElementById("selectBox");
                     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                    
 
                     var url = "{!! url('/search-results?keyword=') !!}";
 
@@ -63,6 +66,8 @@
                 }
 
             </script>
+      
+            
             {{-- Script Generate Swap Option --}}
 
             <div class="products">
