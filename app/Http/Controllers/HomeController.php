@@ -303,7 +303,7 @@ class HomeController extends Controller
                     $search_results ='';
                     $search_results_category = '';
                     $keywords = "$value->title, $value->keywords";
-                    $Products = DB::table('product')->where('tag',$value->id)->paginate(12);
+                    $Products = DB::table('product')->where('tag',$value->id)->paginate(20);
                     return view('front.tags', compact('Category','keywords','page_title', 'Products', 'page_name','search_results','search_results_category'));
             }
         }
