@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="{{asset('theme/assets/css/demos/demo-13.css')}}">
      <!--Floating WhatsApp css-->
      <link rel="stylesheet" href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
+     <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/5d392d6beb82e88615a2eeb3c/1d603c00fa71af0f58347ff94.js");</script>
 </head>
 
 <body>
