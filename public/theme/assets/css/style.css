@@ -16960,7 +16960,7 @@ button:focus {
      
     }
     .intro-title{
-      font-size:20px !important;
+      font-size:15px !important;
       max-width:200px !important;
     }
     .the-price{
@@ -16971,7 +16971,16 @@ button:focus {
       color:#66139B;
     }
     .intro-slide{
-      background-position:75% 50% !important;
+      background-position:85% 50% !important;
+    }
+    .intro-slider-container, .intro-slide {
+      height: 160px !important;
+      background-color: #fafafa;
+    }
+
+    
+      .owl-simple.intro-slider.owl-nav-inside .owl-dots {
+          bottom: 8px !important;
     }
   }
 /* '' */
