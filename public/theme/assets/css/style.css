@@ -16954,6 +16954,7 @@ button:focus {
     background-size: cover;
   }
 
+  /* Zile Simu husumbua */
   @media screen and (max-width: 768px) {
     .width-300{
       max-width:200px;
@@ -16973,14 +16974,17 @@ button:focus {
     .intro-slide{
       background-position:85% 50% !important;
     }
+    /* Overide Default Slider Height */
     .intro-slider-container, .intro-slide {
       height: 160px !important;
       background-color: #fafafa;
     }
-
-    
+      /* Overide boostrap */
       .owl-simple.intro-slider.owl-nav-inside .owl-dots {
           bottom: 8px !important;
+    }
+    .pb-4{
+      padding-bottom: 1rem !important;
     }
   }
 /* '' */
