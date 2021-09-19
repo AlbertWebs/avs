@@ -230,15 +230,15 @@
      @include('front.sign-in')
 
     {{-- Newsletter Popup --}}
-    {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="row no-gutters bg-white newsletter-popup-content">
                     <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
                         <div class="banner-content text-center">
-                            <img src="{{asset('theme/assets/images/popup/newsletter/logo.png')}}" class="logo" alt="logo" width="60" height="15">
+                            <img src="{{url('/')}}/uploads/logo/{{$Settings->logo}}" class="logo" alt="logo" width="100" height="65">
                             <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
-                            <p>Subscribe to the Molla eCommerce newsletter to receive timely updates from your favorite products.</p>
+                            <p>Subscribe to the Amani Vehicle Sounds newsletter to receive timely updates from your favorite products.</p>
                             <form action="#">
                                 <div class="input-group input-group-round">
                                     <input type="email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
@@ -254,12 +254,12 @@
                         </div>
                     </div>
                     <div class="col-xl-2-5col col-lg-5 ">
-                        <img src="{{asset('theme/assets/images/popup/newsletter/img-1.jpg')}}" class="newsletter-img" alt="newsletter">
+                        <img src="{{url('/')}}/uploads/banners/car-audio-system-500x500.jpg" class="newsletter-img" alt="newsletter">
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <!-- Plugins JS File -->
     <script src="{{asset('theme/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/bootstrap.bundle.min.js')}}"></script>
