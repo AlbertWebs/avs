@@ -16,13 +16,8 @@
         data: formdata, // here $(this) refers to the ajax object not form
         success: function (results) {
     
-            
-            if(results == 0){
-                $('#newsletter-span').html('Successful!')
-            }else{
-                $('#newsletter-span').html('Successful!')
-            }
-            
+            $('#newsletter-span').html('Successful!')
+           
             setTimeout(function() {
                 // Redirect
                 $('.mfp-close').trigger('click');
@@ -49,12 +44,8 @@
         data: formdata, // here $(this) refers to the ajax object not form
         success: function (results) {
           
-            
-            if(results == 0){
-                $('.newsletter-span').html('Successful!')
-            }else{
-                $('.newsletter-span').html('Successful!')
-            }
+            $('#newsletter-span').html('Successful!')
+          
             
             setTimeout(function() {
                 // Redirect
