@@ -444,13 +444,15 @@
                 </div><!-- End .col-lg-5 -->
                 
                 <div class="col-3xl-5col">
-                    <form action="#">
+                    <form  id="newsletter-ctc">
+                        {{csrf_field()}}
                         <div class="input-group">
-                            <input type="email" class="form-control form-control-white" placeholder="Enter your Email Address" aria-label="Email Adress" required>
+                            <input name="user_email" type="email" class="form-control form-control-white" placeholder="Enter your Email Address" aria-label="Email Adress" required>
                             <div class="input-group-append">
-                                <button class="btn btn-outline-white-2" type="submit"><span>Subscribe</span><i class="icon-long-arrow-right"></i></button>
+                                <button class="btn btn-outline-white-2" type="submit"><span>Subscribe</span><i class="icon-long-arrow-right"></i> <img class="loading-imagers" width="22" src="{{url('/')}}/uploads/preloaders/loading.gif" alt="Amani vehicle Sound Loading"></button>
                             </div><!-- .End .input-group-append -->
                         </div><!-- .End .input-group -->
+                        <span class="newsletter-span"></span>
                     </form>
                 </div><!-- End .col-lg-7 -->
             </div><!-- End .row -->

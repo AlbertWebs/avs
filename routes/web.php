@@ -48,6 +48,8 @@ Route::get('/search-results',[App\Http\Controllers\HomeController::class, 'searc
 Route::get('/filter',[App\Http\Controllers\HomeController::class, 'filter'])->name('search-filter');
 
 
+Route::post('/newsletter', [App\Http\Controllers\HomeController::class, 'newsletter'])->name('newsletter');
+
 // Tags
 Route::get('/product-tags/{slung}', [App\Http\Controllers\HomeController::class, 'product_tags'])->name('product_tags');
 

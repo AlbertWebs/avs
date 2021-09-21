@@ -13,6 +13,7 @@ use App\Models\Search;
 use App\Models\Term;
 use App\Models\Delivery;
 use Illuminate\Support\Facades\Auth;
+use Newsletter;
 
 class HomeController extends Controller
 {
@@ -606,6 +607,13 @@ class HomeController extends Controller
             return view('front.folio', compact('keywords','page_title', 'Products', 'page_name', 'search_results', 'search_results_category'));
         }
         
+    }
+
+    public function newsletter(Request $request)
+    {
+        if ( ! Newsletter::isSubscribed($request->user_email) ) {
+            Newsletter::subscribe($request->user_email);
+        }
     }
     
 }
