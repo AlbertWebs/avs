@@ -11,6 +11,7 @@
     
         var formdata = $(this).serialize();
         $.ajax({
+            async: false,
         type: 'POST',
         url: "{{url('/')}}/newsletter",
         data: formdata, // here $(this) refers to the ajax object not form
@@ -39,6 +40,7 @@
     
         var formdata = $(this).serialize();
         $.ajax({
+            async: false,
         type: 'POST',
         url: "{{url('/')}}/newsletter",
         data: formdata, // here $(this) refers to the ajax object not form
