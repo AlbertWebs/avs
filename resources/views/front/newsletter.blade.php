@@ -26,9 +26,9 @@
             setTimeout(function() {
                 // Redirect
                 $('.mfp-close').trigger('click');
-            }, 2000);
+            }, 1000);
             },
-            timeout: 2000 
+            timeout: 1000 
         });
 });
 </script>
@@ -59,9 +59,9 @@
             setTimeout(function() {
                 // Redirect
                 $('.loading-imagers').hide();
-            }, 2000);
+            }, 1000);
             },
-            timeout: 2000 
+            timeout: 1000 
         });
 });
 </script>
@@ -70,7 +70,8 @@
     $(document).ready(function () {
         var ckbox = $('#register-policy-2');
         var formdata = "Checked=yes"
-        $('#register-policy-2').on('click',function () {
+        $('#register-policy-2').on('click',function (stay) {
+            stay.preventDefault()
             if (ckbox.is(':checked')) {
                 $.ajax({
                     type: 'GET',
