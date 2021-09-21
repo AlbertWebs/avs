@@ -14,6 +14,7 @@ use App\Models\Term;
 use App\Models\Delivery;
 use Illuminate\Support\Facades\Auth;
 use Newsletter;
+use App\Models\Newsletters;
 
 class HomeController extends Controller
 {
@@ -504,6 +505,33 @@ class HomeController extends Controller
        
         
     }
+
+    public function do_not(Request $request)
+    {
+        
+        $search = $request->Checked;
+
+        if(Auth::user()){
+            $User = Auth::user()->email;
+        }else{
+            $User = \Request::ip();
+        }
+
+        // Add keyword
+        $Search = Newsletters::where('user',$User)->get();
+        if($Search->isEmpty()){
+            $SModel = new Newsletters;
+            $SModel->user = $User;
+            $SModel->save();
+        }else{
+
+        }
+
+        return "Understood!";
+
+    }
+
+    
 
     public function filter(Request $request)
     {

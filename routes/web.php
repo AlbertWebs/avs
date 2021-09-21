@@ -46,7 +46,7 @@ Route::get('/our-portfolio/{id}',[App\Http\Controllers\HomeController::class, 'f
 Route::get('/search',[App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::get('/search-results',[App\Http\Controllers\HomeController::class, 'searchsite'])->name('search-results');
 Route::get('/filter',[App\Http\Controllers\HomeController::class, 'filter'])->name('search-filter');
-
+Route::get('/do-not',[App\Http\Controllers\HomeController::class, 'do_not'])->name('do-not');
 
 Route::post('/newsletter', [App\Http\Controllers\HomeController::class, 'newsletter'])->name('newsletter');
 

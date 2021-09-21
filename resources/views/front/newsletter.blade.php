@@ -69,7 +69,7 @@
 <script>
     $(document).ready(function () {
         var ckbox = $('#register-policy-2');
-        var formdata = "Checked"
+        var formdata = "Checked=yes"
         $('#register-policy-2').on('click',function () {
             if (ckbox.is(':checked')) {
                 $.ajax({

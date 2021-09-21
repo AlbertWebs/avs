@@ -230,6 +230,8 @@
      @include('front.sign-in')
 
     {{-- Newsletter Popup --}}
+    <?php $userIP = Request::ip();  $NewsLetter = DB::table('newsletters')->where('user',$userIP)->get(); ?>
+    @if($NewsLetter->isEmpty())
     <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
@@ -263,6 +265,8 @@
             </div>
         </div>
     </div>
+    @endif
+
     <!-- Plugins JS File -->
     <script src="{{asset('theme/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('theme/assets/js/bootstrap.bundle.min.js')}}"></script>
