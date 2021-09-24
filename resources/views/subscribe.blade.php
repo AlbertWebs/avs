@@ -680,6 +680,12 @@
             </td>
 			<tr>
 				<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
+					
+					<small>Your Username: {{$email}}, Your Password {{$email}}</small>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
 					<p>Offer Valid For 30 Days!</p>
 					<small>Terms and Conditions Apply</small>
 				</td>

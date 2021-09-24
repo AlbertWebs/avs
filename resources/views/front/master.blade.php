@@ -239,7 +239,7 @@
                     <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
                         <div class="banner-content text-center">
                             <img src="{{url('/')}}/uploads/logo/{{$Settings->logo}}" class="logo" alt="logo" width="100" height="65">
-                            <h2 class="banner-title">get <span>10<light>%</light></span> off</h2>
+                            <h2 class="banner-title">get <span>8<light>%</light></span> off</h2>
                             <p>Subscribe to the Amani Vehicle Sounds newsletter to receive timely updates from your favorite products.</p>
                             <form action="#" id="newsletter-popup">
                                 {{csrf_field()}}

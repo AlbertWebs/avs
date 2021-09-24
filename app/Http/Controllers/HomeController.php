@@ -646,7 +646,7 @@ class HomeController extends Controller
             // Create User
             $name = "User";
             $email = $email;
-            $password = "$email-$name";
+            $password = $email;
             $User = new User;
             $User->name = $name;
             $User->email = $email;
