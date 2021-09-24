@@ -99,7 +99,9 @@ class CheckoutController extends Controller
                         $TotalCart = str_replace( ',', '', Cart::total());
 
                         $CeilTotal = ceil($TotalCart);
-                        $NewCartTotal = $CeilTotal - $value->value;
+                        $Couponvalue = $value->value;
+                        $discount = ($Couponvalue/100)*$CeilTotal;
+                        $NewCartTotal = $CeilTotal - $discount;
                         // Update Cart
                         Session::put('coupon', $value->value);
                         Session::put('coupon-total', $NewCartTotal);

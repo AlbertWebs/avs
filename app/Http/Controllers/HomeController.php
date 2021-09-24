@@ -673,6 +673,10 @@ class HomeController extends Controller
        
     }
 
+    public function subscription_offers(){
+        
+    }
+
     public function sub(){
      
         return view('subscribe');

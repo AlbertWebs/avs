@@ -50,7 +50,7 @@ Route::get('/do-not',[App\Http\Controllers\HomeController::class, 'do_not'])->na
 
 Route::post('/newsletter', [App\Http\Controllers\HomeController::class, 'newsletter'])->name('newsletter');
 // Creates Offers Session
-Route::get('/subscription-offers/{email}', [App\Http\Controllers\HomeController::class, 'subscription-offers'])->name('subscription-offers');
+Route::get('/subscription-offers/{email}', [App\Http\Controllers\HomeController::class, 'subscription_offers'])->name('subscription-offers');
 
 
 // Tags

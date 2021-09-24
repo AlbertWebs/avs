@@ -681,6 +681,13 @@
 			<tr>
 				<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
 					
+					<h3>Your Coupon: <strong> WELCOMEAVS2021 </strong></h3>
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
+					
 					<small>Your Username: {{$email}}, Your Password {{$email}}</small>
 				</td>
 			</tr>
