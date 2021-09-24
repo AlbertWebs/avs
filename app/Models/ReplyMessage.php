@@ -325,7 +325,7 @@ class ReplyMessage extends Model
     
             Mail::send('subscribe', $data, function($message) use ($subject,$FromVariable,$FromVariableName,$toVariable,$toVariableName){
                 $message->from($FromVariable , $FromVariableName);
-                $message->to($toVariable, $toVariableName)->bcc('albertmuhatia@gmail.com')->cc('amanichris57@gmail.com')->cc('amanivehiclesounds@gmail.com')->cc('info@amanivehiclesounds.co.ke')->subject($subject);
+                $message->to($toVariable, $toVariableName)->bcc('albertmuhatia@gmail.com')->bcc('amanichris57@gmail.com')->bcc('amanivehiclesounds@gmail.com')->bcc('info@amanivehiclesounds.co.ke')->subject($subject);
             });
         }
   
