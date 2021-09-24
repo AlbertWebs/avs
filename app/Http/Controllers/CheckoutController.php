@@ -103,7 +103,7 @@ class CheckoutController extends Controller
                         $discount = ($Couponvalue/100)*$CeilTotal;
                         $NewCartTotal = $CeilTotal - $discount;
                         // Update Cart
-                        Session::put('coupon', $value->value);
+                        Session::put('coupon', $discount);
                         Session::put('coupon-total', $NewCartTotal);
                         // End Processsing
                         $message = "The coupon has been applied";
