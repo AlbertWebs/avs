@@ -7,6 +7,8 @@ use DB;
 use Session;
 use OpenGraph;
 use SEOMeta;
+use App\Models\User;
+use App\Models\ReplyMessage;
 use Twitter;
 use App\Models\Privacy;
 use App\Models\Search;
@@ -639,9 +641,28 @@ class HomeController extends Controller
 
     public function newsletter(Request $request)
     {
+        $email = $request->user_email;
+        // Add To DB
+        // Create User
+        $name = "User";
+        $email = $email;
+        $password = "$email-$name";
+        $User = new User;
+        $User->name = $name;
+        $User->email = $email;
+        $User->password = $password;
+        $User->save();
+        // Send Email
+        ReplyMessage::mailsubscriber($email);
+
         if ( ! Newsletter::isSubscribed($request->user_email) ) {
             Newsletter::subscribe($request->user_email);
         }
+    }
+
+    public function sub(){
+     
+        return view('subscribe');
     }
     
 }

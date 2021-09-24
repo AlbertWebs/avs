@@ -49,6 +49,9 @@ Route::get('/filter',[App\Http\Controllers\HomeController::class, 'filter'])->na
 Route::get('/do-not',[App\Http\Controllers\HomeController::class, 'do_not'])->name('do-not');
 
 Route::post('/newsletter', [App\Http\Controllers\HomeController::class, 'newsletter'])->name('newsletter');
+// Creates Offers Session
+Route::get('/subscription-offers/{email}', [App\Http\Controllers\HomeController::class, 'subscription-offers'])->name('subscription-offers');
+
 
 // Tags
 Route::get('/product-tags/{slung}', [App\Http\Controllers\HomeController::class, 'product_tags'])->name('product_tags');
@@ -115,7 +118,7 @@ Route::get('import', [DemoController::class, 'import']);
 
 Route::post('/secure-login', [App\Http\Controllers\HomeController::class, 'handleLogin']); 
 
-
+Route::get('/sub',[App\Http\Controllers\HomeController::class, 'sub'])->name('sub');
 
 
 Auth::routes();

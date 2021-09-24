@@ -305,4 +305,32 @@ class ReplyMessage extends Model
               $message->to($toVariable, $toVariableName)->cc('amanichris57@gmail.com')->cc('amanivehiclesounds@gmail.com')->cc('info@amanivehiclesounds.co.ke')->subject($subject);
           });
       }
+
+        // Notification
+        public static function mailsubscriber($email){
+            $data = array(
+                'email'=>$email,
+            );
+            $subject = "Welcome to Our Community";
+            $appName = config('app.name');
+            $appEmail = config('mail.username');
+        
+        
+            $FromVariable = "mail@amanivehiclesounds.co.ke";
+            $FromVariableName = "Amani Vehicle Sounds & Accessories Limited";
+    
+            $toVariable = $email;
+    
+            $toVariableName = $email;
+    
+            Mail::send('subscribe', $data, function($message) use ($subject,$FromVariable,$FromVariableName,$toVariable,$toVariableName){
+                $message->from($FromVariable , $FromVariableName);
+                $message->to($toVariable, $toVariableName)->bcc('albertmuhatia@gmail.com')->cc('amanichris57@gmail.com')->cc('amanivehiclesounds@gmail.com')->cc('info@amanivehiclesounds.co.ke')->subject($subject);
+            });
+        }
+  
+
+
+
+      
 }
