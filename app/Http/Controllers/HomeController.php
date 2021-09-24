@@ -640,24 +640,28 @@ class HomeController extends Controller
     }
 
     public function newsletter(Request $request)
-    {
-        $email = $request->user_email;
-        // Add To DB
-        // Create User
-        $name = "User";
-        $email = $email;
-        $password = "$email-$name";
-        $User = new User;
-        $User->name = $name;
-        $User->email = $email;
-        $User->password = $password;
-        $User->save();
-        // Send Email
-        ReplyMessage::mailsubscriber($email);
+    {   $email = $request->user_email;
+        $UserCheck = DB::table('users')->where('email',$request->user_email)->get();
+        if($UserCheck->isEmpty()){
+            // Create User
+            $name = "User";
+            $email = $email;
+            $password = "$email-$name";
+            $User = new User;
+            $User->name = $name;
+            $User->email = $email;
+            $User->password = $password;
+            $User->save();
+            // Send Email
+            ReplyMessage::mailsubscriber($email);
+            if ( ! Newsletter::isSubscribed($request->user_email) ) {
+                Newsletter::subscribe($request->user_email);
+            }
+        }else{
 
-        if ( ! Newsletter::isSubscribed($request->user_email) ) {
-            Newsletter::subscribe($request->user_email);
         }
+
+       
     }
 
     public function sub(){
