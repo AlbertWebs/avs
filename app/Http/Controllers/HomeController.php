@@ -9,6 +9,8 @@ use OpenGraph;
 use SEOMeta;
 use App\Models\User;
 use App\Models\ReplyMessage;
+use App\Models\Subscriber;
+
 use Twitter;
 use App\Models\Privacy;
 use App\Models\Search;
@@ -640,11 +642,18 @@ class HomeController extends Controller
     }
 
     public function newsletter(Request $request)
-    {   $email = $request->user_email;
+    {   
+        $email = $request->user_email;
         $UserCheck = DB::table('users')->where('email',$request->user_email)->get();
+        $UserSubscribers = DB::table('subscribers')->where('email',$request->user_email)->get();
         if($UserCheck->isEmpty()){
+            // if($UserSubscribers->isEmpty()){
+            //     $Subscriber = new Subscriber;
+            //     $Subscriber->email = $email;
+            //     $Subscriber->save();
+            // }
             // Create User
-            $name = "User";
+            $name = "User-$email";
             $email = $email;
             $password = $email;
             $User = new User;
