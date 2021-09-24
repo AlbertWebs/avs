@@ -10,7 +10,7 @@ use SEOMeta;
 use App\Models\User;
 use App\Models\ReplyMessage;
 use App\Models\Subscriber;
-
+use Hash;
 use Twitter;
 use App\Models\Privacy;
 use App\Models\Search;
@@ -653,9 +653,12 @@ class HomeController extends Controller
             //     $Subscriber->save();
             // }
             // Create User
+            $password_inSecured = $email;
+            //harshing password Here
+            $password = Hash::make($password_inSecured);
             $name = "User-$email";
             $email = $email;
-            $password = $email;
+           
             $User = new User;
             $User->name = $name;
             $User->email = $email;
@@ -674,7 +677,7 @@ class HomeController extends Controller
     }
 
     public function subscription_offers(){
-        
+
     }
 
     public function sub(){
