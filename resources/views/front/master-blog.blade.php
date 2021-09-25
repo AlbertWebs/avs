@@ -76,7 +76,7 @@
             <div class="header-bottom sticky-header">
                 <div class="container">
                     <div class="header-left">
-                        <div class="dropdown category-dropdown show is-on" data-visible="true">
+                        <div class="dropdown category-dropdown show is-on" data-visible="false">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-display="static" title="Browse Categories">
                                 Browse Categories
                             </a>
@@ -95,7 +95,7 @@
                     </div><!-- End .col-lg-3 -->
                     @include('front.main-menu')
                     <div class="header-right">
-                        <i class="la la-lightbulb-o"></i><p>Clearance Up to <a style="color:#ffffff;" href="{{url('/')}}/contact-us"> 30% </a> Off </span> </p>
+                        <i class="la la-lightbulb-o"></i><p>Discounts of Up to <a style="color:#ffffff;" href="{{url('/')}}/contact-us"> 30% </a> Off </span> </p>
                     </div>
                 </div><!-- End .container -->
             </div><!-- End .header-bottom -->

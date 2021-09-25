@@ -105,7 +105,17 @@ class CheckoutController extends Controller
                         $NewCartTotal = $CeilTotal - $discount;
                         // Update Cart
                         Session::put('coupon', $discount);
+                        Session::put('coupon-code', $code);
                         Session::put('coupon-total', $NewCartTotal);
+
+                        
+                        // Update coupon code status
+                        $updateDetails = array(
+                            'status'=>"0",
+                        );
+                        DB::table('coupon_codes')->where('code',$code)->update($updateDetails);
+                        
+
                         // End Processsing
                         $message = "The coupon has been applied";
                         return $message;
@@ -121,6 +131,21 @@ class CheckoutController extends Controller
             }
         }        
        
+    }
+
+    public function remove_coupon($code){
+        $updateDetails = array(
+            'status'=>"1",
+        );
+        DB::table('coupon_codes')->where('code',$code)->update($updateDetails);
+
+        // Remove from coupojn table
+        $Coupon = DB::table('coupon_codes')->where('code',$code)->get();
+        foreach($Coupon as $coup){
+            DB::table('coupons')->where('coupons_code_id',$coup->id)->delete();
+        }
+        return "Done";
+
     }
 
  

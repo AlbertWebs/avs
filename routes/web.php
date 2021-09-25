@@ -88,6 +88,8 @@ Route::post('checkout/create-user', [CheckoutController::class, 'create'])->name
 Route::get('checkout/placeOrder', [CheckoutController::class, 'placeOrderGet'])->name('checkout.order.get');
 Route::post('checkout/placeOrder', [CheckoutController::class, 'placeOrder'])->name('checkout.order');
 Route::post('/checkout/process-coupon', [CheckoutController::class, 'process_coupon'])->name('process_coupon');
+Route::get('/checkout/remove-coupon/{code}', [CheckoutController::class, 'remove_coupon'])->name('remove-coupon');
+
 
 });
 // WishList

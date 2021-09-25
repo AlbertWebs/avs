@@ -87,7 +87,7 @@
                     </div><!-- End .col-lg-3 -->
                     @include('front.main-menu')
                     <div class="header-right">
-                        <i class="la la-lightbulb-o"></i><p>Clearance Up to <a style="color:#ffffff;" href="{{url('/')}}/contact-us"> 30% </a> Off </span> </p>
+                        <i class="la la-lightbulb-o"></i><p>Discounts of Up to <a style="color:#ffffff;" href="{{url('/')}}/contact-us"> 30% </a> Off </span> </p>
                     </div>
                 </div><!-- End .container -->
             </div><!-- End .header-bottom -->

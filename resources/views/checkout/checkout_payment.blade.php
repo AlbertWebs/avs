@@ -35,6 +35,7 @@
                             
             			</div><!-- End .checkout-discount -->
                         <p id="coupon-processing" style="color:#66139B; font-weight:600;">Processing....</p>
+                        {{-- <p id="remove-coupon" style="color:#66139B; font-weight:600;"><a href="">Remove</a></p> --}}
             			{{-- <form action="#"> --}}
 		                	<div class="row">
 		                		<div class="col-lg-9">
@@ -267,9 +268,9 @@
                                                                 <div class="form-group">
                                                                     <p for="email">Enter Your MPESA Phone Number <span>*</span></p>
                                                                     
-                                                                    <input type="hidden" value="5" name="Amount">
+                                                                    <input type="hidden" value="{{$TotalCost}}" name="Amount">
                                                                     <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
-                                                                    <input type="text" value="{{Auth::user()->mobile}}" name="phone_number" class="form-control" required placeholder="NJL4E9WJ96" id="email" autocomplete="off">
+                                                                    <input type="text" value="{{Auth::user()->mobile}}" name="phone_number" class="form-control" required placeholder="254723000000" id="email" autocomplete="off">
                                                                 </div>
                                                             {{--  --}}
                                                             <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">

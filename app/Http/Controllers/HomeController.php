@@ -676,6 +676,7 @@ class HomeController extends Controller
             $code = new CouponCode;
             $code->title = "NEWSLETTER";
             $code->code = $coupon;
+            $code->status = 1;
             $code->expired_at = "$expire";
             $code->value = "8";
             $code->save();
