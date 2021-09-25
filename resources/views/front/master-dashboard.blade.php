@@ -86,9 +86,7 @@
                         </div><!-- End .category-dropdown -->
                     </div><!-- End .col-lg-3 -->
                     @include('front.main-menu')
-                    <div class="header-right">
-                        <i class="la la-lightbulb-o"></i><p>Discounts of Up to <a style="color:#ffffff;" href="{{url('/')}}/contact-us"> 30% </a> Off </span> </p>
-                    </div>
+                    @include('front.discount')
                 </div><!-- End .container -->
             </div><!-- End .header-bottom -->
         </header><!-- End .header -->
