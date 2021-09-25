@@ -120,7 +120,7 @@
                 @foreach ($Blogs as $item)
                 <article class="entry">
                     <figure class="entry-media">
-                        <a href="{{url('/')}}/blog-posts/{{$item->slung}}">
+                        <a href="{{$item->link}}">
                             <img src="{{url('/')}}/uploads/blog/{{$item->image_one}}" alt="{{$item->title}}">
                         </a>
                     </figure><!-- End .entry-media -->
@@ -142,12 +142,12 @@
                         </div><!-- End .entry-meta -->
 
                         <h3 class="entry-title">
-                            <a href="{{url('/')}}/blog-posts/{{$item->slung}}">{{$item->title}}</a>
+                            <a  target="new" href="{{$item->link}}">{{$item->title}}</a>
                         </h3><!-- End .entry-title -->
 
                         <div class="entry-content">
-                            <p>{{$item->meta}}...</p>
-                            <a href="{{url('/')}}/blog-posts/{{$item->slung}}" class="read-more">Read More</a>
+                            {{-- <p>{{$item->meta}}...</p> --}}
+                            <a target="new" href="{{$item->link}}" class="read-more">Read More</a>
                         </div><!-- End .entry-content -->
                     </div><!-- End .entry-body -->
                 </article><!-- End .entry -->

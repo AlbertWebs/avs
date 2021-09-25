@@ -225,17 +225,17 @@
 										        </div><!-- End .collapse -->
 										    </div><!-- End .card -->
 
-										    <div class="card">
+										    {{-- <div class="card">
 										        <div class="card-header" id="heading-2">
 										            <h2 class="card-title">
 										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
 										                    Lipa na M-Pesa online
 										                </a>
 										            </h2>
-										        </div><!-- End .card-header -->
+										        </div>
 										        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
 										            <div class="card-body">
-										                {{--  --}}
+										                
                                                         <form method="POST"  id="stk-submit">
                                                             {{ csrf_field() }}
                                                             <input type="hidden" name="invoice" value="{{$InvoiceNumber}}">
@@ -272,19 +272,19 @@
                                                                     <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
                                                                     <input type="text" value="{{Auth::user()->mobile}}" name="phone_number" class="form-control" required placeholder="254723000000" id="email" autocomplete="off">
                                                                 </div>
-                                                            {{--  --}}
+                                                        
                                                             <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
                                                                 <span class="btn-text">Pay {{$TotalCost}} Now</span>
                                                                 
                                                                  &nbsp; <img class="spinner" width="15" src="{{asset('uploads/preloaders/loading.gif')}}" alt="">
                                                             </button>
-                                                            {{--  --}}
+                                                           
                                                             </div>
                                                         </form>
-                                                        {{--  --}}
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
+                                                   
+										            </div>
+										        </div>
+										    </div> --}}
 
 										    <div class="card">
 										        <div class="card-header" id="heading-3">
