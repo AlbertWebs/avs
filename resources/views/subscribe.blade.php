@@ -681,14 +681,14 @@
 			<tr>
 				<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
 					
-					<h3>Your Coupon: <strong> WELCOMEAVS2021 </strong></h3>
+					<h3>Your Coupon: <strong> {{$coupon}} </strong></h3>
 				</td>
 			</tr>
 			
 			<tr>
 				<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
 					
-					<small>Your Username: {{$email}}, Your Password {{$email}}</small>
+					<small>Your Username: {{$email}}, Reset your password <a href="{{url('/')}}/password/reset">Reset your password</a></small>
 				</td>
 			</tr>
 			<tr>

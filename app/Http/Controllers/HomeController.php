@@ -13,13 +13,15 @@ use App\Models\Subscriber;
 use Hash;
 use Twitter;
 use App\Models\Privacy;
+use App\Models\CouponCode;
 use App\Models\Search;
 use App\Models\Term;
 use App\Models\Delivery;
 use Illuminate\Support\Facades\Auth;
 use Newsletter;
 use App\Models\Newsletters;
-
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     public function index()
@@ -664,8 +666,21 @@ class HomeController extends Controller
             $User->email = $email;
             $User->password = $password;
             $User->save();
+            // Generate RednomCoupon
+            $string =  rand(2,1000000);
+            $coupon = "AVS$string";
+            // Create Expiry
+            $expire = now()->addDays(7)->format('Y-m-d');
+           
+            // Log the random coupon to the database
+            $code = new CouponCode;
+            $code->title = "NEWSLETTER";
+            $code->code = $coupon;
+            $code->expired_at = "$expire";
+            $code->value = "8";
+            $code->save();
             // Send Email
-            ReplyMessage::mailsubscriber($email);
+            ReplyMessage::mailsubscriber($email,$coupon);
             if ( ! Newsletter::isSubscribed($request->user_email) ) {
                 Newsletter::subscribe($request->user_email);
             }

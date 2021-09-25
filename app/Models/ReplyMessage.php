@@ -307,9 +307,10 @@ class ReplyMessage extends Model
       }
 
         // Notification
-        public static function mailsubscriber($email){
+        public static function mailsubscriber($email,$coupon){
             $data = array(
                 'email'=>$email,
+                'coupon'=>$coupon,
             );
             $subject = "Welcome to Our Community";
             $appName = config('app.name');

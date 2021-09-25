@@ -100,7 +100,8 @@ class CheckoutController extends Controller
 
                         $CeilTotal = ceil($TotalCart);
                         $Couponvalue = $value->value;
-                        $discount = ($Couponvalue/100)*$CeilTotal;
+                        $percentage = 100;
+                        $discount = ($Couponvalue/$percentage)*$CeilTotal;
                         $NewCartTotal = $CeilTotal - $discount;
                         // Update Cart
                         Session::put('coupon', $discount);
