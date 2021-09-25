@@ -408,6 +408,11 @@ class CheckoutController extends Controller
             $keywords = 'Amani Vehicle Sounds';
         
             $page_title = 'Thank You for your order';
+            Session::forget('coupon');
+            Session::forget('coupon-code');
+            Session::forget('coupon-total');
+
+   
             return view('dashboard.thankyou',compact('page_title','page_name','page_title','keywords'));
 
             /** Load The Thank You Page */
@@ -472,6 +477,9 @@ class CheckoutController extends Controller
             $keywords = 'Amani Vehicle Sounds';
         
             $page_title = 'Thank You for your order';
+            Session::forget('coupon');
+            Session::forget('coupon-code');
+            Session::forget('coupon-total');
             return view('dashboard.thankyou',compact('page_title','page_name','page_title','keywords'));
 
             /** Load The Thank You Page */
@@ -504,6 +512,9 @@ class CheckoutController extends Controller
         $keywords = 'Amani Vehicle Sounds';
        
         $page_title = 'Thank You for your purchase';
+        Session::forget('coupon');
+        Session::forget('coupon-code');
+        Session::forget('coupon-total');
         return view('clientarea.thankyou',compact('page_title','page_name','page_title','keywords'));
 
         /** Load The Thank You Page */
