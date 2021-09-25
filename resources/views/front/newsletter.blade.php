@@ -30,9 +30,7 @@
 </script>
 
 <script>
-    $( document ).ready(function() {
-        $('.loading-imagers').hide();
-    });
+   
     $("#newsletter-ctc").submit(function(stay){
         stay.preventDefault()
         //var formdata = $(this).serialize(); // here $(this) refere to the form its submitting

@@ -666,6 +666,13 @@
 </table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
     <tbody class="mcnButtonBlockOuter">
         <tr>
+
+			<tr>
+				<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
+					
+					<h3>Your Coupon: <strong> {{$coupon}} </strong></h3>
+				</td>
+			</tr>
             <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
                 <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 28px;background-color: #9D0CD4;">
                     <tbody>
@@ -678,12 +685,16 @@
                     </tbody>
                 </table>
             </td>
+
 			<tr>
 				<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
 					
-					<h3>Your Coupon: <strong> {{$coupon}} </strong></h3>
+					<h3><strong>To get 8% off, apply the coupon in the slot provided during checkout.</strong></h3>
 				</td>
 			</tr>
+	
+			
+			
 			
 			<tr>
 				<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 18px;">
