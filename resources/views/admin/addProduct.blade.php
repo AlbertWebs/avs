@@ -75,6 +75,16 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="text1" class="control-label col-lg-4">Google Product Category</label>
+
+                        <div class="col-lg-8">
+                            <input type="" id="text1" name="google_product_category" value="" placeholder="e.g 505766" class="form-control" />
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
                         <label for="text1" class="control-label col-lg-4">Product Web Code</label>
 
                         <div class="col-lg-8">

@@ -41,13 +41,13 @@ class HomeController extends Controller
 
             
             $page_name = 'Home1';
-            $page_title = 'Home Page';
+            $page_title = 'Car Radio, Car Stereo - Amani Vehicle Sounds';
            
             $keywords = 'Car Sound Systems, Car Alarm Systems, Car Surveillance Systems,   ,in car Accessories  ,car stereo  ,car subwoofer  ,car stereo installation nairobi  , car audio shop
             ,car stereo shop  ,powered speakers  ,underseat subwoofer  ,car speakers  ,car amplifiers';
             
             
-            return view('front.index', compact('keywords'));
+            return view('front.index', compact('keywords','page_title'));
         }
     }
 
@@ -565,6 +565,43 @@ class HomeController extends Controller
                     $ProductsCategory = DB::table('category')->where('keywords', 'like', '%' . $request->search . '%')->limit(4)->get();
                     $ProductsTag = DB::table('tags')->where('title', 'like', '%' . $request->search . '%')->limit(1)->get();
                     $ProductsBrand = DB::table('brands')->where('name', 'like', '%' . $request->search . '%')->limit(1)->get();
+                    
+                    return view('front.search-results', compact('ProductsCategory','ProductsTag','ProductsBrand','page_title','keywords', 'Products', 'page_name', 'search_results', 'search_results_category','search'));
+          
+            
+        }
+
+        
+       
+        
+    }
+
+    public function filters(Request $request)
+    {
+        $keywords = '';
+      
+        $mobile_search = $request->mobile_search;
+           
+                $Products = DB::table('product')->where('code', 'like', '%' . $mobile_search . '%')->orWhere('name', 'like', '%' . $mobile_search . '%')->paginate(200);
+                $page_name = $mobile_search;
+                $page_title = $mobile_search;
+                $search_results = $mobile_search;
+                $search_results_category = 'All Categories';
+                $SEOSettings = DB::table('seosettings')->get();
+                foreach ($SEOSettings as $Settings) {
+                    SEOMeta::setTitle('Our Products | ' . $Settings->sitename .'');
+                    SEOMeta::setDescription('Pioneer Car Speakers, Sony Car Speakers, Kenwood Car speakers, Kenwood speakers, Sony Speakers' . $Settings->welcome . '');
+                    SEOMeta::setCanonical('' . $Settings->url . '/search-results/');
+                    OpenGraph::setDescription('' . $Settings->welcome . '');
+                    OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+                    OpenGraph::setUrl('' . $Settings->url . '/search-results/');
+                    OpenGraph::addProperty('type', 'website');
+                    Twitter::setTitle('' . $Settings->sitename. '');
+                    Twitter::setSite('@amanisounds');
+                    $ProductsCategory = DB::table('category')->where('keywords', 'like', '%' . $mobile_search . '%')->limit(4)->get();
+                    $ProductsTag = DB::table('tags')->where('title', 'like', '%' . $mobile_search . '%')->limit(1)->get();
+                    $ProductsBrand = DB::table('brands')->where('name', 'like', '%' . $mobile_search . '%')->limit(1)->get();
+                    $search = $mobile_search;
                     
                     return view('front.search-results', compact('ProductsCategory','ProductsTag','ProductsBrand','page_title','keywords', 'Products', 'page_name', 'search_results', 'search_results_category','search'));
           

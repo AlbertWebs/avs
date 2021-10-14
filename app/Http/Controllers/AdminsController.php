@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Redirect;
 
+use Stevebauman\Location\Facades\Location;
+
 use Storage;
 
 use Mail;
@@ -1350,10 +1352,11 @@ public function add_Product(Request $request){
         $image_three = $request->pro_img_cheat;
     }
     //Additional images
-    
+   
     $slung = Str::slug($request->name);
     $Product = new Product;
     $Product->name = $request->name;
+    $Product->google_product_category = $request->google_product_category;
     $Product->slung = $slung;
     $Product->iframe = $request->iframe;
     $Product->meta = $request->meta;

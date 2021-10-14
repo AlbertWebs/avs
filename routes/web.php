@@ -46,6 +46,7 @@ Route::get('/our-portfolio/{id}',[App\Http\Controllers\HomeController::class, 'f
 Route::get('/search',[App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::get('/search-results',[App\Http\Controllers\HomeController::class, 'searchsite'])->name('search-results');
 Route::get('/filter',[App\Http\Controllers\HomeController::class, 'filter'])->name('search-filter');
+Route::get('/filters',[App\Http\Controllers\HomeController::class, 'filters'])->name('search-filters');
 Route::get('/do-not',[App\Http\Controllers\HomeController::class, 'do_not'])->name('do-not');
 
 Route::post('/newsletter', [App\Http\Controllers\HomeController::class, 'newsletter'])->name('newsletter');
@@ -89,7 +90,7 @@ Route::get('checkout/placeOrder', [CheckoutController::class, 'placeOrderGet'])-
 Route::post('checkout/placeOrder', [CheckoutController::class, 'placeOrder'])->name('checkout.order');
 Route::post('/checkout/process-coupon', [CheckoutController::class, 'process_coupon'])->name('process_coupon');
 Route::get('/checkout/remove-coupon/{code}', [CheckoutController::class, 'remove_coupon'])->name('remove-coupon');
-
+Route::get('/wishlist', [WishListController::class, 'index'])->name('wishlist');
 
 });
 // WishList

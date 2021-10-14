@@ -52,7 +52,7 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Name</th>
-                                                    <th>Image</th>
+                                                    <th>IP/Location</th>
                                                     <th>Date</th>
                                                 </tr>
                                             </thead>
@@ -61,7 +61,19 @@
                                                 <tr class="odd gradeX">
                                                     <td>{{$value->id}}</td>
                                                     <td>{{$value->keyword}}</td>
-                                                    <td>{{$value->user}}</td>
+                                                    <td> 
+                                                        <?php 
+                                                            $ip = $value->user; 
+                                                            
+                                                            if(filter_var($ip, FILTER_VALIDATE_IP) !== false) {
+                                                                $data = \Location::get($ip);
+                                                                echo $data->regionName;
+                                                                //  var_dump($data);
+                                                            } else {
+                                                                // Error
+                                                            }
+                                                        ?>
+                                                    </td>
                                                     <td>{{$value->created_at}}</td>
                                                 </tr>
                                             @endforeach

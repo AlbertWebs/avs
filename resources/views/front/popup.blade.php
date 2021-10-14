@@ -1,4 +1,36 @@
 @foreach ($Product as $Pro)
+{{--  --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<?php $SiteSettings = DB::table('sitesettings')->get() ?>
+    @foreach ($SiteSettings as $Settings)    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {{-- SEO --}}
+    {!! SEOMeta::generate() !!}
+        <?php $ProductC = 1; ?>
+        @foreach($Product as $tProduct)
+        <meta property="og:description" content="{{$tProduct->name}}">
+        <meta property="og:image" content="{{url('/')}}/uploads/product/{{$tProduct->image_one}}" />
+        <meta property="fb:app_id" content="350937289315471" />
+        <meta property=”og:id” content=”{{$tProduct->id}}” />
+            
+        @if ($ProductC == 1)
+            @break
+        @endif
+        <?php $ProductC = $ProductC+1; echo $ProductC; ?>
+        @endforeach
+        {!! OpenGraph::generate() !!}
+        {!! Twitter::generate() !!}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@accessories254" />
+        <!-- SEO -->
+	@endforeach
+</head>
+{{--  --}}
 <div class="container quickView-container">
 	<div class="quickView-content">
 		<div class="row">
@@ -127,4 +159,5 @@
 		</div>
 	</div>
 </div>
+</html>
 @endforeach

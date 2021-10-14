@@ -300,7 +300,7 @@
                     <div class="form-group col-lg-12">
 
                         <div class="form-group col-lg-12">
-                            <label class="control-label">Facebook Pixels</label>
+                            <label class="control-label">Facebook Pixels(1000px by 1000px)</label>
                             <div class="">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{{url('/')}}/uploads/product/{{$Product->fb_pixels}}" alt="" /></div>
@@ -314,7 +314,7 @@
                         </div>
                         
                     <div class="form-group col-lg-12">
-                        <label class="control-label">Thumbnail</label>
+                        <label class="control-label">Thumbnail(250*250)</label>
                         <div class="">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{{url('/')}}/uploads/product/{{$Product->thumbnail}}" alt="" /></div>
@@ -328,7 +328,7 @@
                     </div>
 
                     <div class="form-group col-lg-4">
-                        <label class="control-label">Image One(Main)</label>
+                        <label class="control-label">Image One(300*300)</label>
                         <div class="">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{{url('/')}}/uploads/product/{{$Product->image_one}}" alt="" /></div>
@@ -342,7 +342,7 @@
                     </div>
                     
                     <div class="form-group col-lg-4">
-                        <label class="control-label">W-780 H-480(Align Right)</label>
+                        <label class="control-label">W-1280 H-293(Align Right)</label>
                         <div class="">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{{url('/')}}/uploads/product/{{$Product->image_two}}" alt="" /></div>
@@ -356,7 +356,7 @@
                     </div>
                    
                     <div class="form-group col-lg-4">
-                        <label class="control-label">Image Three(w = 570 h=200)</label>
+                        <label class="control-label">Image Three(300*300)</label>
                         <div class="">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{{url('/')}}/uploads/product/{{$Product->image_three}}" alt="" /></div>

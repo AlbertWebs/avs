@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="modal-body">
                                         <?php $final = preg_replace('#[ -]+#', '-', $value->cat); ?>
-                                            <input style="width:100%" type="url" value="{{url('/')}}/classifieds/shop/{{$final}}">
+                                            <input style="width:100%" type="url" value="{{url('/')}}/products/{{$value->slung}}">
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

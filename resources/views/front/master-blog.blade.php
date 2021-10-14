@@ -19,6 +19,7 @@
     @if ($ProductC == 1)
         @break
     @endif
+    
     <?php $ProductC = $ProductC+1; echo $ProductC; ?>
     @endforeach
     {!! OpenGraph::generate() !!}
@@ -48,6 +49,7 @@
 </head>
 
 <body>
+    <h1 style="display:none">{{$page_title}}</h1>
 <!--Div where the WhatsApp will be rendered-->  
 <div style="z-index:100000" id="WAButton"></div> 
 {{--  --}}
@@ -192,11 +194,7 @@
         <div class="mobile-menu-wrapper">
             <span class="mobile-menu-close"><i class="icon-close"></i></span>
             
-            <form action="#" method="get" class="mobile-search">
-                <label for="mobile-search" class="sr-only">Search</label>
-                <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
-                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
-            </form>
+            @include('front.mobile-search')
 
             <ul class="nav nav-pills-mobile nav-border-anim" role="tablist">
                 <li class="nav-item">
