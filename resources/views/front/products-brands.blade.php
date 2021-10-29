@@ -27,7 +27,20 @@
                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                         <div class="product">
                             <figure class="product-media">
-                                {{-- <span class="product-label label-out">Out of Stock</span> --}}
+                                @if($item->offer == 1)
+                                    <?php
+                                        $OldPrice = $item->price_raw;
+                                        if($OldPrice == null || $OldPrice == "0"){
+                                            $OldPrice = $item->price;
+                                        }
+                                        $NewPrice = $item->price;
+                                        $Change = ($NewPrice*100)/$OldPrice;
+                                        $Change = ceil($Change);
+                                        
+                                        $Difference = 100-$Change;
+                                    ?>
+                                    <span class="product-label label-out"><strong>{{$Difference}}% Off</strong></span>
+                                @endif
                                 {{-- <span class="product-label label-new">New</span> --}}
                                 <a href="{{url('/')}}/product/{{$item->slung}}">
                                     <img src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">

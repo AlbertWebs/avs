@@ -139,7 +139,7 @@
                     <div class="form-group col-lg-12">
                     <div class="col-lg-12">
                     <div class="form-group">
-                    <label>Thumbnail</label>
+                    <label>Thumbnail 367 by 260(3 grid & 2 Grid)  - 1920 by 512(One Grid)</label>
                     
                         <div class="fileupload fileupload-new" data-provides="fileupload">
                             <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="{{url('/')}}/uploads/CategoryBanners/{{$Category->banner}}" alt="" /></div>

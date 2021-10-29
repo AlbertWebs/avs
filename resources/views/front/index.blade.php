@@ -148,7 +148,20 @@
                         @foreach ($Trending as $item)
                         <div class="product">
                             <figure class="product-media">
-                                {{-- <span class="product-label label-out">Out of Stock</span> --}}
+                                @if($item->offer == 1)
+                                    <?php
+                                        $OldPrice = $item->price_raw;
+                                        if($OldPrice == null || $OldPrice == 0){
+                                            $OldPrice = $item->price;
+                                        }
+                                        $NewPrice = $item->price;
+                                        $Change = ($NewPrice*100)/$OldPrice;
+                                        $Change = ceil($Change);
+                                        
+                                        $Difference = 100-$Change;
+                                    ?>
+                                    <span class="product-label label-out"><strong>{{$Difference}}% Off</strong></span>
+                                @endif
                                 {{-- <span class="product-label label-new">New</span> --}}
                                 <a href="{{url('/')}}/product/{{$item->slung}}">
                                     <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
@@ -248,7 +261,7 @@
            <div class="heading-right">
                 <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
                     <li class="nav-item">
-                        <a href="{{url('/')}}/products/{{$category->slung}}" class="nav-link active" id="elec-new-link" data-toggle="tab" href="#elec-new-tab" role="tab" aria-controls="elec-new-tab" aria-selected="true">View All {{$category->cat}}</a>
+                        <a href="{{url('/')}}/products/{{$category->slung}}" class="nav-link active" id="elec-new-link" >View All {{$category->cat}}</a>
                     </li>
                 </ul>
            </div><!-- End .heading-right -->
@@ -263,7 +276,20 @@
                     <div class="col-6 col-md-4 col-lg-4 col-xl-3" >
                         <div class="product">
                             <figure class="product-media">
-                                {{-- <span class="product-label label-out">Out of Stock</span> --}}
+                                @if($item->offer == 1)
+                                    <?php
+                                        $OldPrice = $item->price_raw;
+                                        if($OldPrice == null || $OldPrice == 0){
+                                            $OldPrice = $item->price;
+                                        }
+                                        $NewPrice = $item->price;
+                                        $Change = ($NewPrice*100)/$OldPrice;
+                                        $Change = ceil($Change);
+                                        
+                                        $Difference = 100-$Change;
+                                    ?>
+                                    <span class="product-label label-out"><strong>{{$Difference}}% Off</strong></span>
+                                @endif
                                 {{-- <span class="product-label label-new">New</span> --}}
                                 <a href="{{url('/')}}/product/{{$item->slung}}">
                                     <img style="max-width:217px !important; margin:0 auto;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">

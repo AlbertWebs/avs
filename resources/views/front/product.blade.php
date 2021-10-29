@@ -112,6 +112,9 @@
 
                             <div class="product-price">
                                 KES {{$Product->price}}
+                                @if($Product->offer == 1)
+                                &nbsp; <span style="text-decoration: line-through;" class="old-price">KES {{$Product->price_raw}}</span>
+                                @endif
                             </div><!-- End .product-price -->
 
                             <div class="product-content">
