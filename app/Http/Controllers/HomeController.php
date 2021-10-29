@@ -111,6 +111,35 @@ class HomeController extends Controller
        
     }
 
+    public function products_discounts($category){
+        Session::forget('Category');
+        $Category = DB::table('category')->where('slung',$category)->get();
+            foreach ($Category as $key => $value) {
+                $page_name = $value->cat;
+                $SEOSettings = DB::table('seosettings')->get();
+                foreach ($SEOSettings as $Settings) {
+                    SEOMeta::setTitle(' '.$value->cat.'  | ' . $Settings->sitename .'');
+                    SEOMeta::setDescription(''.$value->cat.' '.$value->keywords.'');
+                    SEOMeta::setCanonical('' . $Settings->url . '/products/'.$category.'');
+                    OpenGraph::setDescription('' . $value->cat . '');
+                    OpenGraph::setTitle('' . $value->cat . '');
+                    OpenGraph::setUrl('' . $Settings->url . '/products/'.$category.'');
+                    OpenGraph::addProperty('type', 'website');
+                    Twitter::setTitle('' . $Settings->sitename. '');
+                    Twitter::setSite('@amanisounds');
+                    // Set Session Here
+                    Session::put('Category', $page_name);
+                    $page_title = 'Products';
+                    $search_results ='';
+                    $search_results_category = '';
+                    $keywords = "$page_name, $value->keywords";
+                    // infinite Scroll
+                    $Products = DB::table('product')->where('cat',$value->id)->orderBy('offer','DESC')->get();
+                    return view('front.products-categories', compact('keywords','page_title', 'Products', 'page_name','search_results','search_results_category'));
+            }
+        }
+    }
+
     public function brands($category){
        
         $Category = DB::table('brands')->where('name',$category)->get();

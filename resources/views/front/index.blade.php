@@ -386,9 +386,13 @@
                         <img src="{{url('/')}}/uploads/CategoryBanners/{{$offer->banner}}" alt="Banner">
                     </a>
                     <div class="banner-content">
-                        <h4 class="banner-subtitle" style="color:#ffffff;">{!!html_entity_decode($offer->content)!!}</h4>
+                        {{-- <h4 class="banner-subtitle" style="color:#ffffff;">{!!html_entity_decode($offer->content)!!}</h4> --}}
                         <h4 class="banner-price"><span style="color:#ffffff;" class="price">{{$offer->title}}</span></h4>
-                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                        <?php $ProductIDD = DB::table('product')->where('id',$offer->product_id)->get(); ?>
+                        @foreach ($ProductIDD as $productidd)
+                        <a target="new" href="{{url('/')}}/product/{{$productidd->slung}}" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+                        @endforeach
+                        
                     </div>
                 </div>
             </div>

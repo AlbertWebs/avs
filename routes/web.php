@@ -65,6 +65,7 @@ Route::get('/shop-by-brand', [App\Http\Controllers\HomeController::class, 'brand
 Route::get('/{slung}', [App\Http\Controllers\HomeController::class, 'product_category'])->name('product-category');
 Route::get('/brand/{brand}', [App\Http\Controllers\HomeController::class, 'brands'])->name('shop-by-brand');
 });
+Route::get('/products-discounts/{slung}', [App\Http\Controllers\HomeController::class, 'products_discounts'])->name('products-discounts');
 // Single Product
 Route::get('product/{slung}', [App\Http\Controllers\HomeController::class, 'product_single'])->name('product-single');
 // Product Helpers
