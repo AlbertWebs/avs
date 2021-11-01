@@ -34,6 +34,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('in
 Route::get('/find-us',[App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/about-us',[App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
+
+Route::get('/special-offers',[App\Http\Controllers\HomeController::class, 'special_offers'])->name('special-offers');
+
 Route::get('/terms-and-conditions',[App\Http\Controllers\HomeController::class, 'terms'])->name('terms');
 Route::get('/privacy-policy',[App\Http\Controllers\HomeController::class, 'privacy'])->name('privacy');
 Route::get('/shipping-policy',[App\Http\Controllers\HomeController::class, 'shipping'])->name('shipping');

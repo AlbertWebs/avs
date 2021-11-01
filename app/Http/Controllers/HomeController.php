@@ -76,6 +76,33 @@ class HomeController extends Controller
         }
     }
 
+    public function special_offers()
+    {
+        Session::forget('Category');
+        $SEOSettings = DB::table('seosettings')->get();
+        foreach ($SEOSettings as $Settings) {
+            SEOMeta::setTitle('Products | ' . $Settings->sitename .'');
+            SEOMeta::setDescription('Pioneer Car Speakers, Sony Car Speakers, Kenwood Car speakers, Kenwood speakers, Sony Speakers' . $Settings->welcome . '');
+            SEOMeta::setCanonical('' . $Settings->url . '/products');
+            OpenGraph::setDescription('' . $Settings->welcome . '');
+            OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+            OpenGraph::setUrl('' . $Settings->url . '/products');
+            OpenGraph::addProperty('type', 'website');
+            Twitter::setTitle('' . $Settings->sitename. '');
+            Twitter::setSite('@amanisounds');
+            $page_name = 'Products';
+            $Copyright = DB::table('copyright')->get();
+            $page_title = 'Products';
+            $search_results ='';
+            $search_results_category = '';
+            $Products = DB::table('product')->OrderBy('id','DESC')->where('offer','1')->paginate(64);
+            $keywords = 'Sony Car Tweeters, Sony Car Ampifires, Kenwood Car Speakers, Kenwood Car Subwoofers, Sony car Subwoofers';
+            return view('front.products', compact('keywords','page_title', 'Products', 'page_name', 'search_results', 'search_results_category'));
+        }
+    }
+
+    
+
  
 
     public function product_category($category){

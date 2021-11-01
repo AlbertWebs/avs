@@ -70,12 +70,12 @@
             <div class="header-bottom sticky-header">
                 <div class="container">
                     <div class="header-left">
-                        <div class="dropdown category-dropdown show is-on" data-visible="true">
+                        <div class="dropdown category-dropdown show is-on" data-visible="false">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-display="static" title="Browse Categories">
                                 Browse Categories
                             </a>
 
-                            <div class="dropdown-menu show">
+                            <div class="dropdown-menu ">
                                 <nav class="side-nav">
                                     <ul class="menu-vertical sf-arrows">
                                         <?php $Category = DB::table('category')->limit(11)->get(); ?>
@@ -227,7 +227,7 @@
     {{-- Newsletter Popup --}}
     <?php $userIP = Request::ip();  $NewsLetter = DB::table('newsletters')->where('user',$userIP)->get(); ?>
     @if($NewsLetter->isEmpty())
-    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="row no-gutters bg-white newsletter-popup-content">
@@ -239,6 +239,8 @@
                             <form action="#" id="newsletter-popup">
                                 {{csrf_field()}}
                                 <div class="input-group input-group-round">
+                                    <input type="email" name="user_email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
+                                    <input type="email" name="user_email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
                                     <input type="email" name="user_email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
                                     <div class="input-group-append">
                                         <button class="btn" type="submit"><span>go</span> <img class="loading-imagers" width="22" src="{{url('/')}}/uploads/preloaders/loading.gif" alt="Amani vehicle Sound Loading"></button>
@@ -259,7 +261,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     @endif
 
     <!-- Plugins JS File -->

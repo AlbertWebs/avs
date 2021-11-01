@@ -118,20 +118,11 @@
   .intro-slide .owl-simple .owl-nav [class*='owl-'] {
     top: 52%; }
 
-/* .intro-slide {
+.intro-slide {
   display: flex;
   align-items: center;
   background-size: cover;
-  background-position: 60% center; } */
-
-  .intro-slide {
-    display: flex;
-    align-items: center;
-    background-size: contain, cover;
-    background-position: 60% center;
-    background-size: contain, cover;
-    background-repeat: no-repeat;
-}
+  background-position: 60% center; }
 
 .intro-content {
   position: static;

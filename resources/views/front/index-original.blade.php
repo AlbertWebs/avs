@@ -30,10 +30,10 @@
                                 </span>
                             </h1><!-- End .intro-title -->
 
-                            <a href="{{url('/')}}/special-offers" class="btn btn-outline-primary-2">
-                                <span>Get Offers</span>
+                            {{-- <a href="{{url('/')}}/product/{{$slider->slung}}" class="btn btn-outline-primary-2">
+                                <span>Shop Now</span>
                                 <i class="icon-long-arrow-right"></i>
-                            </a>
+                            </a> --}}
                         </div><!-- End .col-auto offset-lg-3 -->
                         @endforeach
                     </div><!-- End .row -->
