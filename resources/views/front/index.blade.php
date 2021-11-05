@@ -164,9 +164,16 @@
                                     <span class="product-label label-out"><strong>{{$Difference}}% Off</strong></span>
                                 @endif
                                 {{-- <span class="product-label label-new">New</span> --}}
+                                @if($item->offer == 1)
+                                <a href="{{url('/')}}/product/{{$item->slung}}">
+                                    <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->offer_banner}}" alt="{{$item->name}}" class="product-image">
+                                </a>
+                                @else
                                 <a href="{{url('/')}}/product/{{$item->slung}}">
                                     <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
                                 </a>
+                                
+                                @endif
 
                                 <div class="product-action-vertical">
                                     <a href="{{url('/')}}/wishlist/add-to-wishlist/{{$item->id}}" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
@@ -292,9 +299,16 @@
                                     <span class="product-label label-out"><strong>{{$Difference}}% Off</strong></span>
                                 @endif
                                 {{-- <span class="product-label label-new">New</span> --}}
+                                @if($item->offer == 1)
                                 <a href="{{url('/')}}/product/{{$item->slung}}">
-                                    <img style="max-width:217px !important; margin:0 auto;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
+                                    <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->offer_banner}}" alt="{{$item->name}}" class="product-image">
                                 </a>
+                                @else
+                                <a href="{{url('/')}}/product/{{$item->slung}}">
+                                    <img style="max-width:217px !important;" src="{{url('/')}}/uploads/product/{{$item->thumbnail}}" alt="{{$item->name}}" class="product-image">
+                                </a>
+                                
+                                @endif
 
                                 <div class="product-action-vertical">
                                     <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>

@@ -119,7 +119,7 @@ Route::get('mpesa/confirm',[PaymentsConroller::class, 'confirm']);           //R
 Route::get('mpesa/validate',[PaymentsConroller::class, 'validation']);         //Rquired URL
 Route::get('mpesa/register',[PaymentsConroller::class, 'register']);           //Rquired URL
 
-Route::get('export', [DemoController::class, 'export']); 
+Route::get('export', [DemoController::class, 'export'])->name('exporting'); 
 Route::get('importExportView', [DemoController::class, 'importExportView']); 
 Route::get('import', [DemoController::class, 'import']); 
 
@@ -202,7 +202,7 @@ Route::get('/delete_Coupon/{id}', [AdminsController::class, 'delete_Coupon'])->m
 Route::post('/edit_Coupon/{id}',  [AdminsController::class, 'edit_Coupon'])->middleware('is_admin');
 
 // Operations
-Route::get('/operations', [AdminsController::class, 'operations'])->middleware('is_admin');
+Route::get('/operations', [AdminsController::class, 'operations'])->name('operations')->middleware('is_admin');
 
 //values
 Route::get('/values', [AdminsController::class, 'values'])->middleware('is_admin');

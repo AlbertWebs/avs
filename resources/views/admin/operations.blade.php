@@ -53,7 +53,7 @@
                 <div class="row">
 
                     
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
 
                        <div class="panel panel-danger">
 
@@ -61,7 +61,7 @@
                             <div class="panel-body">
 
 
-                                  <a download href="{{url('/')}}/export" type="submit" onclick="" class="btn btn-block btn-success"> Generate Excel</a>
+                                  <a download href="{{url('/')}}/export" type="submit" onclick="" class="btn btn-block btn-success"> Generate Excel & Export</a>
 
 
                             </div>
@@ -72,7 +72,7 @@
 
                     </div>
 
-                    <div class="col-lg-6">
+                    {{-- <div class="col-lg-6">
 
                        <div class="panel panel-danger">
 
@@ -88,7 +88,7 @@
 
 
 
-                    </div>
+                    </div> --}}
                     {{-- <div class="col-lg-3">
 
                        <div class="panel panel-danger">

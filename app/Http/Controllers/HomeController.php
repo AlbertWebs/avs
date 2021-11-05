@@ -81,7 +81,7 @@ class HomeController extends Controller
         Session::forget('Category');
         $SEOSettings = DB::table('seosettings')->get();
         foreach ($SEOSettings as $Settings) {
-            SEOMeta::setTitle('Products | ' . $Settings->sitename .'');
+            SEOMeta::setTitle('Special Offers | ' . $Settings->sitename .'');
             SEOMeta::setDescription('Pioneer Car Speakers, Sony Car Speakers, Kenwood Car speakers, Kenwood speakers, Sony Speakers' . $Settings->welcome . '');
             SEOMeta::setCanonical('' . $Settings->url . '/products');
             OpenGraph::setDescription('' . $Settings->welcome . '');

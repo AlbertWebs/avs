@@ -3718,8 +3718,10 @@ public function wishlist(){
 
 public function addProductToFacebookPixel(){
 
+    
     // Empty
-    DB::table('_pro_excel')->delete();
+    // DB::table('_pro_excel')->delete();
+    ProExcel::truncate();
     // $Products = Product::whereNotNull('fb_pixels');
     $Products = DB::table('product')->whereNotNull('code')->whereNotNull('fb_pixels')->get();
     // $Products = DB::table('product')->where('code','MVH-S325BT')->get();
@@ -3748,9 +3750,9 @@ public function addProductToFacebookPixel(){
         
     }
 
-    Session::flash('message', "Table has been updated");
-    return Redirect::back();
-    // Once all the pixel data has been added return done
+    
+
+    return redirect()->route('exporting');
 }
 
 
