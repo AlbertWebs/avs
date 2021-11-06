@@ -133,26 +133,14 @@ class ClientController extends Controller
                 'address'=>$request->address,
                 'location'=>$request->location,
                 'mobile'=>$request->mobile,
-                'town'=>$request->town,
+                'notes'=>$request->notes,
+                'country'=>$request->country,
+                
             
             );
             DB::table('users')->where('id',$id)->update($updateDetails);
             Session::flash('message', "Changes have been saved");
-            return Redirect::back();
-        }else{
-            $updateDetails = array(
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'location'=>$request->location,
-                'address'=>$request->address,
-                'mobile'=>$request->mobile,
-                'town'=>$request->town,
-            
-            );
-            DB::table('users')->where('id',$id)->update($updateDetails);
-            Session::flash('message', "Changes have been saved");
-            Auth::guard('web')->logout();
-            return Redirect::back();
+            // return Redirect::back();
         }
     }
     public function place_order(Request $request){

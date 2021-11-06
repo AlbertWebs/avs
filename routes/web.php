@@ -88,6 +88,7 @@ Route::get('remove-from-cart/{id}', [CartController::class, 'destroy'])->name('r
 // Checkout
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::get('/checkout/payment', [CheckoutController::class, 'payment'])->name('payment');
+Route::get('/checkout/payment-last', [CheckoutController::class, 'payments'])->name('payments');
 Route::post('checkout/login', [CheckoutController::class, 'login'])->name('checkout.login');
 Route::post('checkout/create-user', [CheckoutController::class, 'create'])->name('checkout.create');
 Route::get('checkout/placeOrder', [CheckoutController::class, 'placeOrderGet'])->name('checkout.order.get');
@@ -141,6 +142,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 Route::group(['prefix'=>'dashboard'], function(){
 Route::get('/', [ClientController::class, 'index'])->name('dashboard.home');
+Route::post('/update-settings', [ClientController::class, 'save'])->name('dashboard.update');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 // SocialMedia
 Route::get('/facebook', [LoginController::class, 'facebook']);

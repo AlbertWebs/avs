@@ -27,6 +27,9 @@
                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                         <div class="product">
                             <figure class="product-media">
+                                @if($item->stock == "Out of Stock")
+                                <span class="product-label label-out">Out of Stock</span>
+                                @endif
                                 @if($item->offer == 1)
                                     <?php
                                         $OldPrice = $item->price_raw;
@@ -59,9 +62,15 @@
                                     <a href="{{url('/')}}/popup/{{$item->slung}}" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
                                 </div><!-- End .product-action-vertical -->
     
+                                @if($item->stock == "Out of Stock")
                                 <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to cart</span></a>
+                                    <a onclick="alert('Out Of Stock')" href="#" class="btn-product btn-cart" title="Add to cart"><span>Buy Now</span></a>
                                 </div><!-- End .product-action -->
+                                @else 
+                                <div class="product-action">
+                                    <a href="{{url('/')}}/shopping-cart/add-to-cart/{{$item->id}}" class="btn-product btn-cart" title="Add to cart"><span>Buy Now</span></a>
+                                </div><!-- End .product-action -->
+                                @endif
                             </figure><!-- End .product-media -->
     
                             <div class="product-body">

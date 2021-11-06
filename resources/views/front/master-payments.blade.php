@@ -412,6 +412,7 @@
                     // STK Request Goes Here
                     $( document ).ready(function() {
                         $('.spinner').hide();
+                        $('#saved').hide();
                     });
                     $("#stk-submit").submit(function(stay){
                      stay.preventDefault()
@@ -441,6 +442,27 @@
 
             });
         </script>
+          {{--  --}}
+          <script>
+              $('#updateSettings').on('submit', function (e) {
+                $('.spinner').show();
+                    e.preventDefault();
+                        $.ajax({
+                            type: 'post',
+                            url: '{{url('/')}}/dashboard/update-settings',
+                            data: $('#updateSettings').serialize(),
+                                success: function ($results) {
+                                    // alert('Verification Was Successfull')
+                                    $('#success-alert').html('The Purchase Was Successfull')
+                                    $('#veryfyID').html('Successfull')
+                                    $('#saved').show();
+                                    window.open('{{url('/')}}/shopping-cart/checkout/payment-last','_self')
+                                }
+                        });
+
+                });
+
+          </script>
           {{--  --}}
           @include('front.sign')
     @include('front.schema')

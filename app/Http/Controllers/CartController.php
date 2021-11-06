@@ -136,9 +136,12 @@ class CartController extends Controller
     
     public function addCart($id){
         $product = Product::find($id); //This gets product by id
-         Cart::add($id, $product->name, 1,$product->price);
-         
-         return Redirect::back();
+        if($product->stock == "Out of Stock"){
+
+        }else{
+            Cart::add($id, $product->name, 1,$product->price);
+        }
+        return Redirect::back();
     }
 
     public function addWishlist($id,$user){
@@ -162,8 +165,11 @@ class CartController extends Controller
 
     public function addCarts($id){ 
         $product = Product::find($id); //This gets product by id
-         Cart::add($id, $product->name, 1,$product->price);
-         
+        if($product->stock == "Out of Stock"){
+
+        }else{
+            Cart::add($id, $product->name, 1,$product->price);
+        }
         //  Redirect To Cart page
         return redirect()->action('CartController@index');
 
@@ -175,8 +181,12 @@ class CartController extends Controller
         $id = $request->id;
         $qty = $request->qty;
         $product = Product::find($id); //This gets product by id
-         Cart::add($id, $product->name, $qty,$product->price);
 
+        if($product->stock == "Out of Stock"){
+
+        }else{
+            Cart::add($id, $product->name, $qty,$product->price);
+        }
         //  Redirect To Cart page
         return redirect()->action('CartController@index');
 
@@ -188,10 +198,13 @@ class CartController extends Controller
 
     public function addCartPost(Request $request, $id){
         $product = Product::find($id); //This gets product by id
-        $qty = $request->qty;
-         Cart::add($id, $product->name, $qty,$product->price);
-         
-         return Redirect::back();
+        if($product->stock == "Out of Stock"){
+
+        }else{
+            $qty = $request->qty;
+            Cart::add($id, $product->name, $qty,$product->price);
+        }
+        return Redirect::back();
     }
 
     
@@ -209,12 +222,16 @@ class CartController extends Controller
  
     public function addItem($id){
          $product = Product::find($id); //This gets product by id
+         if($product->stock == "Out of Stock"){
+
+         }else{
          Cart::add($id, $product->name, 1,$product->price);
           $res =  Cart::content();
           $count = Cart::count();
           $Total = Cart::subtotal();
           return json_encode(array($count, $Total));
           return back();
+        }
     }
     public function destroy($id){
         

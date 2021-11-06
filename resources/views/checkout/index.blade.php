@@ -31,7 +31,7 @@
                   <input type="text" value="{{ old('location') }}" name="location" placeholder="e.g Umoja Peacok Stage" id="InputEmail1" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" value="{{ old('mobile') }}" name="mobile" placeholder="Enter Mobile" id="InputEmail1" class="form-control" required>
+                  <input type="text" value="{{ old('mobile') }}" name="mobile" placeholder="eg 254723000000 (Without +)" id="InputEmail1" class="form-control" required>
                 </div>
                 <!-- Check Email -->
                 <div id="mailChecking" class="alert-info"></div>

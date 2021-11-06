@@ -291,6 +291,149 @@ class CheckoutController extends Controller
         }
     }
 
+    public function payments(){
+        // Check For Empty Carts
+        $cart = Cart::count();
+       
+        if($cart == 0){
+            // Redirect To Cart
+            return redirect()->route('payment');
+        }else{
+            // $ip = \Request::ip();
+            $ip = '154.76.108.131';
+
+            $data = \Location::get($ip);
+            // Get The Delivery Charge
+            $AreaCode =  $data->areaCode;
+            if($AreaCode == '30'){
+                $Shipping = 300;
+            }else{
+                $Shipping = 400;
+            }
+
+            // Shipping session 
+            session()->put('Shipping', $Shipping);
+        
+
+            // Create an invoice, Mail and Register
+            if(Session::has('Invoice')){
+                $InvoiceNumber = session()->get('Invoice');
+                $OrderNumberNumber = session()->get('Order');
+            }else{
+                // Create Invoice
+                $MPESA = DB::table('invoices')->orderBy('id','DESC')->Limit('1')->get();
+                $count_mpesa = count($MPESA);
+                if($count_mpesa == 0){
+                    $InvoiceNumber = 'AVS001';
+                    $OrderNumberNumber = 'AVS001';
+                }else{
+                    foreach($MPESA as $mpesa){
+                        $LastID = $mpesa->id;
+                        $Next = $LastID+1;
+                        $InvoiceNumber = "AVS0".$Next;
+                        $OrderNumberNumber = "AVS10".$Next;
+                        // Create Session
+                        session()->put('Order', $OrderNumberNumber);
+                        session()->put('Invoice', $InvoiceNumber);
+                        }
+                }
+            }
+            
+            if(Session::has('coupon-total')){
+                $totalWithCoupon = Session::get('coupon-total');
+                // AmountVariables
+                if(Session::has('campaign')){
+                    $cost = Cart::total();
+                    $percentage = 10;
+                    $PrepeTotalCart = str_replace( ',', '', $totalWithCoupon);
+                    $FormatTotalCart = round($PrepeTotalCart, 0);
+                    $discount = ($percentage / 100) * $FormatTotalCart;
+                    $TotalCart = ($FormatTotalCart - $discount);
+                    $ShippingFee = $Shipping;
+                    $TotalCost = $TotalCart+$Shipping;
+                }
+                else{
+                    $TotalCart = Cart::total();
+                    $PrepeTotalCart = str_replace( ',', '', $TotalCart );
+                    $FormatTotalCart = round($PrepeTotalCart, 0);
+                    $ShippingFee = $Shipping;
+                    $TotalCost = $FormatTotalCart+$ShippingFee;
+                }
+
+            }else{
+                // AmountVariables
+                if(Session::has('campaign')){
+                    $cost = Cart::total();
+                    $percentage = 10;
+                    $PrepeTotalCart = str_replace( ',', '', $cost );
+                    $FormatTotalCart = round($PrepeTotalCart, 0);
+                    $discount = ($percentage / 100) * $FormatTotalCart;
+                    $TotalCart = ($FormatTotalCart - $discount);
+                    $ShippingFee = $Shipping;
+                    $TotalCost = $TotalCart+$Shipping;
+                }
+                else{
+                    $TotalCart = Cart::total();
+                    $PrepeTotalCart = str_replace( ',', '', $TotalCart );
+                    $FormatTotalCart = round($PrepeTotalCart, 0);
+                    $ShippingFee = $Shipping;
+                    $TotalCost = $FormatTotalCart+$ShippingFee;
+                }
+                // 
+            }
+            
+            
+            if(Session::has('Invoice')){
+
+            }else{
+                $CheckInvoice = DB::table('invoices')->where('number',$InvoiceNumber)->where('status','0')->where('user_id',Auth::user()->id)->get();
+                $CountCheckInvoice = count($CheckInvoice);
+                if($CountCheckInvoice == 0){
+                     // Record Invoice
+                     $Invoice = new Invoice;
+                     $Invoice->number = $InvoiceNumber;
+                     $Invoice->shipping = $Shipping;
+                     $Invoice->products = serialize(Cart::Content());
+                     $Invoice->user_id = Auth::user()->id;
+                     $Invoice->amount = $TotalCost;
+                     $Invoice->save();
+                     // Mail Invoice
+                     $email = Auth::user()->email;
+                     $name = Auth::user()->name;
+                    //  ReplyMessage::mailclientinvoice($email,$name,$InvoiceNumber,$ShippingFee,$TotalCost);
+               
+                }else{
+                    // The Invoice already Exists
+                   
+                }
+            }
+            session()->put('TotalCost', $TotalCost);
+            //Go to payments page     
+            $keywords = '';
+            $SEOSettings = DB::table('seosettings')->get();
+            foreach ($SEOSettings as $Settings) {
+                SEOMeta::setTitle('Choose Payment Methods  - ' . $Settings->sitename . ' ');
+                SEOMeta::setDescription('Vehicle Sounds Systems in Kenya, Car Sound Systems in Kenya, Car alarm Systems in Kenya' . $Settings->welcome . '');
+                SEOMeta::setCanonical('' . $Settings->url . '');
+                OpenGraph::setDescription('' . $Settings->welcome . '');
+                OpenGraph::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . ''); 
+                OpenGraph::setUrl('' . $Settings->url . '');
+                OpenGraph::addProperty('type', 'articles');
+                Twitter::setTitle('' . $Settings->sitename . ' - ' . $Settings->welcome . '');
+                Twitter::setSite('' . $Settings->twitter . '');
+                $page_title = 'Select Payment Method';
+                $page_name = 'Cobfirm';
+                $CartItems = Cart::content();
+                $SiteSettings = DB::table('sitesettings')->get();
+                $email = Auth::user()->email;
+                $User = DB::table('users')->where('email',$email)->get();
+                return view('checkout.checkout_payment_last', compact('InvoiceNumber','OrderNumberNumber','keywords','Shipping','CartItems','page_title','SiteSettings','page_name'));
+            }
+        }
+    }
+
+    
+
     public function shipping_method(){
         $page_name = 'Cobfirm';
         $email = Auth::user()->email;
