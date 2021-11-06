@@ -74,14 +74,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="text1" class="control-label col-lg-4">Google Product Category</label>
-
-                        <div class="col-lg-8">
-                            <input type="" id="text1" name="google_product_category" value="" placeholder="e.g 505766" class="form-control" />
-                        </div>
-                    </div>
-
+                  
                     
 
                     <div class="form-group">
@@ -108,6 +101,21 @@
                         <div class="col-lg-8">
                             <textarea id="liamiter" name="iframe" class="form-control"></textarea>
                             <p class="help-block">bnfse4NXo0k</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Google Product Category</label>
+    
+                        <div class="col-lg-8">
+                            <select name="google_product_category" data-placeholder="Choose Category" class="form-control chzn-select" tabindex="2">
+                              
+                               <?php $TheCategoryList = DB::table('g_p_c_s')->get(); ?>
+                               @foreach($TheCategoryList as $value)
+                                  <option value="{{$value->code}}">{{$value->category}} - {{$value->code}}</option>
+                               @endforeach
+    
+                            </select>
                         </div>
                     </div>
 

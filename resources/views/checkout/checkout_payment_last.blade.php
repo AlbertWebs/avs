@@ -521,65 +521,7 @@
 										        </div><!-- End .collapse -->
 										    </div><!-- End .card -->
 
-										    <div class="card">
-										        <div class="card-header" id="heading-2">
-										            <h2 class="card-title">
-										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-										                    Lipa na M-Pesa online
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
-										            <div class="card-body">
-										                {{--  --}}
-                                                        <form method="POST"  id="stk-submit">
-                                                            {{ csrf_field() }}
-                                                            <input type="hidden" name="invoice" value="{{$InvoiceNumber}}">
-                                                                  <?php
-                                                                      if(Session::has('campaign')){
-                                                                          $cost = Cart::total();
-                                                                          $percentage = 10;
-                                                                          $PrepeTotalCart = str_replace( ',', '', $cost );
-                                                                          $FormatTotalCart = round($PrepeTotalCart, 0);
-                                                                          $discount = ($percentage / 100) * $FormatTotalCart;
-                                                                          $TotalCart = ($FormatTotalCart - $discount);
-                                                                      }else{
-                                                                          $cost = Cart::total();
-                                                                          $percentage = 10;
-                                                                          $PrepeTotalCart = str_replace( ',', '', $cost );
-                                                                          $FormatTotalCart = round($PrepeTotalCart, 0);
-                                                                          $TotalCart = $FormatTotalCart;
-                                                                      }
-          
-                                                                      $PrepeTotalCart = str_replace( ',', '', $TotalCart );
-                                                                      $FormatTotalCart = round($PrepeTotalCart, 0);
-                                                                      $ShippingFee = $Shipping;
-                                                                      $TotalCost = $FormatTotalCart+$ShippingFee;
-                                                                      
-                                                                  
-                                                                  ?>
-                                                            <input type="hidden" name="amount" value="{{$TotalCost}}">
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <p for="email">Enter Your MPESA Phone Number <span>*</span></p>
-                                                                    
-                                                                    <input type="hidden" value="5" name="Amount">
-                                                                    <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
-                                                                    <input type="text" value="{{Auth::user()->mobile}}" name="phone_number" class="form-control" required placeholder="NJL4E9WJ96" id="email" autocomplete="off">
-                                                                </div>
-                                                            {{--  --}}
-                                                            <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-                                                                <span class="btn-text">Pay {{$TotalCost}} Now</span>
-                                                                
-                                                                 &nbsp; <img class="spinner" width="15" src="{{asset('uploads/preloaders/loading.gif')}}" alt="">
-                                                            </button>
-                                                            {{--  --}}
-                                                            </div>
-                                                        </form>
-                                                        {{--  --}}
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
+										    
 
 										    <div class="card">
 										        <div class="card-header" id="heading-4">

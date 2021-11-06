@@ -94,13 +94,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="text1" class="control-label col-lg-4">Google Product Category</label>
-
-                        <div class="col-lg-8">
-                            <input type="text" name="google_product_category" value="{{$Product->google_product_category}}" placeholder="{{$Product->google_product_category}}" class="form-control" />
-                        </div>
-                    </div>
+                
 
 
                      <div class="form-group">
@@ -112,7 +106,25 @@
                     </div> 
                     
 
-                   
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Google Product Category</label>
+                        <?php
+                                $CatID = $Product->google_product_category;
+                                $TheCategory = DB::table('g_p_c_s')->where('code',$CatID)->get();
+                                
+                        ?>
+                        <div class="col-lg-8">
+                            <select name="google_product_category" data-placeholder="Choose Category" class="form-control chzn-select" tabindex="2">
+                              
+                               <?php $TheCategoryList = DB::table('g_p_c_s')->get(); ?>
+                               <option selected value="{{$Product->google_product_category}}">@foreach($TheCategory as $valuee){{$valuee->category}} - {{$valuee->code}} @endforeach</option>
+                               @foreach($TheCategoryList as $value)
+                                  <option value="{{$value->code}}">{{$value->category}} - {{$value->code}}</option>
+                               @endforeach
+    
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                     <label class="control-label col-lg-4">Category</label>
