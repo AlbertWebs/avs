@@ -299,17 +299,24 @@ class CheckoutController extends Controller
             // Redirect To Cart
             return redirect()->route('payment');
         }else{
-            // $ip = \Request::ip();
-            $ip = '154.76.108.131';
+            $ip = \Request::ip();
+            // $ip = '154.76.108.131';
+         
 
             $data = \Location::get($ip);
             // Get The Delivery Charge
             $AreaCode =  $data->areaCode;
             if($AreaCode == '30'){
                 $Shipping = 300;
+                $location = "Nairobi";
             }else{
                 $Shipping = 400;
+                $location = "Mombasa";
             }
+
+            // echo $location;
+            // echo $ip;
+            // die();
 
             // Shipping session 
             session()->put('Shipping', $Shipping);
@@ -427,7 +434,7 @@ class CheckoutController extends Controller
                 $SiteSettings = DB::table('sitesettings')->get();
                 $email = Auth::user()->email;
                 $User = DB::table('users')->where('email',$email)->get();
-                return view('checkout.checkout_payment_last', compact('InvoiceNumber','OrderNumberNumber','keywords','Shipping','CartItems','page_title','SiteSettings','page_name'));
+                return view('checkout.checkout_payment_last', compact('location','InvoiceNumber','OrderNumberNumber','keywords','Shipping','CartItems','page_title','SiteSettings','page_name'));
             }
         }
     }

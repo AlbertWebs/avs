@@ -335,7 +335,7 @@
                         success:function(data){
 
                                 $('.hide_{{$CartItem->rowId}}').hide(1000);
-
+                                location.reload();
                         }
                         
                     });

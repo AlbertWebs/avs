@@ -259,6 +259,7 @@
 										        </div>
 										    </div> --}}
 
+                                            @if($location == 'Nairobi')
 										    <div class="card">
 										        <div class="card-header" id="heading-3">
 										            <h2 class="card-title">
@@ -312,6 +313,7 @@
 										            </div><!-- End .card-body -->
 										        </div><!-- End .collapse -->
 										    </div><!-- End .card -->
+                                            @endif
 
 										    <div class="card">
 										        <div class="card-header" id="heading-4">
@@ -574,6 +576,7 @@
 										        </div><!-- End .collapse -->
 										    </div><!-- End .card -->
 
+                                            @if($location == 'Nairobi')
                                             <div class="card">
 										        <div class="card-header" id="heading-3">
 										            <h2 class="card-title">
@@ -626,6 +629,7 @@
 										            </div><!-- End .card-body -->
 										        </div><!-- End .collapse -->
 										    </div><!-- End .card -->
+                                            @endif
 
 										    
 										</div><!-- End .accordion -->
